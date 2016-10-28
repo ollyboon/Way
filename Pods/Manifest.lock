@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (4.0.1)
+  - EstimoteSDK (4.11.1)
+  - SwiftyJSON (3.1.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - EstimoteSDK
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  EstimoteSDK: 01c96fc7aaa87e4de2528d511603374963bfff1b
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+
+PODFILE CHECKSUM: 51ed8a16aa743b98959a12a17caec7570ed40cdd
+
+COCOAPODS: 1.1.0.rc.2
