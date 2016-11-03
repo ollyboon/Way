@@ -14,9 +14,13 @@ class ViewController: UIViewController {
     
     let userManager = UserManager.sharedManager
     let beaconManager = ESTBeaconManager()
+    let request = Request()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        request.loadBuildings()
         
         
         beaconManager.delegate = self
@@ -35,57 +39,16 @@ extension ViewController: ESTBeaconManagerDelegate {
     
     
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-        print(region.identifier)
-        
-        let headers = [
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        ]
-        
-        let parameters = [
-            "building_id": 1,
-            "active": true
-        ] as [String : Any]
-        
-        Alamofire.request("http://178.62.44.213/api/users", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .response { response in
-            guard let data = response.data else { return }
-            let json = JSON(data: data)
-            UserManager.sharedManager.id = json["data"]["id"].intValue
-        }
-
+        print("Enter " + region.identifier)
+        request.userEnter(buildingId: 1)
     }
     
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-        print("Exit")
-        let headers = [
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        ]
-        
-        let parameters = [
-            "active": false
-            ] as [String : Any]
-        
-        Alamofire.request("http://178.62.44.213/api/users/\(UserManager.sharedManager.id!)", method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .response { response in
-                guard let data = response.data else { return }
-                let _ = JSON(data: data)
-                UserManager.sharedManager.id = nil
-        }
+        print("Leaving " + region.identifier)
+        request.userLeft(buildingId: 1)
     }
     
 }
 
 
-
-
-
-//Alamofire.request("http://178.62.44.213/api/users.json").response { response in
-//    guard let data = response.data else { return }
-//    
-//    let json = JSON(data: data)
-//    print(json)
-//    
-//}
 
