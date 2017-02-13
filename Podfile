@@ -8,5 +8,6 @@ target 'Way' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'EstimoteSDK'
+  pod 'Mapbox-iOS-SDK', '~> 3.4'
 
 end

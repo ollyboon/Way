@@ -9,13 +9,15 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Mapbox
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MGLMapViewDelegate {
     
     let userManager = UserManager.sharedManager
     let beaconManager = ESTBeaconManager()
     let request = Request()
-
+    @IBOutlet var mapView: MGLMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,12 +25,22 @@ class ViewController: UIViewController {
         request.loadBuildings()
         
         
+        mapView.delegate = self
         beaconManager.delegate = self
         beaconManager.requestAlwaysAuthorization()
         
         let fusionRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 4838, minor: 14161, identifier: "Fusion")
         
         self.beaconManager.startMonitoring(for: fusionRegion)
+        
+        let point = MGLPointAnnotation()
+        point.coordinate = CLLocationCoordinate2D(latitude: 50.742981, longitude: -1.896246)
+        point.title = "Bournemouth University"
+        point.subtitle = "Talbot Campus"
+        
+        mapView.addAnnotation(point)
+        
+
 
     }
 
