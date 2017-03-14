@@ -1,47 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12113" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12078"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN Alternate Bold.otf">
+            <string>DIN-BoldAlternate</string>
+        </array>
+    </customFonts>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="18A-wF-GwZ">
+            <objects>
+                <viewController id="Vw9-24-sJX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F2Z-ks-2kC"/>
+                        <viewControllerLayoutGuide type="bottom" id="SZ7-Wo-ybf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rv0-Sv-J6E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V3M-gD-ZTc">
+                                <rect key="frame" x="0.0" y="79" width="375" height="588"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="UFO-zm-KFR">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lju-jv-sjy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1532" y="25.637181409295355"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Way" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" id="BYZ-38-t0r" customClass="ViewController" customModule="Way" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="dO4-TS-qJR"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Wv-jz-CKm"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="MGLMapView">
+                    <view key="view" contentMode="scaleToFill" id="A2U-DS-enI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="latitude">
-                                <real key="value" value="50.742981"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="longitude">
-                                <real key="value" value="-1.8962460000000001"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="zoomLevel">
-                                <real key="value" value="16"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="allowsTilting" value="YES"/>
-                            <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/ollyboon/cito8ura5000s2hrvpvxvdlxn"/>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
-                        </userDefinedRuntimeAttributes>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dr2-ZG-b1h">
+                                <rect key="frame" x="0.0" y="-1" width="375" height="668"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQs-su-OU4" userLabel="shadow">
+                                <rect key="frame" x="0.0" y="-31" width="375" height="633"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="633" id="6I9-i9-a1t"/>
+                                    <constraint firstAttribute="width" constant="375" id="6MX-FJ-15k"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-0p-F3S" customClass="MGLMapView">
+                                <rect key="frame" x="0.0" y="-31" width="375" height="633"/>
+                                <color key="backgroundColor" red="0.7660905116580311" green="0.7660905116580311" blue="0.7660905116580311" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="633" id="QH9-Eo-ShW"/>
+                                    <constraint firstAttribute="width" constant="375" id="yDr-QZ-zKU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/ollyboon/cito8ura5000s2hrvpvxvdlxn"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="latitude">
+                                        <real key="value" value="50.742511"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="longitude">
+                                        <real key="value" value="-1.894862"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsZooming" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsScrolling" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsRotating" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsTilting" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="zoomLevel">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifying glass" translatesAutoresizingMaskIntoConstraints="NO" id="OQV-Mw-9bZ">
+                                <rect key="frame" x="15" y="622" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="qxb-Ki-T86"/>
+                                    <constraint firstAttribute="width" constant="27" id="yUx-Z9-eAO"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh6-17-5hO">
+                                <rect key="frame" x="54" y="618" width="114" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="1TZ-0S-RPy"/>
+                                    <constraint firstAttribute="height" constant="32" id="O9U-vU-0tF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dr2-ZG-b1h" firstAttribute="leading" secondItem="A2U-DS-enI" secondAttribute="leading" id="1bV-tQ-lfm"/>
+                            <constraint firstItem="dr2-ZG-b1h" firstAttribute="centerY" secondItem="A2U-DS-enI" secondAttribute="centerY" id="3WF-mW-2bf"/>
+                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="Gh6-17-5hO" secondAttribute="bottom" constant="17" id="8qu-ef-o9N"/>
+                            <constraint firstItem="dr2-ZG-b1h" firstAttribute="leading" secondItem="Vg6-0p-F3S" secondAttribute="leading" id="DMB-va-sAW"/>
+                            <constraint firstItem="GQs-su-OU4" firstAttribute="top" secondItem="A2U-DS-enI" secondAttribute="top" constant="-31" id="FqX-vP-pga"/>
+                            <constraint firstItem="dr2-ZG-b1h" firstAttribute="leading" secondItem="GQs-su-OU4" secondAttribute="leading" id="MgU-Gs-gXh"/>
+                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="OQV-Mw-9bZ" secondAttribute="bottom" constant="18" id="PSo-Xp-p3I"/>
+                            <constraint firstItem="Vg6-0p-F3S" firstAttribute="top" secondItem="A2U-DS-enI" secondAttribute="top" constant="-31" id="YHS-yS-dht"/>
+                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="GQs-su-OU4" secondAttribute="bottom" constant="65" id="ZsZ-bj-PGQ"/>
+                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="Vg6-0p-F3S" secondAttribute="bottom" constant="65" id="b8N-h0-E8z"/>
+                            <constraint firstItem="dr2-ZG-b1h" firstAttribute="trailing" secondItem="GQs-su-OU4" secondAttribute="trailing" id="c6T-vx-ACB"/>
+                            <constraint firstAttribute="trailing" secondItem="dr2-ZG-b1h" secondAttribute="trailing" id="iov-jf-Aqh"/>
+                            <constraint firstItem="Gh6-17-5hO" firstAttribute="leading" secondItem="OQV-Mw-9bZ" secondAttribute="trailing" constant="12" id="peA-zo-V3M"/>
+                            <constraint firstItem="dr2-ZG-b1h" firstAttribute="trailing" secondItem="Vg6-0p-F3S" secondAttribute="trailing" id="qMZ-J2-sdO"/>
+                            <constraint firstItem="OQV-Mw-9bZ" firstAttribute="leading" secondItem="A2U-DS-enI" secondAttribute="leading" constant="15" id="tY3-Rr-oB1"/>
+                            <constraint firstItem="dr2-ZG-b1h" firstAttribute="bottom" secondItem="9Wv-jz-CKm" secondAttribute="top" id="yQH-em-L8O"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <connections>
-                        <outlet property="mapView" destination="8bC-Xf-vdC" id="7V0-by-fEb"/>
+                        <outlet property="Gradient" destination="A2U-DS-enI" id="DfJ-PD-Pth"/>
+                        <outlet property="backgroundView" destination="dr2-ZG-b1h" id="YVO-dR-HOT"/>
+                        <outlet property="mapView" destination="Vg6-0p-F3S" id="nk0-lV-t1N"/>
+                        <outlet property="shadowView" destination="GQs-su-OU4" id="Yqm-tb-ynt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-663.20000000000005" y="25.637181409295355"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="magnifying glass" width="160" height="160"/>
+    </resources>
 </document>

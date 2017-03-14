@@ -64,7 +64,7 @@ class Request {
     
     
     private func handleBuildings(json: JSON) {
-        //loop thoguht buildings and set them up
+        //loop through buildings and set them up
         print(json)
         
     }
