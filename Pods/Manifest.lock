@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (4.3.0)
-  - EstimoteSDK (4.13.2)
-  - Mapbox-iOS-SDK (3.4.1)
+  - Alamofire (4.4.0)
+  - EstimoteSDK (4.14.0)
+  - Mapbox-iOS-SDK (3.4.2)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -11,9 +11,9 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
-  EstimoteSDK: 207cc0d4fa7635023c75a490b2d6ee9a417377cb
-  Mapbox-iOS-SDK: 9c0d23e9a3784e6c9e45af4339898e4598b5b09b
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  EstimoteSDK: 8674ac3687fddfb28d1660c0a8361a55e5da28ba
+  Mapbox-iOS-SDK: d2c567fee32d316044ec925c8bcfb74a92d57ec9
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
 PODFILE CHECKSUM: 4c451a80443fb57940631893359d95dbaaaaa0ca
