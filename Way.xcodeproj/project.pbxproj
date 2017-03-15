@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		455D04542C86913CA024C6F7 /* Pods_Way.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D4532F181ECB315E2FE517 /* Pods_Way.framework */; };
+		A810C9011E794C7000D5E92E /* tableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9001E794C7000D5E92E /* tableViewController.swift */; };
+		A810C9031E7960EE00D5E92E /* CustomUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9021E7960EE00D5E92E /* CustomUiView.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
 		A88D396B1E67820C0014E6BF /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */; };
 		A88D396D1E6841D70014E6BF /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88D396C1E6841D70014E6BF /* Annotations.swift */; };
@@ -23,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		9294284FB6A608966805603F /* Pods-Way.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Way.release.xcconfig"; path = "Pods/Target Support Files/Pods-Way/Pods-Way.release.xcconfig"; sourceTree = "<group>"; };
+		A810C9001E794C7000D5E92E /* tableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewController.swift; sourceTree = "<group>"; };
+		A810C9021E7960EE00D5E92E /* CustomUiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUiView.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
 		A88D396C1E6841D70014E6BF /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
@@ -103,11 +107,13 @@
 			children = (
 				E8D093B21DC381860030339E /* AppDelegate.swift */,
 				E8D093B41DC381860030339E /* ViewController.swift */,
+				A810C9021E7960EE00D5E92E /* CustomUiView.swift */,
 				A88D396C1E6841D70014E6BF /* Annotations.swift */,
 				FBC395931DCB770200DB0FDD /* Building.swift */,
 				A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */,
 				E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */,
 				FBC395911DCB6D8500DB0FDD /* Request.swift */,
+				A810C9001E794C7000D5E92E /* tableViewController.swift */,
 				E8D093C41DC389030030339E /* ObjCBridge.h */,
 				E8D093B61DC381860030339E /* Main.storyboard */,
 				E8D093B91DC381860030339E /* Assets.xcassets */,
@@ -250,6 +256,8 @@
 				E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */,
 				A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */,
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
+				A810C9011E794C7000D5E92E /* tableViewController.swift in Sources */,
+				A810C9031E7960EE00D5E92E /* CustomUiView.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
 				E8D093B51DC381860030339E /* ViewController.swift in Sources */,
 				A88D396D1E6841D70014E6BF /* Annotations.swift in Sources */,
@@ -320,7 +328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -365,7 +373,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -382,11 +390,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PB5S47GH58;
 				INFOPLIST_FILE = Way/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Way;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -398,11 +408,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PB5S47GH58;
 				INFOPLIST_FILE = Way/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Way;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

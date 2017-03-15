@@ -106,12 +106,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         func mapView1(_ mapView1: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
             return true
         }
-
-
-
-
-        
-        
         
 
     }
