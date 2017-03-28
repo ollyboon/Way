@@ -2,8 +2,8 @@ import Foundation
 import UIKit
 import Mapbox
 
-// MGLAnnotationView subclass
 class CustomAnnotationView: MGLAnnotationView {
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -11,9 +11,8 @@ class CustomAnnotationView: MGLAnnotationView {
         scalesWithViewingDistance = false
         
         // Use CALayer’s corner radius to turn this view into a circle.
-        layer.cornerRadius = 40
-        layer.borderWidth = 40
-        layer.borderColor = UIColor.white.cgColor
+        layer.cornerRadius = 15
+        layer.borderWidth = 0
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

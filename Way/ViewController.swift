@@ -16,20 +16,39 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     let userManager = UserManager.sharedManager
     let beaconManager = ESTBeaconManager()
     let request = Request()
-    let distance: CLLocationDistance = 250
-    var pitch: CGFloat = 50
+    let distance: CLLocationDistance = 550
+    var pitch: CGFloat = 0
     let heading = 310.0
     var camera = MGLMapCamera()
-    let coordinate = CLLocationCoordinate2D(latitude: 50.742400, longitude: -1.894990)
+    let mapCenter = CLLocationCoordinate2D(latitude: 50.742987, longitude: -1.896247)
+    var building = Building
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet var Gradient: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var shadowView: UIView!
     
+    
+    @IBAction func searchButton(_ sender: Any) {
+        
+        request.userEnter(buildingId: 1)
+        print("User posted")
+        
+    }
+    
+    @IBAction func leaveButton(_ sender: Any) {
+        
+        request.userLeft(buildingId: 1)
+        print("Active state removed")
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        request.delegate = self
         request.loadBuildings()
+        
+        Building.calculatePercentage()
+        
         
         mapView.delegate = self
         beaconManager.delegate = self
@@ -51,79 +70,67 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
         backgroundView.layer.addSublayer(gradientLayer)
         
+
+        
+        
+
+        
+        
+        //MAPBOX
+        
+        
+        
+        
         // call drop shadow function for map subview and add corner radius to mapView
         shadowView.dropShadow()
         mapView.layer.cornerRadius = 15
         
-        camera = MGLMapCamera(lookingAtCenter: coordinate, fromDistance: distance, pitch: pitch, heading: heading)
+        //set mapview camera
+        camera = MGLMapCamera(lookingAtCenter: mapCenter, fromDistance: distance, pitch: pitch, heading: heading)
         self.mapView.camera = camera
         
-        // Specify coordinates for annotations.
         
-        let labelCoordinates = [
-            CLLocationCoordinate2D(latitude: 50.742335, longitude: -1.894862),
-            CLLocationCoordinate2D(latitude: 50.742396, longitude: -1.895785),
-            CLLocationCoordinate2D(latitude: 50.742705, longitude: -1.896241),
-            ]
-        
-        // Fill an array with point annotations and add it to the map. (eventually include coordinates on database)
-        var pointAnnotations = [MGLPointAnnotation]()
-        for coordinate in labelCoordinates {
-            let point = MGLPointAnnotation()
-            point.coordinate = coordinate
-            point.title = "\(coordinate.latitude), \(coordinate.longitude)"
-            pointAnnotations.append(point)
-        }
-        
-        mapView.addAnnotations(pointAnnotations)
-        
-        // This delegate method is where you tell the map to load a view for a specific annotation. To load a static MGLAnnotationImage, you would use `-mapView:imageForAnnotation:`.
-        func mapView1(_ mapView1: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-            // This example is only concerned with point annotations.
-            guard annotation is MGLPointAnnotation else {
-                return nil
-            }
-            
-            // Use the point annotation’s longitude value (as a string) as the reuse identifier for its view.
-            let reuseIdentifier = "\(annotation.coordinate.longitude)"
-            
-            // For better performance, always try to reuse existing annotations.
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
-            
-            // If there’s no reusable annotation view available, initialize a new one.
-            if annotationView == nil {
-                annotationView = CustomAnnotationView(reuseIdentifier: reuseIdentifier)
-                annotationView!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-                
-                // Set the annotation view’s background color to a value determined by its longitude.
-                let hue = CGFloat(annotation.coordinate.longitude) / 100
-                annotationView!.backgroundColor = UIColor(hue: hue, saturation: 0.5, brightness: 1, alpha: 1)
-            }
-            
-            return annotationView
-        }
-        
-        func mapView1(_ mapView1: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-            return true
-        }
-        
-
+    
     }
+    
 
-
+    
+    // This delegate method is where you tell the map to load a view for a specific annotation.
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        guard annotation is MGLPointAnnotation else {
+            return nil
+        }
+        
+        // Use the point annotation’s longitude value (as a string) as the reuse identifier for its view.
+        let reuseIdentifier = "\(annotation.coordinate.longitude)"
+        
+        // For better performance, always try to reuse existing annotations.
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        // If there’s no reusable annotation view available, initialize a new one.
+        if annotationView == nil {
+            annotationView = CustomAnnotationView(reuseIdentifier: reuseIdentifier)
+            annotationView!.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+            
+            // Set the annotation view’s background color to a value determined by its longitude.
+            annotationView!.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
+        }
+        
+        return annotationView
+    }
 }
 
 extension ViewController: ESTBeaconManagerDelegate {
     
     
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-        print("Enter " + region.identifier)
-        request.userEnter(buildingId: 1)
+//        print("Enter " + region.identifier)
+//        request.userEnter(buildingId: 1)
     }
     
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-        print("Leaving " + region.identifier)
-        request.userLeft(buildingId: 1)
+//        print("Leaving " + region.identifier)
+//        request.userLeft(buildingId: 1)
     }
     
 }
@@ -142,6 +149,30 @@ extension UIView {
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 15).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
+        
+    }
+}
+
+extension ViewController: RequestDelegate {
+    func loadedBuildings() {
+        print("load complete")
+        
+        var pointAnnotations = [MGLPointAnnotation]()
+        
+        
+        
+        for building in BuildingManager.shared.buildings {
+            let point = MGLPointAnnotation()
+            let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
+            point.coordinate = buildingCoord
+            pointAnnotations.append(point)
+        }
+        
+        mapView.addAnnotations(pointAnnotations)
+        
+        
+        
+        
         
     }
 }

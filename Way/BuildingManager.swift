@@ -2,7 +2,7 @@ import Foundation
 
 class BuildingManager {
     
-    static let sharedBuilding = BuildingManager()
+    static let shared = BuildingManager()
 
     var buildings = [Building]()
     

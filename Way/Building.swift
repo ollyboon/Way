@@ -11,15 +11,31 @@ class Building {
     var name: String!
     var capacity: Int!
     var beaconId: String!
-    var active_users: Int!
+    var activeUsers: Int!
+    var latitude: Double!
+    var longitude: Double!
+    
     
     init(json: JSON){
         name = json["name"].stringValue
         buildingId = json["id"].int
         capacity = json["capacity"].int
         beaconId = json["uuid"].stringValue
-        active_users = json["active_users"].int
-        
+        activeUsers = json["active_users"].int
+        latitude = json["latitude"].double
+        longitude = json["longitude"].double
     }
     
+    func calculatePercentage() {
+        
+        if activeUsers >= 1 {
+            
+            let result =  activeUsers / capacity
+            let activePercentage = result * 100
+            
+            print(activePercentage)
+        }
+        
+        
+    }
 }

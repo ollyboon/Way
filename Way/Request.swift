@@ -2,6 +2,10 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+protocol RequestDelegate {
+    func loadedBuildings()
+}
+
 enum RequestType {
     case buildings, postUser, userLeft
 }
@@ -13,6 +17,8 @@ class Request {
         "Accept": "application/json",
         "Content-Type": "application/json"
     ]
+    
+    var delegate: RequestDelegate?
     
     func loadBuildings() {
         request(method: .get, parameters: nil, urlExt: "buildings", requestType: .buildings)
@@ -67,6 +73,12 @@ class Request {
         //loop through buildings and set them up
         // BuildingManager.sharedBuilding.buildings
         print(json)
+        for buildingData in json["data"].arrayValue {
+            let building = Building(json: buildingData)
+            BuildingManager.shared.buildings.append(building)
+        }
+        
+        delegate?.loadedBuildings()
         
     }
     

@@ -57,47 +57,51 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsZooming" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsScrolling" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsRotating" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsTilting" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="zoomLevel">
-                                        <real key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsTilting" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh6-17-5hO">
-                                <rect key="frame" x="57" y="618" width="114" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3r-jv-eFn">
+                                <rect key="frame" x="57" y="619" width="116" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="Iz0-Lx-VDU"/>
-                                    <constraint firstAttribute="width" constant="114" id="aKh-QS-fHA"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ibm-0B-cGZ"/>
+                                    <constraint firstAttribute="width" constant="116" id="m2G-la-H9c"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="36"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="leaveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C4E-eS-0Ld"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kb-2f-UTp">
                                 <rect key="frame" x="17" y="620" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="bb1-rs-eBq"/>
-                                    <constraint firstAttribute="height" constant="30" id="jSW-pX-fY1"/>
+                                    <constraint firstAttribute="width" constant="30" id="gKa-eA-6n9"/>
+                                    <constraint firstAttribute="height" constant="30" id="hmb-jO-DyG"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="magnifying glass"/>
+                                <state key="normal" image="searchIcon"/>
+                                <connections>
+                                    <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fQk-Uh-Vwt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dr2-ZG-b1h" firstAttribute="leading" secondItem="A2U-DS-enI" secondAttribute="leading" id="1bV-tQ-lfm"/>
                             <constraint firstItem="dr2-ZG-b1h" firstAttribute="centerY" secondItem="A2U-DS-enI" secondAttribute="centerY" id="3WF-mW-2bf"/>
+                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="4Kb-2f-UTp" secondAttribute="bottom" constant="17" id="ACq-GP-Abz"/>
                             <constraint firstItem="dr2-ZG-b1h" firstAttribute="leading" secondItem="Vg6-0p-F3S" secondAttribute="leading" id="DMB-va-sAW"/>
                             <constraint firstItem="GQs-su-OU4" firstAttribute="top" secondItem="A2U-DS-enI" secondAttribute="top" constant="-31" id="FqX-vP-pga"/>
                             <constraint firstItem="dr2-ZG-b1h" firstAttribute="leading" secondItem="GQs-su-OU4" secondAttribute="leading" id="MgU-Gs-gXh"/>
-                            <constraint firstItem="Gh6-17-5hO" firstAttribute="leading" secondItem="4Kb-2f-UTp" secondAttribute="trailing" constant="10" id="SZZ-El-EPh"/>
+                            <constraint firstItem="D3r-jv-eFn" firstAttribute="leading" secondItem="4Kb-2f-UTp" secondAttribute="trailing" constant="10" id="SL1-5r-PXt"/>
                             <constraint firstItem="Vg6-0p-F3S" firstAttribute="top" secondItem="A2U-DS-enI" secondAttribute="top" constant="-31" id="YHS-yS-dht"/>
-                            <constraint firstItem="4Kb-2f-UTp" firstAttribute="leading" secondItem="A2U-DS-enI" secondAttribute="leadingMargin" constant="1" id="YTJ-cP-upR"/>
                             <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="GQs-su-OU4" secondAttribute="bottom" constant="65" id="ZsZ-bj-PGQ"/>
                             <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="Vg6-0p-F3S" secondAttribute="bottom" constant="65" id="b8N-h0-E8z"/>
+                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="D3r-jv-eFn" secondAttribute="bottom" constant="18" id="bJS-uK-5go"/>
+                            <constraint firstItem="4Kb-2f-UTp" firstAttribute="leading" secondItem="A2U-DS-enI" secondAttribute="leadingMargin" constant="1" id="c5y-Fw-PSy"/>
                             <constraint firstItem="dr2-ZG-b1h" firstAttribute="trailing" secondItem="GQs-su-OU4" secondAttribute="trailing" id="c6T-vx-ACB"/>
-                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="Gh6-17-5hO" secondAttribute="bottom" constant="17" id="iB0-nY-WGQ"/>
-                            <constraint firstItem="9Wv-jz-CKm" firstAttribute="top" secondItem="4Kb-2f-UTp" secondAttribute="bottom" constant="17" id="idF-mE-YRU"/>
                             <constraint firstAttribute="trailing" secondItem="dr2-ZG-b1h" secondAttribute="trailing" id="iov-jf-Aqh"/>
                             <constraint firstItem="dr2-ZG-b1h" firstAttribute="trailing" secondItem="Vg6-0p-F3S" secondAttribute="trailing" id="qMZ-J2-sdO"/>
                             <constraint firstItem="dr2-ZG-b1h" firstAttribute="bottom" secondItem="9Wv-jz-CKm" secondAttribute="top" id="yQH-em-L8O"/>
@@ -113,10 +117,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-500" y="26"/>
+            <point key="canvasLocation" x="-500" y="25.637181409295355"/>
         </scene>
     </scenes>
     <resources>
-        <image name="magnifying glass" width="160" height="160"/>
+        <image name="searchIcon" width="89" height="89"/>
     </resources>
 </document>
