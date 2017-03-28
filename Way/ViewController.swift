@@ -96,7 +96,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     // This delegate method is where you tell the map to load a view for a specific annotation.
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        guard annotation is MGLPointAnnotation else {
+        guard let annotation = annotation as? CustomAnnotation else {
             return nil
         }
         
@@ -104,7 +104,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         let reuseIdentifier = "\(annotation.coordinate.longitude)"
         
         // For better performance, always try to reuse existing annotations.
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? CustomAnnotationView
         
         // If there’s no reusable annotation view available, initialize a new one.
         if annotationView == nil {
@@ -113,6 +113,10 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             
             // Set the annotation view’s background color to a value determined by its longitude.
             annotationView!.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
+            annotationView!.layer.shadowColor = UIColor.black.cgColor
+            annotationView!.layer.shadowOpacity = 0.2
+            annotationView!.layer.shadowOffset = CGSize(width: 0, height: 7)
+            annotationView!.layer.shadowRadius = 4
         }
         
         return annotationView
@@ -161,7 +165,7 @@ extension ViewController: RequestDelegate {
         
         
         for building in BuildingManager.shared.buildings {
-            let point = MGLPointAnnotation()
+            let point = CustomAnnotation(building: building)
             building.calculatePercentage()
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord

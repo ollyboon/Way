@@ -4,6 +4,8 @@ import Mapbox
 
 class CustomAnnotationView: MGLAnnotationView {
     
+    var percentageBar: UIView!
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -12,6 +14,53 @@ class CustomAnnotationView: MGLAnnotationView {
         
         // Use CALayer’s corner radius to turn this view into a circle.
         layer.cornerRadius = 15
+        
+        guard let annotation = annotation as? CustomAnnotation else { return }
+        
+        
+        percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
+        percentageBar.backgroundColor = .red
+        percentageBar.layer.cornerRadius = 15
+        addSubview(percentageBar)
+        
+        switch annotation.building.calculatePercentage() {
+            
+        case 1.0..<19.0 :
+            percentageBar.backgroundColor = UIColor(red: 0.0/255.0, green: 232.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+           
+        case 20.0..<29.0 :
+            percentageBar.backgroundColor = UIColor(red: 0.0/255.0, green: 232.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+            
+        case 30.0..<39.0 :
+            percentageBar.backgroundColor = UIColor(red: 0.0/255.0, green: 232.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+            
+        case 40.0..<49.0 :
+            percentageBar.backgroundColor = UIColor(red: 0.0/255.0, green: 232.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+            
+        case 50.0..<59.0 :
+            percentageBar.backgroundColor = UIColor(red: 249.0/255.0, green: 164.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+            
+        case 60.0..<69.0 :
+            percentageBar.backgroundColor = UIColor(red: 249.0/255.0, green: 164.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+            
+        case 70.0..<79.0 :
+            percentageBar.backgroundColor = UIColor(red: 249.0/255.0, green: 164.0/255.0, blue: 36.0/255.0, alpha: 1.0)
+            
+        case 80.0..<89.0 :
+            percentageBar.backgroundColor = UIColor(red: 244.0/255.0, green: 46.0/255.0, blue: 58.0/255.0, alpha: 1.0)
+            
+        case 90.0..<100.0 :
+            percentageBar.backgroundColor = UIColor(red: 244.0/255.0, green: 46.0/255.0, blue: 58.0/255.0, alpha: 1.0)
+            
+            
+            
+        
+        default:
+            percentageBar.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
+            
+        }
+
+        
     }
     
 }

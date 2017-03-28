@@ -26,16 +26,16 @@ class Building {
         longitude = json["longitude"].double
     }
     
-    func calculatePercentage() {
+    func calculatePercentage() -> Double {
         if activeUsers > 1 {
             
             let result =  activeUsers / capacity
             let activePercentage = result * 100
             
             print(name,"is",activePercentage,"% full")
-        }else{
-            print(name,"is empty")
+            return activePercentage
         }
+        return 0
     }
     
 
