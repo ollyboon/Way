@@ -21,7 +21,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     let heading = 310.0
     var camera = MGLMapCamera()
     let mapCenter = CLLocationCoordinate2D(latitude: 50.742987, longitude: -1.896247)
-    var building = Building(json: JSON)
+
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet var Gradient: UIView!
     @IBOutlet weak var backgroundView: UIView!
@@ -47,7 +47,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         request.delegate = self
         request.loadBuildings()
         
-        //Building.calculatePercentage()
         
         
         mapView.delegate = self
@@ -163,6 +162,7 @@ extension ViewController: RequestDelegate {
         
         for building in BuildingManager.shared.buildings {
             let point = MGLPointAnnotation()
+            building.calculatePercentage()
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord
             pointAnnotations.append(point)
