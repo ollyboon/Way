@@ -71,8 +71,6 @@ class Request {
     
     private func handleBuildings(json: JSON) {
         //loop through buildings and set them up
-        // BuildingManager.sharedBuilding.buildings
-        print(json)
         for buildingData in json["data"].arrayValue {
             let building = Building(json: buildingData)
             BuildingManager.shared.buildings.append(building)
@@ -85,7 +83,6 @@ class Request {
     
     private func postedUser(json: JSON) {
         UserManager.sharedManager.id = json["data"]["id"].int!
-        // print(json)
     }
 }
 

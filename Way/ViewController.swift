@@ -27,10 +27,9 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var shadowView: UIView!
     
-    
-
-
-    
+    @IBAction func refresh(_ sender: Any) {
+        mapView.removeAnnotations([MGLPointAnnotation]())
+    }
     
     @IBAction func searchButton(_ sender: Any) {
         
@@ -47,12 +46,27 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
         
     }
+    
+    
+    func annotationPressed() {
+        print("Button Clicked")
+        let building = Building(json: "data")
+        let buildingName = building.name
+        let howFull = building.calculatePercentage()
+        let status = building.name
+        self.performSegue(withIdentifier: "building", sender: building)
+        self.performSegue(withIdentifier: "building", sender: buildingName)
+        self.performSegue(withIdentifier: "building", sender: status)
+        self.performSegue(withIdentifier: "building", sender: howFull)
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         request.delegate = self
         request.loadBuildings()
-        
         
         
         mapView.delegate = self
@@ -75,6 +89,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
         backgroundView.layer.addSublayer(gradientLayer)
         
+        
+        
 
         
         
@@ -82,9 +98,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
         
         //MAPBOX
-        
-        
-        
         
         // call drop shadow function for map subview and add corner radius to mapView
         shadowView.dropShadow()
@@ -175,12 +188,8 @@ extension ViewController: RequestDelegate {
         }
         
         mapView.addAnnotations(pointAnnotations)
-        
-        
-        
-        
-        
     }
+
 }
 
 

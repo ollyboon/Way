@@ -6,6 +6,10 @@ class CustomAnnotationView: MGLAnnotationView {
     
     var percentageBar: UIView!
     let building = Building.init(json: "data")
+    var din : UIFont = UIFont(name: "DIN", size: 15)!
+    
+    
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -69,10 +73,11 @@ class CustomAnnotationView: MGLAnnotationView {
         addSubview(label)
         
         
-
-
         
-
+        
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        button.addTarget(self, action:#selector(ViewController.annotationPressed), for: .touchUpInside)
+        addSubview(button)
         
     }
     

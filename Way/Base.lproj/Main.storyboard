@@ -102,6 +102,9 @@
                                     <constraint firstAttribute="height" constant="22" id="yxk-6T-iLs"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="refresh"/>
+                                <connections>
+                                    <action selector="refresh:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WUZ-hP-tUN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kb-2f-UTp" userLabel="magnifiying glass">
                                 <rect key="frame" x="17" y="620" width="30" height="30"/>
@@ -229,6 +232,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="dsZ-wL-iwZ" secondAttribute="trailing" constant="29" id="zi8-ze-5eC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buildingLabel" destination="UJR-yV-8AY" id="J8j-5s-jVz"/>
+                        <outlet property="buildingStatus" destination="Tta-3s-hEF" id="TgH-tJ-8nf"/>
+                        <outlet property="directionLabel" destination="dsZ-wL-iwZ" id="hMQ-AY-hrp"/>
+                        <outlet property="emojiImage" destination="QH8-g3-HS7" id="1Iw-gO-Pq9"/>
+                        <outlet property="emojiLabel" destination="9YC-4c-Qv6" id="B7H-ds-dfi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wdr-2n-Fug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -238,7 +248,7 @@
     <resources>
         <image name="potato" width="160" height="160"/>
         <image name="rectangle" width="304" height="79"/>
-        <image name="refresh" width="22" height="22"/>
+        <image name="refresh" width="29" height="29"/>
         <image name="searchIcon" width="89" height="89"/>
     </resources>
 </document>
