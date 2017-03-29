@@ -61,7 +61,7 @@ class CustomAnnotationView: MGLAnnotationView {
         label.center = CGPoint(x: 50, y: 14)
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont(name: "DIN", size: 18)
+        label.font = UIFont(name: "DIN", size: 15)
         label.text = annotation.building.name
         addSubview(label)
         

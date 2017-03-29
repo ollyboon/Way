@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		455D04542C86913CA024C6F7 /* Pods_Way.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D4532F181ECB315E2FE517 /* Pods_Way.framework */; };
-		A810C9011E794C7000D5E92E /* tableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9001E794C7000D5E92E /* tableViewController.swift */; };
+		A810C9011E794C7000D5E92E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9001E794C7000D5E92E /* TableViewController.swift */; };
 		A810C9031E7960EE00D5E92E /* CustomUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9021E7960EE00D5E92E /* CustomUiView.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
 		A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849942F1E8AA33500CED634 /* BuildingViewController.swift */; };
@@ -27,7 +27,7 @@
 
 /* Begin PBXFileReference section */
 		9294284FB6A608966805603F /* Pods-Way.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Way.release.xcconfig"; path = "Pods/Target Support Files/Pods-Way/Pods-Way.release.xcconfig"; sourceTree = "<group>"; };
-		A810C9001E794C7000D5E92E /* tableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewController.swift; sourceTree = "<group>"; };
+		A810C9001E794C7000D5E92E /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A810C9021E7960EE00D5E92E /* CustomUiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUiView.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		A849942F1E8AA33500CED634 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +112,7 @@
 				E8D093B21DC381860030339E /* AppDelegate.swift */,
 				E8D093B41DC381860030339E /* ViewController.swift */,
 				A849942F1E8AA33500CED634 /* BuildingViewController.swift */,
+				A810C9001E794C7000D5E92E /* TableViewController.swift */,
 				A810C9021E7960EE00D5E92E /* CustomUiView.swift */,
 				A88D396C1E6841D70014E6BF /* Annotations.swift */,
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
@@ -119,7 +120,6 @@
 				A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */,
 				E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */,
 				FBC395911DCB6D8500DB0FDD /* Request.swift */,
-				A810C9001E794C7000D5E92E /* tableViewController.swift */,
 				E8D093C41DC389030030339E /* ObjCBridge.h */,
 				E8D093B61DC381860030339E /* Main.storyboard */,
 				E8D093B91DC381860030339E /* Assets.xcassets */,
@@ -262,7 +262,7 @@
 				E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */,
 				A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */,
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
-				A810C9011E794C7000D5E92E /* tableViewController.swift in Sources */,
+				A810C9011E794C7000D5E92E /* TableViewController.swift in Sources */,
 				A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */,
 				A810C9031E7960EE00D5E92E /* CustomUiView.swift in Sources */,
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,

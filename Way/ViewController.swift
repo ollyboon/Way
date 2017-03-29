@@ -26,9 +26,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet var Gradient: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var shadowView: UIView!
-    
-    
     @IBAction func swipe(_ recognizer: UISwipeGestureRecognizer) {
+        
         if (recognizer.direction == UISwipeGestureRecognizerDirection.left)
         {
             print("left")
@@ -37,7 +36,11 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         }else {
             print("other")
         }
+        
     }
+    
+    
+
 
     
     
@@ -59,6 +62,28 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
         //SWIPE RECOGNISERS
         
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.swipe(_:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.swipe(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        func swiped(_ gesture: UIGestureRecognizer)
+        {
+            if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+                switch swipeGesture.direction {
+                case UISwipeGestureRecognizerDirection.right:
+                    print("right swipe")
+                case UISwipeGestureRecognizerDirection.left:
+                    print("left swipe")
+                    self.performSegue(withIdentifier: "building", sender: swipeLeft)
+                default:
+                    print("other swipe")
+                }
+            }
+        }
     
         
         

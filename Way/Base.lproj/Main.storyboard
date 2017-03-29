@@ -15,6 +15,24 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Table View Controller-->
+        <scene sceneID="cEd-vm-jNO">
+            <objects>
+                <viewController id="E3K-kf-IJh" customClass="TableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SM3-nD-dha"/>
+                        <viewControllerLayoutGuide type="bottom" id="7EX-jf-qBf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="91e-r6-Qtb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0QR-hd-Zix" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1201" y="32"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -50,10 +68,10 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/ollyboon/cito8ura5000s2hrvpvxvdlxn"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="latitude">
-                                        <real key="value" value="50.742983000000002"/>
+                                        <real key="value" value="50.742806999999999"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="longitude">
-                                        <real key="value" value="-1.894862"/>
+                                        <real key="value" value="-1.895319"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsZooming" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsScrolling" value="YES"/>
@@ -117,18 +135,19 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="Ota-Z1-fW9">
+                <swipeGestureRecognizer direction="right" id="m55-rF-IuN">
                     <connections>
-                        <action selector="swipe:" destination="BYZ-38-t0r" id="C9w-1A-B1o"/>
+                        <action selector="swipe:" destination="BYZ-38-t0r" id="GUX-PV-TRn"/>
+                        <segue destination="K07-6r-qVl" kind="show" identifier="building" id="NJK-Yu-pWp"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-378" y="32"/>
+            <point key="canvasLocation" x="-390" y="32"/>
         </scene>
-        <!--View Controller-->
+        <!--building-->
         <scene sceneID="uS8-QM-jKL">
             <objects>
-                <viewController id="K07-6r-qVl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="building" title="building" id="K07-6r-qVl" customClass="BuildingViewController" customModule="Way" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2f3-Fu-7nW"/>
                         <viewControllerLayoutGuide type="bottom" id="uKp-5n-cVx"/>
@@ -161,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wdr-2n-Fug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="424.80000000000001" y="31.934032983508249"/>
+            <point key="canvasLocation" x="311" y="32"/>
         </scene>
     </scenes>
     <resources>
