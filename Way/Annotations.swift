@@ -18,10 +18,13 @@ class CustomAnnotationView: MGLAnnotationView {
         
         guard let annotation = annotation as? CustomAnnotation else { return }
         
+
         
-        percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
-        percentageBar.layer.cornerRadius = 15
-        addSubview(percentageBar)
+        UIView.animate(withDuration: 1.0, animations: {
+        self.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
+        self.percentageBar.layer.cornerRadius = 15
+        self.addSubview(self.percentageBar)
+        })
         
         switch annotation.building.calculatePercentage() {
             

@@ -26,18 +26,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet var Gradient: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var shadowView: UIView!
-    @IBAction func swipe(_ recognizer: UISwipeGestureRecognizer) {
-        
-        if (recognizer.direction == UISwipeGestureRecognizerDirection.left)
-        {
-            print("left")
-        }else if recognizer.direction == .right {
-            print("right")
-        }else {
-            print("other")
-        }
-        
-    }
     
     
 
@@ -46,49 +34,21 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     @IBAction func searchButton(_ sender: Any) {
         
-        request.userEnter(buildingId: 1)
-        print("User posted")
+        //request.userEnter(buildingId: 1)
+        // print("User posted")
         
     }
     
     @IBAction func leaveButton(_ sender: Any) {
         
-        request.userLeft(buildingId: 1)
-        print("Active state removed")
+       // request.userLeft(buildingId: 1)
+       // print("Active state removed")
+       self.performSegue(withIdentifier: "building", sender: nil) 
+        
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //SWIPE RECOGNISERS
-        
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.swipe(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(swipeRight)
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.swipe(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
-        
-        func swiped(_ gesture: UIGestureRecognizer)
-        {
-            if let swipeGesture = gesture as? UISwipeGestureRecognizer{
-                switch swipeGesture.direction {
-                case UISwipeGestureRecognizerDirection.right:
-                    print("right swipe")
-                case UISwipeGestureRecognizerDirection.left:
-                    print("left swipe")
-                    self.performSegue(withIdentifier: "building", sender: swipeLeft)
-                default:
-                    print("other swipe")
-                }
-            }
-        }
-    
-        
-        
-        
-        
         
         request.delegate = self
         request.loadBuildings()
