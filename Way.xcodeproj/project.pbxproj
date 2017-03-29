@@ -11,7 +11,7 @@
 		A810C9011E794C7000D5E92E /* tableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9001E794C7000D5E92E /* tableViewController.swift */; };
 		A810C9031E7960EE00D5E92E /* CustomUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9021E7960EE00D5E92E /* CustomUiView.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
-		A84994301E8AA33500CED634 /* buildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849942F1E8AA33500CED634 /* buildingViewController.swift */; };
+		A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849942F1E8AA33500CED634 /* BuildingViewController.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
 		A88D396B1E67820C0014E6BF /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */; };
 		A88D396D1E6841D70014E6BF /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88D396C1E6841D70014E6BF /* Annotations.swift */; };
@@ -30,7 +30,7 @@
 		A810C9001E794C7000D5E92E /* tableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewController.swift; sourceTree = "<group>"; };
 		A810C9021E7960EE00D5E92E /* CustomUiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUiView.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
-		A849942F1E8AA33500CED634 /* buildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buildingViewController.swift; sourceTree = "<group>"; };
+		A849942F1E8AA33500CED634 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
 		A88D396C1E6841D70014E6BF /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			children = (
 				E8D093B21DC381860030339E /* AppDelegate.swift */,
 				E8D093B41DC381860030339E /* ViewController.swift */,
-				A849942F1E8AA33500CED634 /* buildingViewController.swift */,
+				A849942F1E8AA33500CED634 /* BuildingViewController.swift */,
 				A810C9021E7960EE00D5E92E /* CustomUiView.swift */,
 				A88D396C1E6841D70014E6BF /* Annotations.swift */,
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
@@ -263,7 +263,7 @@
 				A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */,
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
 				A810C9011E794C7000D5E92E /* tableViewController.swift in Sources */,
-				A84994301E8AA33500CED634 /* buildingViewController.swift in Sources */,
+				A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */,
 				A810C9031E7960EE00D5E92E /* CustomUiView.swift in Sources */,
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,

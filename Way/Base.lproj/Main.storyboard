@@ -42,6 +42,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-0p-F3S" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="-31" width="375" height="633"/>
                                 <color key="backgroundColor" red="0.7660905116580311" green="0.7660905116580311" blue="0.7660905116580311" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="633" id="QH9-Eo-ShW"/>
                                     <constraint firstAttribute="width" constant="375" id="yDr-QZ-zKU"/>
@@ -49,7 +50,7 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/ollyboon/cito8ura5000s2hrvpvxvdlxn"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="latitude">
-                                        <real key="value" value="50.742511"/>
+                                        <real key="value" value="50.742983000000002"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="longitude">
                                         <real key="value" value="-1.894862"/>
@@ -116,6 +117,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Ota-Z1-fW9">
+                    <connections>
+                        <action selector="swipe:" destination="BYZ-38-t0r" id="C9w-1A-B1o"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-378" y="32"/>
         </scene>

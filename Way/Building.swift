@@ -32,7 +32,6 @@ class Building {
             let result =  activeUsers / capacity
             let activePercentage = result * 100
             
-            print(name,"is",activePercentage,"% full")
             return activePercentage
         }
         return 0

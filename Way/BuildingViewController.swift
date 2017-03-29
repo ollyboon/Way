@@ -3,7 +3,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class buildingViewController: UIViewController {
+class BuildingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

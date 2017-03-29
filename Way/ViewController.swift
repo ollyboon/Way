@@ -28,6 +28,19 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var shadowView: UIView!
     
     
+    @IBAction func swipe(_ recognizer: UISwipeGestureRecognizer) {
+        if (recognizer.direction == UISwipeGestureRecognizerDirection.left)
+        {
+            print("left")
+        }else if recognizer.direction == .right {
+            print("right")
+        }else {
+            print("other")
+        }
+    }
+
+    
+    
     @IBAction func searchButton(_ sender: Any) {
         
         request.userEnter(buildingId: 1)
@@ -43,6 +56,14 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //SWIPE RECOGNISERS
+        
+    
+        
+        
+        
+        
         
         request.delegate = self
         request.loadBuildings()
@@ -110,8 +131,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         if annotationView == nil {
             annotationView = CustomAnnotationView(reuseIdentifier: reuseIdentifier)
             annotationView!.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
-            
-            // Set the annotation view’s background color to a value determined by its longitude.
             annotationView!.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
             annotationView!.layer.shadowColor = UIColor.black.cgColor
             annotationView!.layer.shadowOpacity = 0.2
@@ -158,7 +177,6 @@ extension UIView {
 
 extension ViewController: RequestDelegate {
     func loadedBuildings() {
-        print("load complete")
         
         var pointAnnotations = [MGLPointAnnotation]()
         
@@ -166,7 +184,6 @@ extension ViewController: RequestDelegate {
         
         for building in BuildingManager.shared.buildings {
             let point = CustomAnnotation(building: building)
-            building.calculatePercentage()
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord
             pointAnnotations.append(point)

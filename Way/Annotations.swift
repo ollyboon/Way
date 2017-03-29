@@ -5,6 +5,7 @@ import Mapbox
 class CustomAnnotationView: MGLAnnotationView {
     
     var percentageBar: UIView!
+    let building = Building.init(json: "data")
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -19,7 +20,6 @@ class CustomAnnotationView: MGLAnnotationView {
         
         
         percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
-        percentageBar.backgroundColor = .red
         percentageBar.layer.cornerRadius = 15
         addSubview(percentageBar)
         
@@ -51,14 +51,24 @@ class CustomAnnotationView: MGLAnnotationView {
             
         case 90.0..<100.0 :
             percentageBar.backgroundColor = UIColor(red: 244.0/255.0, green: 46.0/255.0, blue: 58.0/255.0, alpha: 1.0)
-            
-            
-            
         
         default:
             percentageBar.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
             
         }
+        
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        label.center = CGPoint(x: 50, y: 14)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont(name: "DIN", size: 18)
+        label.text = annotation.building.name
+        addSubview(label)
+        
+        
+
+
+        
 
         
     }
