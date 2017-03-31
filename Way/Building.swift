@@ -14,6 +14,7 @@ class Building {
     var activeUsers: Double!
     var latitude: Double!
     var longitude: Double!
+    var status : String!
     
     
     init(json: JSON){
@@ -24,6 +25,7 @@ class Building {
         activeUsers = json["active_users"].double
         latitude = json["latitude"].double
         longitude = json["longitude"].double
+        status = json["status"].stringValue
     }
     
     func calculatePercentage() -> Double {

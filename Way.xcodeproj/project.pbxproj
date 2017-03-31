@@ -14,7 +14,7 @@
 		A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849942F1E8AA33500CED634 /* BuildingViewController.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
 		A88D396B1E67820C0014E6BF /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */; };
-		A88D396D1E6841D70014E6BF /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88D396C1E6841D70014E6BF /* Annotations.swift */; };
+		A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */; };
 		E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */; };
 		E8D093B31DC381860030339E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D093B21DC381860030339E /* AppDelegate.swift */; };
 		E8D093B51DC381860030339E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D093B41DC381860030339E /* ViewController.swift */; };
@@ -33,7 +33,7 @@
 		A849942F1E8AA33500CED634 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
-		A88D396C1E6841D70014E6BF /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
+		A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		B0D4532F181ECB315E2FE517 /* Pods_Way.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Way.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4AE66AD2E5108DBC037BB93 /* Pods-Way.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Way.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Way/Pods-Way.debug.xcconfig"; sourceTree = "<group>"; };
 		E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 				A849942F1E8AA33500CED634 /* BuildingViewController.swift */,
 				A810C9001E794C7000D5E92E /* TableViewController.swift */,
 				A810C9021E7960EE00D5E92E /* CustomUiView.swift */,
-				A88D396C1E6841D70014E6BF /* Annotations.swift */,
+				A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */,
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
 				FBC395931DCB770200DB0FDD /* Building.swift */,
 				A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */,
@@ -268,7 +268,7 @@
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
 				E8D093B51DC381860030339E /* ViewController.swift in Sources */,
-				A88D396D1E6841D70014E6BF /* Annotations.swift in Sources */,
+				A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */,
 				E8D093B31DC381860030339E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

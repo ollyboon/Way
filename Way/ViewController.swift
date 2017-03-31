@@ -26,9 +26,18 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet var Gradient: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var refreshButton: UIButton!
     
     @IBAction func refresh(_ sender: Any) {
-        mapView.removeAnnotations([MGLPointAnnotation]())
+        
+        UIView.animate(withDuration: 0.25, animations:{
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+        })
+        
+        if let annotations = mapView.annotations {
+            mapView.removeAnnotations(annotations)
+        }
+        request.loadBuildings()
     }
     
     @IBAction func searchButton(_ sender: Any) {
@@ -42,32 +51,49 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
        // request.userLeft(buildingId: 1)
        // print("Active state removed")
-       self.performSegue(withIdentifier: "building", sender: nil) 
         
         
     }
     
     
-    func annotationPressed() {
+    func annotationPressed(sender : UIButton) {
         print("Button Clicked")
-        let building = Building(json: "data")
-        let buildingName = building.name
-        let howFull = building.calculatePercentage()
-        let status = building.name
-        self.performSegue(withIdentifier: "building", sender: building)
-        self.performSegue(withIdentifier: "building", sender: buildingName)
-        self.performSegue(withIdentifier: "building", sender: status)
-        self.performSegue(withIdentifier: "building", sender: howFull)
+        //let building = Building(json: "data")
+       // let buildingData = building.name
+
+       // self.performSegue(withIdentifier: "building", sender: buildingData)
+        
     }
     
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+
+        if segue.identifier == "building" {
+            if let destination = segue.destination as? BuildingViewController {
+                destination.building = sender as! Building
+
+                
+            }
+        }
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        request.delegate = self
-        request.loadBuildings()
+        UIView.animate(withDuration: 5, animations:{
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+        })
         
+        request.delegate = self
+        
+        if BuildingManager.shared.buildings.count == 0 {
+            request.loadBuildings()
+        } else {
+            loadedBuildings()
+        }
         
         mapView.delegate = self
         beaconManager.delegate = self
@@ -88,6 +114,30 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
         backgroundView.layer.addSublayer(gradientLayer)
+        
+        
+        // timer and function for auto annotation refresh
+        func refreshing(_ timer : Timer) {
+            
+            UIView.animate(withDuration: 0.25, animations:{
+                self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+            })
+            
+            if let annotations = mapView.annotations {
+                mapView.removeAnnotations(annotations)
+            }
+            request.loadBuildings()
+            
+        }
+        
+        let refreshTimer = Timer.scheduledTimer(timeInterval: 180 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
+        
+        refresh(refreshTimer)
+        
+
+        
+        
+        
         
         
         
@@ -128,6 +178,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         // If there’s no reusable annotation view available, initialize a new one.
         if annotationView == nil {
             annotationView = CustomAnnotationView(reuseIdentifier: reuseIdentifier)
+            annotationView!.delegate = self
             annotationView!.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
             annotationView!.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
             annotationView!.layer.shadowColor = UIColor.black.cgColor
@@ -165,7 +216,6 @@ extension UIView {
         self.layer.shadowOpacity = 0.3
         self.layer.shadowOffset = CGSize(width: 0, height: 10)
         self.layer.shadowRadius = 5
-        
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 15).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
@@ -174,23 +224,37 @@ extension UIView {
 }
 
 extension ViewController: RequestDelegate {
+    
     func loadedBuildings() {
         
         var pointAnnotations = [MGLPointAnnotation]()
-        
-        
         
         for building in BuildingManager.shared.buildings {
             let point = CustomAnnotation(building: building)
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord
-            pointAnnotations.append(point)
+        
+            if pointAnnotations.count <= 8 {
+                
+                pointAnnotations.append(point)
+                
+            }
         }
+        
         
         mapView.addAnnotations(pointAnnotations)
     }
 
 }
+
+extension ViewController: CustomAnnotationViewDelegate {
+    
+    func annotationTouched(for building: Building) {
+        performSegue(withIdentifier: "building", sender: building)
+    }
+}
+
+
 
 
 

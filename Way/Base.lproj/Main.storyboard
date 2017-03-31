@@ -145,6 +145,7 @@
                         <outlet property="Gradient" destination="A2U-DS-enI" id="DfJ-PD-Pth"/>
                         <outlet property="backgroundView" destination="dr2-ZG-b1h" id="YVO-dR-HOT"/>
                         <outlet property="mapView" destination="Vg6-0p-F3S" id="nk0-lV-t1N"/>
+                        <outlet property="refreshButton" destination="gG5-mG-Hk6" id="DBn-Jp-RKb"/>
                         <outlet property="shadowView" destination="GQs-su-OU4" id="Yqm-tb-ynt"/>
                     </connections>
                 </viewController>
@@ -171,7 +172,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YC-4c-Qv6">
-                                <rect key="frame" x="16" y="187" width="343" height="25"/>
+                                <rect key="frame" x="16" y="187" width="343" height="24.5"/>
                                 <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="20"/>
                                 <color key="textColor" red="0.36277525906735753" green="0.36029416517299478" blue="0.35815316065620678" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="highlightedColor" red="0.33678756476683935" green="0.33448420600751128" blue="0.33249657405262667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -190,10 +191,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="41Z-cU-Qja">
-                                <rect key="frame" x="35" y="244" width="304" height="79"/>
+                                <rect key="frame" x="35" y="243.5" width="304" height="79.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsZ-wL-iwZ">
-                                <rect key="frame" x="44" y="273" width="286" height="21"/>
+                                <rect key="frame" x="44" y="272.5" width="286" height="21.5"/>
                                 <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="20"/>
                                 <color key="textColor" red="0.91649389266967773" green="0.21985332667827606" blue="0.50200766324996948" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -242,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wdr-2n-Fug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="309.60000000000002" y="31.934032983508249"/>
+            <point key="canvasLocation" x="473" y="32"/>
         </scene>
     </scenes>
     <resources>

@@ -2,13 +2,16 @@ import Foundation
 import UIKit
 import Mapbox
 
+protocol CustomAnnotationViewDelegate {
+    func annotationTouched(for building: Building)
+}
+
 class CustomAnnotationView: MGLAnnotationView {
     
     var percentageBar: UIView!
-    let building = Building.init(json: "data")
     var din : UIFont = UIFont(name: "DIN", size: 15)!
     
-    
+    var delegate: CustomAnnotationViewDelegate?
 
     
     override func layoutSubviews() {
@@ -72,13 +75,15 @@ class CustomAnnotationView: MGLAnnotationView {
         label.text = annotation.building.name
         addSubview(label)
         
-        
-        
-        
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        button.addTarget(self, action:#selector(ViewController.annotationPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(CustomAnnotationView.buttonPressed), for: .touchUpInside)
         addSubview(button)
-        
+    
+    }
+    
+    func buttonPressed() {
+        guard let annotation = annotation as? CustomAnnotation else { return }
+        delegate?.annotationTouched(for: annotation.building)
     }
     
 }
