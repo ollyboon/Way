@@ -10,14 +10,15 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var buildings = BuildingManager.shared.buildings
+    var rooms = RoomManager.shared.rooms
+    let request = Request()
+
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         
         
         self.tableView.reloadData()
@@ -25,7 +26,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return buildings.count
+        return rooms.count
         
         
     }
@@ -33,7 +34,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellTableViewCell
         
-        cell.tableLabel.text = buildings[indexPath.row].name
+        cell.tableLabel.text = rooms[indexPath.row].roomNumber
+        cell.tableLabel2.text = rooms[indexPath.row].roomName
         
         return cell
         

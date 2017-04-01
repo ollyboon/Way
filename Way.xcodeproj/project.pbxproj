@@ -11,7 +11,9 @@
 		A810C9031E7960EE00D5E92E /* CustomUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A810C9021E7960EE00D5E92E /* CustomUiView.swift */; };
 		A811C9D51E8E5FB000B07F38 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A811C9D41E8E5FB000B07F38 /* TableViewController.swift */; };
 		A811C9D81E8E60BD00B07F38 /* CustomCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A811C9D71E8E60BD00B07F38 /* CustomCellTableViewCell.swift */; };
+		A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = A811C9D91E8E84BC00B07F38 /* Room.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
+		A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FFFC1E8E8852004AC160 /* RoomManager.swift */; };
 		A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849942F1E8AA33500CED634 /* BuildingViewController.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
 		A88D396B1E67820C0014E6BF /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */; };
@@ -31,7 +33,9 @@
 		A810C9021E7960EE00D5E92E /* CustomUiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUiView.swift; sourceTree = "<group>"; };
 		A811C9D41E8E5FB000B07F38 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A811C9D71E8E60BD00B07F38 /* CustomCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellTableViewCell.swift; sourceTree = "<group>"; };
+		A811C9D91E8E84BC00B07F38 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
+		A841FFFC1E8E8852004AC160 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		A849942F1E8AA33500CED634 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
@@ -128,7 +132,9 @@
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
 				A811C9D71E8E60BD00B07F38 /* CustomCellTableViewCell.swift */,
 				FBC395931DCB770200DB0FDD /* Building.swift */,
+				A811C9D91E8E84BC00B07F38 /* Room.swift */,
 				A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */,
+				A841FFFC1E8E8852004AC160 /* RoomManager.swift */,
 				E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */,
 				FBC395911DCB6D8500DB0FDD /* Request.swift */,
 				E8D093C41DC389030030339E /* ObjCBridge.h */,
@@ -270,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */,
 				E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */,
 				A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */,
 				A811C9D81E8E60BD00B07F38 /* CustomCellTableViewCell.swift in Sources */,
@@ -279,6 +286,7 @@
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
 				A811C9D51E8E5FB000B07F38 /* TableViewController.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
+				A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */,
 				E8D093B51DC381860030339E /* ViewController.swift in Sources */,
 				A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */,
 				E8D093B31DC381860030339E /* AppDelegate.swift in Sources */,

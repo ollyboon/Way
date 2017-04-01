@@ -7,7 +7,7 @@ protocol RequestDelegate {
 }
 
 enum RequestType {
-    case buildings, postUser, userLeft
+    case buildings, postUser, userLeft, rooms
 }
 
 
@@ -22,6 +22,10 @@ class Request {
     
     func loadBuildings() {
         request(method: .get, parameters: nil, urlExt: "buildings", requestType: .buildings)
+    }
+    
+    func loadRooms() {
+        request(method: .get, parameters: nil, urlExt: "rooms", requestType: .rooms)
     }
     
     func userEnter(buildingId: Int) {
@@ -65,6 +69,10 @@ class Request {
                     self.postedUser(json: json)
                 }
                 
+                if requestType == .rooms {
+                    self.handleRooms(json: json)
+                }
+                
         }
     }
     
@@ -78,6 +86,13 @@ class Request {
         
         delegate?.loadedBuildings()
         
+    }
+    
+    private func handleRooms(json: JSON) {
+        for roomData in json["data"].arrayValue {
+            let room = Room(json: roomData)
+            RoomManager.shared.rooms.append(room)
+        }
     }
     
     

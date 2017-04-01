@@ -95,6 +95,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             loadedBuildings()
         }
         
+        request.loadRooms()
+        
         mapView.delegate = self
         beaconManager.delegate = self
         beaconManager.requestAlwaysAuthorization()
