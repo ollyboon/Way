@@ -43,13 +43,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // define gradient and add to backgroundView as sublayer
-        gradientLayer.frame = self.view.frame
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.colors = [UIColor(red: 255/255.5, green: 0/255.5, blue: 128/255.5, alpha: 1.0).cgColor, UIColor(red: 255/255.5, green: 156/255.5, blue: 0/255.5, alpha: 1.0).cgColor]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
-        backgroundView.layer.addSublayer(gradientLayer)
+
         
         let searchBar = self.searchBar
         searchBar?.delegate = self
@@ -86,7 +80,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
         return rooms.count
-        
+
         
     }
     
@@ -101,5 +95,15 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 0.8, animations: {
+            cell.alpha = 1
+        })
+    }
+    
 
 }

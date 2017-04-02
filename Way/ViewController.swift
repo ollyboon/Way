@@ -22,6 +22,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     var camera = MGLMapCamera()
     let mapCenter = CLLocationCoordinate2D(latitude: 50.742987, longitude: -1.896247)
     var room : Room!
+    var annotation = MGLAnnotationView()
+    
 
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet var Gradient: UIView!
@@ -31,14 +33,24 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     @IBAction func refresh(_ sender: Any) {
         
-        //UIView.animate(withDuration: 0.25, animations:{
-        //    self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
-        //})
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+        
+        UIView.animate(withDuration: 0.25, animations:{
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+        })
         
         if let annotations = mapView.annotations {
             mapView.removeAnnotations(annotations)
         }
         request.loadBuildings()
+        
+        //annotation.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
+        annotation.alpha = 0
+        
+        UIView.animate(withDuration: 2, animations: {
+            //annotation.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
+            self.annotation.alpha = 1
+        })
     }
     
     @IBAction func searchButton(_ sender: Any) {
@@ -54,6 +66,10 @@ class ViewController: UIViewController, MGLMapViewDelegate {
        // print("Active state removed")
         
         
+    }
+    
+    @IBAction func prepareForUnwind (segue:UIStoryboardSegue) {
+    
     }
     
     
@@ -113,8 +129,10 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         // timer and function for auto annotation refresh
         func refreshing(_ timer : Timer) {
             
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+            
             UIView.animate(withDuration: 0.25, animations:{
-                self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+                self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
             })
             
             if let annotations = mapView.annotations {
@@ -133,8 +151,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
         //MAPBOX
         
-        // call drop shadow function for map subview and add corner radius to mapView
-        shadowView.dropShadow()
+        //add corner radius to mapView
         mapView.layer.cornerRadius = 15
         
         //set mapview camera
@@ -151,6 +168,16 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             
             mapView.addAnnotation(roomPin)
         }
+        
+        //annotation.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
+        annotation.alpha = 0
+        
+            UIView.animate(withDuration: 2, animations: {
+                //annotation.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
+                self.annotation.alpha = 1
+            })
+        
+        
         
     
     }
@@ -200,22 +227,7 @@ extension ViewController: ESTBeaconManagerDelegate {
     
 }
 
-extension UIView {
-    
-    func dropShadow() {
-        
-        self.backgroundColor = UIColor.clear
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.3
-        self.layer.shadowOffset = CGSize(width: 0, height: 10)
-        self.layer.shadowRadius = 5
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 15).cgPath
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
-        
-    }
-}
+
 
 extension ViewController: RequestDelegate {
     
