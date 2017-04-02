@@ -78,13 +78,42 @@
 		A811C9D61E8E5FEB00B07F38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */,
 				E8D093B41DC381860030339E /* ViewController.swift */,
 				A849942F1E8AA33500CED634 /* BuildingViewController.swift */,
 				A811C9D41E8E5FB000B07F38 /* TableViewController.swift */,
-				A810C9021E7960EE00D5E92E /* CustomUiView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		A84100001E8FE99C004AC160 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */,
+				A811C9D71E8E60BD00B07F38 /* CustomCellTableViewCell.swift */,
+				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
+				A810C9021E7960EE00D5E92E /* CustomUiView.swift */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
+		A841FFFE1E8FE95E004AC160 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FBC395931DCB770200DB0FDD /* Building.swift */,
+				A811C9D91E8E84BC00B07F38 /* Room.swift */,
+				FBC395911DCB6D8500DB0FDD /* Request.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		A841FFFF1E8FE97B004AC160 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */,
+				A841FFFC1E8E8852004AC160 /* RoomManager.swift */,
+				E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		A88D39691E6781D60014E6BF /* Resources */ = {
@@ -129,14 +158,9 @@
 			children = (
 				E8D093B21DC381860030339E /* AppDelegate.swift */,
 				A811C9D61E8E5FEB00B07F38 /* Views */,
-				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
-				A811C9D71E8E60BD00B07F38 /* CustomCellTableViewCell.swift */,
-				FBC395931DCB770200DB0FDD /* Building.swift */,
-				A811C9D91E8E84BC00B07F38 /* Room.swift */,
-				A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */,
-				A841FFFC1E8E8852004AC160 /* RoomManager.swift */,
-				E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */,
-				FBC395911DCB6D8500DB0FDD /* Request.swift */,
+				A84100001E8FE99C004AC160 /* Custom */,
+				A841FFFE1E8FE95E004AC160 /* Classes */,
+				A841FFFF1E8FE97B004AC160 /* Managers */,
 				E8D093C41DC389030030339E /* ObjCBridge.h */,
 				E8D093B61DC381860030339E /* Main.storyboard */,
 				E8D093B91DC381860030339E /* Assets.xcassets */,

@@ -21,6 +21,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     let heading = 310.0
     var camera = MGLMapCamera()
     let mapCenter = CLLocationCoordinate2D(latitude: 50.742987, longitude: -1.896247)
+    var room : Room!
 
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet var Gradient: UIView!
@@ -30,9 +31,9 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     @IBAction func refresh(_ sender: Any) {
         
-        UIView.animate(withDuration: 0.25, animations:{
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
-        })
+        //UIView.animate(withDuration: 0.25, animations:{
+        //    self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+        //})
         
         if let annotations = mapView.annotations {
             mapView.removeAnnotations(annotations)
@@ -58,11 +59,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     func annotationPressed(sender : UIButton) {
         print("Button Clicked")
-        //let building = Building(json: "data")
-       // let buildingData = building.name
-
-       // self.performSegue(withIdentifier: "building", sender: buildingData)
-        
     }
     
 
@@ -82,11 +78,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UIView.animate(withDuration: 5, animations:{
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
-        })
-        
+                
         request.delegate = self
         
         if BuildingManager.shared.buildings.count == 0 {
@@ -138,17 +130,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
 
         
-        
-        
-        
-        
-        
-
-        
-        
-
-        
-        
+    
         //MAPBOX
         
         // call drop shadow function for map subview and add corner radius to mapView
@@ -159,6 +141,16 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         camera = MGLMapCamera(lookingAtCenter: mapCenter, fromDistance: distance, pitch: pitch, heading: heading)
         self.mapView.camera = camera
         
+        
+        if room != nil {
+            
+            let roomPin = MGLPointAnnotation()
+            roomPin.coordinate = CLLocationCoordinate2D(latitude: room.latitude, longitude: room.longitude)
+            roomPin.title = room.roomNumber
+            roomPin.subtitle = room.roomName
+            
+            mapView.addAnnotation(roomPin)
+        }
         
     
     }
