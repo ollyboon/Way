@@ -13,14 +13,14 @@ class BuildingViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     
     var building : Building!
+    var room: Room?
     let gradientLayer = CAGradientLayer()
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        directionLabel.text = ""
+        
+        directionLabel.text = room?.directions
         buildingLabel.text = building.name
         buildingStatus.text = building.status
         

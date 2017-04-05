@@ -21,7 +21,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     let heading = 310.0
     var camera = MGLMapCamera()
     let mapCenter = CLLocationCoordinate2D(latitude: 50.742987, longitude: -1.896247)
-    var room : Room!
+    var room: Room?
     var annotation = MGLAnnotationView()
     
 
@@ -43,14 +43,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             mapView.removeAnnotations(annotations)
         }
         request.loadBuildings()
-        
-        //annotation.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
-        annotation.alpha = 0
-        
-        UIView.animate(withDuration: 2, animations: {
-            //annotation.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
-            self.annotation.alpha = 1
-        })
     }
     
     @IBAction func searchButton(_ sender: Any) {
@@ -81,11 +73,27 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "roomList" {
+            if let destination = segue.destination as? RoomViewController {
+                destination.delegate = self
+            }
+        }
+        
 
         if segue.identifier == "building" {
             if let destination = segue.destination as? BuildingViewController {
-                destination.building = sender as! Building
-
+                guard let building = sender as? Building else { return }
+                
+                if let room = room  {
+                    if building.buildingId == room.buildingId {
+                        
+                        destination.room?.building = building
+                        
+                    }
+                }
+                
+                destination.building = building
+                
                 
             }
         }
@@ -104,6 +112,16 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         }
         
         request.loadRooms()
+        
+        
+        
+        //ANIMATIONS
+    
+        annotation.alpha = 0
+        
+        UIView.animate(withDuration: 2, animations: {
+            self.annotation.alpha = 1
+        })
         
         mapView.delegate = self
         beaconManager.delegate = self
@@ -159,16 +177,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         self.mapView.camera = camera
         
         
-        if room != nil {
-            
-            let roomPin = MGLPointAnnotation()
-            roomPin.coordinate = CLLocationCoordinate2D(latitude: room.latitude, longitude: room.longitude)
-            roomPin.title = room.roomNumber
-            roomPin.subtitle = room.roomName
-            
-            mapView.addAnnotation(roomPin)
-        }
-        
         //annotation.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
         annotation.alpha = 0
         
@@ -177,12 +185,33 @@ class ViewController: UIViewController, MGLMapViewDelegate {
                 self.annotation.alpha = 1
             })
         
-        
-        
+    }
     
+    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
+        
+        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "pin")
+        
+        if annotationImage == nil {
+            var image = UIImage(named: "pin")!
+            
+            // The anchor point of an annotation is currently always the center. To
+            // shift the anchor point to the bottom of the annotation, the image
+            // asset includes transparent bottom padding equal to the original image
+            // height.
+            //
+            // To make this padding non-interactive, we create another image object
+            // with a custom alignment rect that excludes the padding.
+            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+            
+            // Initialize the ‘pisa’ annotation image with the UIImage we just loaded.
+            annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "pin")
+        }
+        
+        return annotationImage
     }
     
 
+    
     
     // This delegate method is where you tell the map to load a view for a specific annotation.
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
@@ -259,6 +288,40 @@ extension ViewController: CustomAnnotationViewDelegate {
         performSegue(withIdentifier: "building", sender: building)
     }
 }
+
+
+extension ViewController: RoomViewControllerDelegate {
+    
+    func didSelect(_ room: Room) {
+        
+        self.room = room
+        
+        removePointAnnotation()
+        
+        let roomPin = MGLPointAnnotation()
+        roomPin.coordinate = CLLocationCoordinate2D(latitude: room.latitude, longitude: room.longitude)
+        roomPin.title = room.roomNumber
+        roomPin.subtitle = room.roomName
+        mapView.addAnnotation(roomPin)
+        
+    }
+    
+    func removePointAnnotation() {
+        
+        guard let annotations = mapView.annotations else { return }
+        
+        for annotation in annotations {
+            if let _ = annotation as? CustomAnnotation {
+                continue
+            } else {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+        
+    }
+        
+}
+    
 
 
 

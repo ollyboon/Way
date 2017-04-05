@@ -1,18 +1,17 @@
 //
-//  CustomCellTableViewCell.swift
+//  CustomTableViewCell.swift
 //  Way
 //
-//  Created by Olly Boon on 31/03/2017.
+//  Created by Olly Boon on 04/04/2017.
 //  Copyright © 2017 Oliver Boon (i7263244). All rights reserved.
 //
 
 import UIKit
 
-class CustomCellTableViewCell: UITableViewCell {
+class CustomTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var tableLabel: UILabel!
-    @IBOutlet weak var tableLabel2: UILabel!
-    //var room : Room!
+    @IBOutlet weak var roomNumber: UILabel!
+    @IBOutlet weak var roomName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

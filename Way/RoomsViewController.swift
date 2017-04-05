@@ -10,13 +10,19 @@ import UIKit
 import Foundation
 
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
+protocol RoomsViewControllerDelegate {
+    
+    func didSelect(_ room: Room)
+    
+}
+
+
+class RoomsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     
     var rooms = RoomManager.shared.rooms
     let request = Request()
-    let gradientLayer = CAGradientLayer()
-
+    var delegate: RoomsViewControllerDelegate?
 
 
     @IBOutlet weak var tableView: UITableView!
@@ -24,56 +30,20 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var searchBar: UISearchBar!
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "mapSegue" {
-            
-            //guard let cell = sender as? CustomCellTableViewCell  else { return }
-            //guard let room = cell.room else { return }
-            
-            if let destination = segue.destination as? ViewController {
-                destination.room = sender as! Room
-                
-                
-            }
-        }
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         
-        let searchBar = self.searchBar
-        searchBar?.delegate = self
+    
         
-        
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            
-            filterTableView(text: searchText)
-            
-        }
-        
-        func filterTableView(text: String) {
-            
-            rooms = rooms.filter({ (rooms) -> Bool in
-                
-                return rooms.roomName.lowercased().contains(text.lowercased())
-                
-            })
-            self.tableView.reloadData()
-            
-        }
-        
-            
-
         
         
 
         
         self.tableView.reloadData()
     }
+    
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -88,8 +58,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellTableViewCell
         
-        cell.tableLabel.text = rooms[indexPath.row].roomNumber
-        cell.tableLabel2.text = rooms[indexPath.row].roomName
+
         cell.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
         
         return cell
@@ -100,9 +69,21 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.alpha = 0
         
-        UIView.animate(withDuration: 0.8, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             cell.alpha = 1
         })
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let room = RoomManager.shared.rooms[indexPath.row]
+        delegate?.didSelect(room)
+        dismiss(animated: true, completion: nil)
+        //
+        //tableView.deselectRow(at: indexPath, animated: true)
+        //performSegue(withIdentifier: "mapSegue", sender: room)
+        
     }
     
 
