@@ -82,10 +82,12 @@ class ViewController: UIViewController, MGLMapViewDelegate {
 
         if segue.identifier == "building" {
             if let destination = segue.destination as? BuildingViewController {
+                
                 guard let building = sender as? Building else { return }
                 
                 if let room = room  {
-                    if building.buildingId == room.buildingId {
+                    
+                    if room.buildingId == building.buildingId {
                         
                         destination.room?.building = building
                         
@@ -93,7 +95,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
                 }
                 
                 destination.building = building
-                
+                print(sender!)
                 
             }
         }

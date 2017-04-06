@@ -21,5 +21,4 @@ class Room {
         buildingId = json["building_id"].intValue
     }
     
-    
 }
