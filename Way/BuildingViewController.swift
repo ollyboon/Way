@@ -37,9 +37,17 @@ class BuildingViewController: UIViewController {
         super.viewDidLoad()
         
         createColorSets()
+    
+        
+        if let room = room {
+            if room.buildingId == building.buildingId {
+                setupWithRoom(room)
+            } else {
+                setupWithoutRoom()
+            }
+        }
         
         
-        directionLabel.text = room?.directions
         buildingLabel.text = building.name
         buildingStatus.text = building.status
         
@@ -121,4 +129,13 @@ class BuildingViewController: UIViewController {
         backgroundView.layer.addSublayer(gradientLayer)
         
     }
+
+    func setupWithRoom(_ room: Room) {
+        directionLabel.text = room.directions
+    }
+    
+    func setupWithoutRoom() {
+        
+    }
 }
+

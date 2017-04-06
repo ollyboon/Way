@@ -92,7 +92,9 @@ class RoomViewController: UITableViewController,  UISearchBarDelegate, UISearchR
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.colors = [UIColor(red: 255/255.5, green: 0/255.5, blue: 128/255.5, alpha: 1.0).cgColor, UIColor(red: 255/255.5, green: 156/255.5, blue: 0/255.5, alpha: 1.0).cgColor]
         
-        tableView.backgroundView?.layer.insertSublayer(gradientLayer, at: 0)
+        let backgroundView = UIView(frame: tableView.bounds)
+        backgroundView.layer.insertSublayer(gradientLayer, at: 0)
+        tableView.backgroundView = backgroundView
         
         return rooms.count
         

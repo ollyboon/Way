@@ -10,8 +10,6 @@ class Room {
     var directions : String!
     var buildingId: Int!
     
-    var building: Building?
-    
     init(json : JSON) {
         roomNumber = json["room_number"].stringValue
         roomName = json["room_name"].stringValue
