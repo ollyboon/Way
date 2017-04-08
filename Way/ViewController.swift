@@ -30,6 +30,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var search: UIButton!
+    @IBOutlet weak var searchIcon: UIButton!
     
     @IBAction func refresh(_ sender: Any) {
         
@@ -96,6 +98,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
                 
         request.delegate = self
         
@@ -111,11 +114,8 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
         //ANIMATIONS
     
-        annotation.alpha = 0
+        annotation.alpha = 1
         
-        UIView.animate(withDuration: 2, animations: {
-            self.annotation.alpha = 1
-        })
         
         mapView.delegate = self
         beaconManager.delegate = self
@@ -146,7 +146,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             UIView.animate(withDuration: 0.25, animations:{
                 self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
             })
-            
+                        
             if let annotations = mapView.annotations {
                 mapView.removeAnnotations(annotations)
             }
@@ -180,6 +180,28 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             })
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        mapView.alpha = 0
+        refreshButton.alpha = 0
+        searchIcon.alpha = 0
+        search.alpha = 0
+        annotation.alpha = 0
+        
+        UIView.animate(withDuration: 0.5) {
+            self.mapView.alpha = 1
+        }
+        
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.annotation.alpha = 1
+            self.refreshButton.alpha = 1
+            self.search.alpha = 1
+            self.searchIcon.alpha = 1
+        })
+        
+    }
+
     
     func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         
@@ -279,7 +301,16 @@ extension ViewController: RequestDelegate {
 extension ViewController: CustomAnnotationViewDelegate {
     
     func annotationTouched(for building: Building) {
-        performSegue(withIdentifier: "building", sender: building)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.mapView.alpha = 0
+            self.search.alpha = 0
+            self.searchIcon.alpha = 0
+            self.refreshButton.alpha = 0
+        }) { (finished) in
+            self.performSegue(withIdentifier: "building", sender: building)
+        }
+        
     }
 }
 

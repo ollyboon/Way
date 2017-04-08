@@ -9,5 +9,6 @@ target 'Way' do
   pod 'SwiftyJSON'
   pod 'EstimoteSDK'
   pod 'Mapbox-iOS-SDK', '~> 3.4'
+  pod "SHSearchBar"
 
 end

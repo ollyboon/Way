@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SHSearchBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>52C052025F076FB890537D6411DD6300</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>629577143A3C214C5FFBAF53524F2653</key>
+		<key>13B7917B904757B7DE81F07A424C2DF5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C1FD0D391581698DEA4D9118FA771F05</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD0AD673C1D0B7F474A1B360B2280920</key>
 		<dict>
 			<key>primary</key>
 			<true/>

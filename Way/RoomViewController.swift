@@ -41,12 +41,11 @@ class RoomViewController: UITableViewController,  UISearchBarDelegate, UISearchR
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Search Rooms"
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         
         tblSearchResults.tableHeaderView = searchController.searchBar
-        
         
     }
     
@@ -70,9 +69,12 @@ class RoomViewController: UITableViewController,  UISearchBarDelegate, UISearchR
         
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-
-
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        rooms = RoomManager.shared.filter(x: searchController.searchBar.text!)
+        
+        tblSearchResults.reloadData()
     }
 
 
@@ -134,6 +136,9 @@ class RoomViewController: UITableViewController,  UISearchBarDelegate, UISearchR
         
     }
 
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
 
 
 }

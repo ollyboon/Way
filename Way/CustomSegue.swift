@@ -9,15 +9,6 @@
 import UIKit
 
 class CustomSegue: UIStoryboardSegue {
-    
-    override func perform() {
-        
-    }
-    
-    func scale () {
-        let toViewController = self.destination
-        let fromViewController = self.source
-        let containerView = fromViewController.view.superview
-    }
+
 
 }

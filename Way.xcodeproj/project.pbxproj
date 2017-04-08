@@ -19,8 +19,8 @@
 		A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */; };
 		A8BD79131E9194DB004BCA8B /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79121E9194DB004BCA8B /* CustomUIView.swift */; };
 		A8BD79151E919F89004BCA8B /* CustomUISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79141E919F89004BCA8B /* CustomUISearchBar.swift */; };
-		A8BD79171E91A44C004BCA8B /* CustomGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79161E91A44C004BCA8B /* CustomGradientView.swift */; };
 		A8BD79191E91A93F004BCA8B /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79181E91A93F004BCA8B /* CustomSegue.swift */; };
+		A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F633511E98EA4F005CE4D4 /* GradientView.swift */; };
 		E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */; };
 		E8D093B31DC381860030339E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D093B21DC381860030339E /* AppDelegate.swift */; };
 		E8D093B51DC381860030339E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D093B41DC381860030339E /* ViewController.swift */; };
@@ -44,8 +44,8 @@
 		A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		A8BD79121E9194DB004BCA8B /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		A8BD79141E919F89004BCA8B /* CustomUISearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUISearchBar.swift; sourceTree = "<group>"; };
-		A8BD79161E91A44C004BCA8B /* CustomGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGradientView.swift; sourceTree = "<group>"; };
 		A8BD79181E91A93F004BCA8B /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
+		A8F633511E98EA4F005CE4D4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B0D4532F181ECB315E2FE517 /* Pods_Way.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Way.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4AE66AD2E5108DBC037BB93 /* Pods-Way.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Way.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Way/Pods-Way.debug.xcconfig"; sourceTree = "<group>"; };
 		E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 				A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */,
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
 				A8BD79121E9194DB004BCA8B /* CustomUIView.swift */,
-				A8BD79161E91A44C004BCA8B /* CustomGradientView.swift */,
+				A8F633511E98EA4F005CE4D4 /* GradientView.swift */,
 				A8BD79141E919F89004BCA8B /* CustomUISearchBar.swift */,
 				A8BD79181E91A93F004BCA8B /* CustomSegue.swift */,
 			);
@@ -317,7 +317,7 @@
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
 				A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */,
 				A8BD79191E91A93F004BCA8B /* CustomSegue.swift in Sources */,
-				A8BD79171E91A44C004BCA8B /* CustomGradientView.swift in Sources */,
+				A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */,
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
 				A8BD79151E919F89004BCA8B /* CustomUISearchBar.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
@@ -452,12 +452,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PB5S47GH58;
 				INFOPLIST_FILE = Way/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Way;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -470,12 +472,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PB5S47GH58;
 				INFOPLIST_FILE = Way/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Way;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
