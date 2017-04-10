@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		455D04542C86913CA024C6F7 /* Pods_Way.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D4532F181ECB315E2FE517 /* Pods_Way.framework */; };
 		A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = A811C9D91E8E84BC00B07F38 /* Room.swift */; };
-		A833887F1E93F21A00CF2EF1 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A833887E1E93F21A00CF2EF1 /* RoomViewController.swift */; };
+		A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
 		A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FFFC1E8E8852004AC160 /* RoomManager.swift */; };
 		A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849942F1E8AA33500CED634 /* BuildingViewController.swift */; };
@@ -34,7 +34,7 @@
 /* Begin PBXFileReference section */
 		9294284FB6A608966805603F /* Pods-Way.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Way.release.xcconfig"; path = "Pods/Target Support Files/Pods-Way/Pods-Way.release.xcconfig"; sourceTree = "<group>"; };
 		A811C9D91E8E84BC00B07F38 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
-		A833887E1E93F21A00CF2EF1 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		A841FFFC1E8E8852004AC160 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		A849942F1E8AA33500CED634 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		A811C9D61E8E5FEB00B07F38 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A833887E1E93F21A00CF2EF1 /* RoomViewController.swift */,
+				A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */,
 				E8D093B41DC381860030339E /* ViewController.swift */,
 				A849942F1E8AA33500CED634 /* BuildingViewController.swift */,
 			);
@@ -321,9 +321,9 @@
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
 				A8BD79151E919F89004BCA8B /* CustomUISearchBar.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
+				A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */,
 				A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */,
 				E8D093B51DC381860030339E /* ViewController.swift in Sources */,
-				A833887F1E93F21A00CF2EF1 /* RoomViewController.swift in Sources */,
 				A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */,
 				E8D093B31DC381860030339E /* AppDelegate.swift in Sources */,
 			);

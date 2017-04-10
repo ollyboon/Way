@@ -134,6 +134,7 @@ class BuildingViewController: UIViewController {
             self.cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 347)
         }
         
+        
         UIView.animate(withDuration: 0.5) {
             self.emojiImage.alpha = 1
             self.emojiLabel.alpha = 1
