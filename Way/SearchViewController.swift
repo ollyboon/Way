@@ -15,9 +15,11 @@ protocol RoomViewControllerDelegate {
     
 }
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SHSearchBarDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var card: CustomUIView!
+    @IBOutlet weak var back: UIButton!
     var rooms = RoomManager.shared.rooms
     let request = Request()
     var delegate: RoomViewControllerDelegate?
@@ -25,13 +27,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func backButton(_ sender: Any) {
         
-        UIView.animate(withDuration: 0.3, animations: {
-
-            self.tableView.alpha = 0
-            
-        }) { (finished) in
-            self.performSegue(withIdentifier: "unwindRooms", sender: nil)
-        }
+        leaveAnimation()
         
     }
     
@@ -40,6 +36,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        card.alpha = 0
         
         let rasterSize: CGFloat = 11.0
         
@@ -50,6 +48,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         setupViewConstraints(usingMargin: rasterSize)
         
+        searchBar.delegate = self
         searchBar.isHidden = false
         
         // Update the searchbar config
@@ -108,7 +107,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let room = RoomManager.shared.rooms[indexPath.row]
         delegate?.didSelect(room)
-        dismiss(animated: true, completion: nil)
+        leaveAnimation()
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
@@ -145,9 +144,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bar.textField.placeholder = "Search"
         bar.updateBackgroundWith(6, corners: [.allCorners], color: UIColor.white)
         bar.layer.shadowColor = UIColor.black.cgColor
-        bar.layer.shadowOffset = CGSize(width: 0, height: 3)
-        bar.layer.shadowRadius = 5
-        bar.layer.shadowOpacity = 0.25
+        bar.layer.shadowOffset = CGSize(width: 0, height: 8)
+        bar.layer.shadowRadius = 10
+        bar.layer.shadowOpacity = 0.5
         return bar
     }
     
@@ -161,8 +160,36 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return config
     }
     
+    func leaveAnimation() {
+        
+        
+        UIView.animate(withDuration: 0.2) {
+            self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 50)
+            self.card.alpha = 1
+            self.searchBar.alpha = 0
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
+            self.tableView.alpha = 0
+            self.back.alpha = 0
+    }) { (finished) in
+            self.performSegue(withIdentifier: "unwindRooms", sender: nil)
+        }
+    }
+    
 
 
 
 
 }
+
+
+extension SearchViewController: SHSearchBarDelegate {
+    
+    func searchBar(_ searchBar: SHSearchBar, textDidChange text: String) {
+        print(text)
+    }
+    
+}
+
