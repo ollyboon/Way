@@ -8,18 +8,18 @@ class RoomManager {
     
     private init() { }
     
-    func filter(x: String) -> [Room] {
+    func search(string: String) -> [Room] {
         var search = [Room]()
         
         for room in rooms {
-            
-            if room.roomNumber == x {
+            if room.description.lowercased().range(of:string) != nil {
                 search.append(room)
             }
-            
         }
         
         return search
     }
+    
+    
     
 }

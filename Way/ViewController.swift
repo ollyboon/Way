@@ -58,11 +58,17 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
     
     @IBAction func leaveButton(_ sender: Any) {
+        
+
     
-        UIView.animate(withDuration: 0.3, animations: { 
+        UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.frame = CGRect(x: 0, y: 0, width: 332, height: 50)
             self.mapView.alpha = 0
             self.mapView.frame = CGRect(x: 0, y: 0, width: 332, height: 50)
+            self.refreshButton.alpha = 0
+            self.searchIcon.alpha = 0
+            self.search.alpha = 0
+
         }) { (finished) in
             self.performSegue(withIdentifier: "roomList", sender: nil)
         }
@@ -108,15 +114,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mapView.alpha = 0
-        refreshButton.alpha = 0
-        searchIcon.alpha = 0
-        search.alpha = 0
-        annotation.alpha = 0
-        
-        
-                
+    
         request.delegate = self
         
         if BuildingManager.shared.buildings.count == 0 {
@@ -200,24 +198,17 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        mapView.alpha = 0
-        refreshButton.alpha = 0
-        searchIcon.alpha = 0
-        search.alpha = 0
-        annotation.alpha = 0
+
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.mapView.alpha = 1
-            self.annotation.alpha = 1
             self.refreshButton.alpha = 1
             self.search.alpha = 1
             self.searchIcon.alpha = 1
-        }
-        
-        
-        UIView.animate(withDuration: 1, animations: {
-
         })
+        
+
+        
         
     }
 
@@ -313,7 +304,7 @@ extension ViewController: CustomAnnotationViewDelegate {
     
     func annotationTouched(for building: Building) {
         
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.mapView.alpha = 0
             self.search.alpha = 0
             self.searchIcon.alpha = 0

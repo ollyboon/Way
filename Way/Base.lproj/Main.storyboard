@@ -395,13 +395,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YC-4c-Qv6">
-                                        <rect key="frame" x="16" y="182" width="343" height="23.5"/>
+                                        <rect key="frame" x="16" y="182" width="343" height="24.5"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="20"/>
                                         <color key="textColor" red="0.36277525906735753" green="0.36029416517299478" blue="0.35815316065620678" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="highlightedColor" red="0.33678756476683935" green="0.33448420600751128" blue="0.33249657405262667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tta-3s-hEF">
-                                        <rect key="frame" x="35" y="304.5" width="304" height="17.5"/>
+                                        <rect key="frame" x="35" y="303.5" width="304" height="18.5"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                         <color key="textColor" red="0.15773715099999999" green="0.15773715099999999" blue="0.15773715099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>

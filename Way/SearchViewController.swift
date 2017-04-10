@@ -21,6 +21,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var card: CustomUIView!
     @IBOutlet weak var back: UIButton!
     var rooms = RoomManager.shared.rooms
+    var room : Room!
     let request = Request()
     var delegate: RoomViewControllerDelegate?
     var searchBar: SHSearchBar!
@@ -38,6 +39,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         card.alpha = 0
+        
         
         let rasterSize: CGFloat = 11.0
         
@@ -162,14 +164,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func leaveAnimation() {
         
-        
         UIView.animate(withDuration: 0.2) {
             self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 50)
             self.card.alpha = 1
             self.searchBar.alpha = 0
         }
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
             self.tableView.alpha = 0
             self.back.alpha = 0
@@ -188,7 +189,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension SearchViewController: SHSearchBarDelegate {
     
     func searchBar(_ searchBar: SHSearchBar, textDidChange text: String) {
-        print(text)
+        
+        if text == "" {
+            rooms = RoomManager.shared.rooms
+        } else {
+            rooms = RoomManager.shared.search(string: text)
+        }
+        
+        
+        
+        tableView.reloadData()
+        
     }
     
 }

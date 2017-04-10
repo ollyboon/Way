@@ -9,6 +9,7 @@ class Room {
     var longitude : Double!
     var directions : String!
     var buildingId: Int!
+    var description: String!
     
     init(json : JSON) {
         roomNumber = json["room_number"].stringValue
@@ -17,6 +18,7 @@ class Room {
         longitude = json ["longitude"].double
         directions = json["directions"].stringValue
         buildingId = json["building_id"].intValue
+        description = json["search"].stringValue
     }
     
 }
