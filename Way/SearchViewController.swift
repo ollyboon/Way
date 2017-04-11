@@ -45,7 +45,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchBar.textField.leftViewMode = .always
         searchBar.textField.font = UIFont(name: "din", size: 28)
         view.addSubview(searchBar)
-        
         setupViewConstraints(usingMargin: rasterSize)
         
         searchBar.delegate = self
@@ -75,7 +74,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.card.frame = CGRect(x: 19, y: 40, width: 337, height: 50)
         }
         
-        UIView.animateKeyframes(withDuration: 0.3, delay: 0.15, options: [], animations: { 
+        UIView.animate(withDuration: 0.3, delay: 0.15, options: [], animations: {
             self.searchBar.alpha = 1
         }, completion: nil)
 
@@ -89,13 +88,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        
         self.tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
-
         
         return rooms.count
-        
         
     }
     
@@ -112,11 +108,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
      func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        
+    
         cell.alpha = 0
-        
-        
+
         UIView.animate(withDuration: 0.5, animations: {
             cell.alpha = 1
         })
@@ -162,7 +156,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let bar = SHSearchBar(config: config)
         bar.delegate = delegate
         bar.textField.placeholder = "Search"
-        bar.textField.textAlignment = .center
         bar.updateBackgroundWith(6, corners: [.allCorners], color: UIColor.white)
         bar.layer.shadowColor = UIColor.black.cgColor
         bar.layer.shadowOffset = CGSize(width: 0, height: 8)
