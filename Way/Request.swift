@@ -82,6 +82,7 @@ class Request {
         for buildingData in json["data"].arrayValue {
             let building = Building(json: buildingData)
             BuildingManager.shared.buildings.append(building)
+
         }
         
         delegate?.loadedBuildings()

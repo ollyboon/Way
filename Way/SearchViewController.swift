@@ -38,8 +38,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        card.alpha = 0
-        
         
         let rasterSize: CGFloat = 11.0
         
@@ -68,6 +66,26 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.reloadData()
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        searchBar.alpha = 0
+        
+        UIView.animate(withDuration: 0.3) { 
+            self.card.frame = CGRect(x: 19, y: 40, width: 337, height: 50)
+        }
+        
+        UIView.animateKeyframes(withDuration: 0.3, delay: 0.15, options: [], animations: { 
+            self.searchBar.alpha = 1
+        }, completion: nil)
+
+        
+        UIView.animate(withDuration: 0.3, delay: 0.25, options: [], animations: {
+            self.card.alpha = 0
+        }, completion: nil)
+        
+    }
+    
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -144,6 +162,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let bar = SHSearchBar(config: config)
         bar.delegate = delegate
         bar.textField.placeholder = "Search"
+        bar.textField.textAlignment = .center
         bar.updateBackgroundWith(6, corners: [.allCorners], color: UIColor.white)
         bar.layer.shadowColor = UIColor.black.cgColor
         bar.layer.shadowOffset = CGSize(width: 0, height: 8)

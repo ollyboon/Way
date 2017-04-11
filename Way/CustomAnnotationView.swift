@@ -30,16 +30,6 @@ class CustomAnnotationView: MGLAnnotationView {
         self.addSubview(self.percentageBar)
         
         
-        UIView.animate(withDuration: 8) {
-            self.percentageBar = UIView(frame: CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30))
-        }
-        
-        
-        
-
-        
-
-        
         switch annotation.building.calculatePercentage() {
             
         case 1.0..<19.0 :
@@ -85,8 +75,20 @@ class CustomAnnotationView: MGLAnnotationView {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
         button.addTarget(self, action: #selector(CustomAnnotationView.buttonPressed), for: .touchUpInside)
         addSubview(button)
+        
+        animate()
     
     }
+    
+    func animate() {
+        guard let annotation = annotation as? CustomAnnotation else { return }
+        
+        UIView.animate(withDuration: 0.4, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: [], animations: {
+            self.percentageBar.frame = CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30)
+        }, completion: nil)
+        
+    }
+    
     
     func buttonPressed() {
         guard let annotation = annotation as? CustomAnnotation else { return }

@@ -1,10 +1,6 @@
 import Foundation
 import SwiftyJSON
 
-enum buildingType: String {
-    case fusion, library, studentUnion
-}
-
 class Building {
     
     var buildingId: Int!

@@ -18,8 +18,6 @@
 		A88D396B1E67820C0014E6BF /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */; };
 		A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */; };
 		A8BD79131E9194DB004BCA8B /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79121E9194DB004BCA8B /* CustomUIView.swift */; };
-		A8BD79151E919F89004BCA8B /* CustomUISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79141E919F89004BCA8B /* CustomUISearchBar.swift */; };
-		A8BD79191E91A93F004BCA8B /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79181E91A93F004BCA8B /* CustomSegue.swift */; };
 		A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F633511E98EA4F005CE4D4 /* GradientView.swift */; };
 		E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */; };
 		E8D093B31DC381860030339E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D093B21DC381860030339E /* AppDelegate.swift */; };
@@ -43,8 +41,6 @@
 		A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
 		A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		A8BD79121E9194DB004BCA8B /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
-		A8BD79141E919F89004BCA8B /* CustomUISearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUISearchBar.swift; sourceTree = "<group>"; };
-		A8BD79181E91A93F004BCA8B /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		A8F633511E98EA4F005CE4D4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		B0D4532F181ECB315E2FE517 /* Pods_Way.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Way.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4AE66AD2E5108DBC037BB93 /* Pods-Way.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Way.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Way/Pods-Way.debug.xcconfig"; sourceTree = "<group>"; };
@@ -99,8 +95,6 @@
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
 				A8BD79121E9194DB004BCA8B /* CustomUIView.swift */,
 				A8F633511E98EA4F005CE4D4 /* GradientView.swift */,
-				A8BD79141E919F89004BCA8B /* CustomUISearchBar.swift */,
-				A8BD79181E91A93F004BCA8B /* CustomSegue.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -316,10 +310,8 @@
 				A8BD79131E9194DB004BCA8B /* CustomUIView.swift in Sources */,
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
 				A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */,
-				A8BD79191E91A93F004BCA8B /* CustomSegue.swift in Sources */,
 				A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */,
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
-				A8BD79151E919F89004BCA8B /* CustomUISearchBar.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
 				A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */,
 				A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */,

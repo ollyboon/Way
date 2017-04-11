@@ -35,15 +35,16 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     @IBAction func refresh(_ sender: Any) {
         
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
         
         UIView.animate(withDuration: 0.25, animations:{
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         })
         
         if let annotations = mapView.annotations {
             mapView.removeAnnotations(annotations)
         }
+        BuildingManager.shared.buildings.removeAll()
         request.loadBuildings()
     }
     
@@ -62,9 +63,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
 
     
         UIView.animate(withDuration: 0.3, animations: {
-            self.shadowView.frame = CGRect(x: 0, y: 0, width: 332, height: 50)
             self.mapView.alpha = 0
-            self.mapView.frame = CGRect(x: 0, y: 0, width: 332, height: 50)
             self.refreshButton.alpha = 0
             self.searchIcon.alpha = 0
             self.search.alpha = 0
@@ -82,12 +81,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     
     }
     
-    
-    func annotationPressed(sender : UIButton) {
-        print("Button Clicked")
-    }
-    
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -112,25 +105,14 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         request.delegate = self
         
-        if BuildingManager.shared.buildings.count == 0 {
-            request.loadBuildings()
-        } else {
-            loadedBuildings()
-        }
-        
         request.loadRooms()
-        
-        
-        
-        //ANIMATIONS
     
-        annotation.alpha = 1
-        
         
         mapView.delegate = self
         beaconManager.delegate = self
@@ -141,26 +123,16 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         
         self.beaconManager.startMonitoring(for: fusionRegion)
         
-
-        
-        // define gradient and add to backgroundView as sublayer
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.frame
-        gradientLayer.colors = [UIColor(red: 255/255.5, green: 0/255.5, blue: 128/255.5, alpha: 1.0).cgColor, UIColor(red: 255/255.5, green: 156/255.5, blue: 0/255.5, alpha: 1.0).cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
-        backgroundView.layer.addSublayer(gradientLayer)
-        
         
         // timer and function for auto annotation refresh
         func refreshing(_ timer : Timer) {
             
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_4))
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
             
             UIView.animate(withDuration: 0.25, animations:{
-                self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+                self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             })
+            
                         
             if let annotations = mapView.annotations {
                 mapView.removeAnnotations(annotations)
@@ -169,7 +141,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
             
         }
         
-        let refreshTimer = Timer.scheduledTimer(timeInterval: 180 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
+        let refreshTimer = Timer.scheduledTimer(timeInterval: 60 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
         
         refresh(refreshTimer)
         
@@ -197,8 +169,6 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-
         
         UIView.animate(withDuration: 0.3, animations: {
             self.mapView.alpha = 1
@@ -247,16 +217,24 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         if annotationView == nil {
             annotationView = CustomAnnotationView(reuseIdentifier: reuseIdentifier)
             annotationView!.delegate = self
-            annotationView!.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
-            annotationView!.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
+            annotationView!.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            annotationView!.backgroundColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 0.5)
             annotationView!.layer.shadowColor = UIColor.black.cgColor
             annotationView!.layer.shadowOpacity = 0.2
             annotationView!.layer.shadowOffset = CGSize(width: 0, height: 7)
             annotationView!.layer.shadowRadius = 4
+            annotationView!.alpha = 0
+            annotationView!.center = CGPoint(x: 50, y: 15)
+            UIView.animate(withDuration: 0.5, animations: {
+                annotationView!.alpha = 1
+                annotationView!.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+            })
         }
         
         return annotationView
     }
+    
+    
 }
 
 extension ViewController: ESTBeaconManagerDelegate {
@@ -286,14 +264,9 @@ extension ViewController: RequestDelegate {
             let point = CustomAnnotation(building: building)
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord
-        
-            if pointAnnotations.count <= 8 {
-                
-                pointAnnotations.append(point)
-                
-            }
+            pointAnnotations.append(point)
+            
         }
-        
         
         mapView.addAnnotations(pointAnnotations)
     }

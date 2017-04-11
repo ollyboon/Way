@@ -89,11 +89,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUV-PN-k9X" customClass="CustomUIView" customModule="Way" customModuleProvider="target">
-                                <rect key="frame" x="19" y="40" width="237" height="50"/>
+                                <rect key="frame" x="0.0" y="-16" width="375" height="621"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="kK4-Vd-qQh"/>
-                                    <constraint firstAttribute="width" constant="237" id="ryR-11-XNv"/>
+                                    <constraint firstAttribute="height" constant="621" id="kK4-Vd-qQh"/>
+                                    <constraint firstAttribute="width" constant="375" id="ryR-11-XNv"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -121,14 +121,14 @@
                             <constraint firstItem="Ya0-Ca-R95" firstAttribute="bottom" secondItem="hqy-g6-v26" secondAttribute="top" id="8T8-Sb-x01"/>
                             <constraint firstItem="hqy-g6-v26" firstAttribute="top" secondItem="FcM-oO-lcc" secondAttribute="bottom" constant="9" id="DWm-wp-Sth"/>
                             <constraint firstItem="Ya0-Ca-R95" firstAttribute="top" secondItem="ljM-ZR-b2d" secondAttribute="bottom" constant="72" id="EA3-lJ-gZf"/>
-                            <constraint firstItem="bUV-PN-k9X" firstAttribute="top" secondItem="ljM-ZR-b2d" secondAttribute="bottom" constant="20" id="Ezh-93-bPm"/>
-                            <constraint firstItem="bUV-PN-k9X" firstAttribute="leading" secondItem="K3s-1G-rgD" secondAttribute="leadingMargin" constant="3" id="NiM-cH-BAM"/>
+                            <constraint firstItem="bUV-PN-k9X" firstAttribute="top" secondItem="ljM-ZR-b2d" secondAttribute="bottom" constant="-36" id="Ezh-93-bPm"/>
+                            <constraint firstItem="bUV-PN-k9X" firstAttribute="leading" secondItem="K3s-1G-rgD" secondAttribute="leadingMargin" constant="-16" id="NiM-cH-BAM"/>
                             <constraint firstAttribute="trailing" secondItem="FcM-oO-lcc" secondAttribute="trailing" id="TBU-4p-oGo"/>
                             <constraint firstAttribute="trailing" secondItem="FcM-oO-lcc" secondAttribute="trailing" id="iyg-iX-vc5"/>
-                            <constraint firstItem="Ya0-Ca-R95" firstAttribute="top" secondItem="bUV-PN-k9X" secondAttribute="bottom" constant="2" id="kmi-TZ-2Bu"/>
+                            <constraint firstItem="Ya0-Ca-R95" firstAttribute="top" secondItem="bUV-PN-k9X" secondAttribute="bottom" constant="-513" id="kmi-TZ-2Bu"/>
                             <constraint firstItem="Ya0-Ca-R95" firstAttribute="leading" secondItem="K3s-1G-rgD" secondAttribute="leading" id="qKW-hM-PKy"/>
                             <constraint firstItem="Ya0-Ca-R95" firstAttribute="trailing" secondItem="FcM-oO-lcc" secondAttribute="trailing" id="sRK-e1-FSS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bUV-PN-k9X" secondAttribute="trailing" constant="103" id="xSN-lR-KI9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bUV-PN-k9X" secondAttribute="trailing" constant="-16" id="xSN-lR-KI9"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
