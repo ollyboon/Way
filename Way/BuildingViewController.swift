@@ -5,6 +5,8 @@ import SwiftyJSON
 
 class BuildingViewController: UIViewController {
     
+    //MARK: Outlets, actions and variables
+    
     @IBOutlet weak var buildingLabel: UILabel!
     @IBOutlet weak var emojiImage: UIImageView!
     @IBOutlet weak var emojiLabel: UILabel!
@@ -18,19 +20,7 @@ class BuildingViewController: UIViewController {
     
     @IBAction func backButton(_ sender: Any) {
         
-        UIView.animate(withDuration: 0.3, animations: {
-            self.defaultGradient.alpha = 1
-            self.cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
-            self.emojiImage.alpha = 0
-            self.emojiLabel.alpha = 0
-            self.buildingLabel.alpha = 0
-            self.directionLabel.alpha = 0
-            self.buildingStatus.alpha = 0
-            self.gradientBar.alpha = 0
-            self.back.alpha = 0
-        }) { (finished) in
-            self.performSegue(withIdentifier: "unwind", sender: nil)
-        }
+        backAnimate()
         
     }
     
@@ -40,8 +30,10 @@ class BuildingViewController: UIViewController {
     var colorSets = [[CGColor]]()
     var currentColorSet: Int!
 
-    
 
+
+    //MARK: View did load
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,10 +69,7 @@ class BuildingViewController: UIViewController {
             emojiImage.image = UIImage( named:"smiley face")
             emojiLabel.text = "Plenty of room..."
             
-            
-            UIView.animate(withDuration: 3, animations: {
-                self.gradientLayer.colors = [UIColor(red: 148.0/255.0, green: 217.0/255.0, blue: 72.0/255.0, alpha: 1.0).cgColor, UIColor(red: 0.0/255.0, green: 255.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor]
-            })
+            self.gradientLayer.colors = [UIColor(red: 148.0/255.0, green: 217.0/255.0, blue: 72.0/255.0, alpha: 1.0).cgColor, UIColor(red: 0.0/255.0, green: 255.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor]
             
             
         case 40.0..<69.0 :
@@ -88,10 +77,7 @@ class BuildingViewController: UIViewController {
             emojiImage.image = UIImage( named:"thinking face")
             emojiLabel.text = "There's probably some space to work"
             
-            
-            UIView.animate(withDuration: 3, animations: {
-                self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 226.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor, UIColor(red: 255.0/255.0, green: 156.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor]
-            })
+            self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 226.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor, UIColor(red: 255.0/255.0, green: 156.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor]
             
             
         case 70.0..<100.0 :
@@ -99,23 +85,15 @@ class BuildingViewController: UIViewController {
             emojiImage.image = UIImage( named:"crying face")
             emojiLabel.text = "There's nowhere to sit!!!"
             
-            
-            UIView.animate(withDuration: 3, animations: {
-                self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor , UIColor(red: 255.0/255.0, green: 189.0/255.0, blue: 61.0/255.0, alpha: 1.0).cgColor]
-            })
-            
-
-            
+            self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor , UIColor(red: 255.0/255.0, green: 189.0/255.0, blue: 61.0/255.0, alpha: 1.0).cgColor]
             
         default:
             
             emojiImage.image = UIImage( named:"potato")
-            emojiLabel.text = "No Data, have a potato"
+            emojiLabel.text = "Welcome!"
             
-            
-            UIView.animate(withDuration: 3, animations: {
-                self.gradientLayer.colors = [UIColor(red: 255/255.5, green: 0/255.5, blue: 128/255.5, alpha: 1.0).cgColor, UIColor(red: 255/255.5, green: 156/255.5, blue: 0/255.5, alpha: 1.0).cgColor]
-            })
+            self.gradientLayer.colors = [UIColor(red: 255/255.5, green: 0/255.5, blue: 128/255.5, alpha: 1.0).cgColor, UIColor(red: 255/255.5, green: 156/255.5, blue: 0/255.5, alpha: 1.0).cgColor]
+
         }
         
         // define gradient and add to backgroundView as sublayer
@@ -127,13 +105,46 @@ class BuildingViewController: UIViewController {
         
     }
     
+    //MARK: View did appear
+    
     override func viewDidAppear(_ animated: Bool) {
         
+        animate()
+
+    }
+    
+    //MARK: Functions
+
+    func setupWithRoom(_ room: Room) {
+        directionLabel.text = room.directions
+    }
+    
+    func setupWithoutRoom() {
         
-        UIView.animate(withDuration: 0.3                    ) {
-            self.cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 347)
+    }
+    
+    func backAnimate() {
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: { 
+            self.defaultGradient.alpha = 1
+            self.cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
+            self.emojiImage.alpha = 0
+            self.emojiLabel.alpha = 0
+            self.buildingLabel.alpha = 0
+            self.directionLabel.alpha = 0
+            self.buildingStatus.alpha = 0
+            self.gradientBar.alpha = 0
+            self.back.alpha = 0
+        }) { (finished) in
+            self.performSegue(withIdentifier: "unwind", sender: nil)
         }
+    }
+    
+    func animate() {
         
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+            self.cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 347)
+        }, completion: nil)
         
         UIView.animate(withDuration: 0.5) {
             self.emojiImage.alpha = 1
@@ -147,15 +158,8 @@ class BuildingViewController: UIViewController {
         
         UIView.animate(withDuration: 2) {
             self.defaultGradient.alpha = 0
-
+            
         }
-    }
-
-    func setupWithRoom(_ room: Room) {
-        directionLabel.text = room.directions
-    }
-    
-    func setupWithoutRoom() {
         
     }
 }

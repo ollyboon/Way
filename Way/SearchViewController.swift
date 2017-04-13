@@ -9,6 +9,8 @@
 import UIKit
 import SHSearchBar
 
+    //MARK: delegate protocol
+
 protocol RoomViewControllerDelegate {
     
     func didSelect(_ room: Room)
@@ -17,14 +19,18 @@ protocol RoomViewControllerDelegate {
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var card: CustomUIView!
-    @IBOutlet weak var back: UIButton!
+    //MARK: Variables and outlets
+    
     var rooms = RoomManager.shared.rooms
     var room : Room!
     let request = Request()
     var delegate: RoomViewControllerDelegate?
     var searchBar: SHSearchBar!
+    var viewConstraints: [NSLayoutConstraint] = []
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var card: CustomUIView!
+    @IBOutlet weak var back: UIButton!
     
     @IBAction func backButton(_ sender: Any) {
         
@@ -33,57 +39,44 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    var viewConstraints: [NSLayoutConstraint] = []
-
+    //MARK: View did load
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let rasterSize: CGFloat = 11.0
+        let rasterSize: CGFloat = 20.0
         
         searchBar = defaultSearchBar(withRasterSize: rasterSize, delegate: self as SHSearchBarDelegate)
-        searchBar.textField.leftViewMode = .always
-        searchBar.textField.font = UIFont(name: "din", size: 28)
+        searchBar.textField.adjustsFontSizeToFitWidth = true
         view.addSubview(searchBar)
+        searchBar.delegate = self
         setupViewConstraints(usingMargin: rasterSize)
         
-        searchBar.delegate = self
-        searchBar.isHidden = false
         
         // Update the searchbar config
         let delayTime = DispatchTime.now()
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            
             var config: SHSearchBarConfig = self.defaultSearchBarConfig(rasterSize)
             config.cancelButtonTextColor = UIColor.white
             config.rasterSize = 20.0
             self.searchBar.config = config
-
-            
             self.setupViewConstraints(usingMargin: config.rasterSize)
+            
         }
         
         self.tableView.reloadData()
-
+        
     }
     
+    
+    // MARK: View did appear
+    
     override func viewDidAppear(_ animated: Bool) {
-        
-        searchBar.alpha = 0
-        
-        UIView.animate(withDuration: 0.3) { 
-            self.card.frame = CGRect(x: 19, y: 40, width: 337, height: 50)
-        }
-        
-        UIView.animate(withDuration: 0.3, delay: 0.15, options: [], animations: {
-            self.searchBar.alpha = 1
-        }, completion: nil)
-
-        
-        UIView.animate(withDuration: 0.3, delay: 0.25, options: [], animations: {
-            self.card.alpha = 0
-        }, completion: nil)
-        
+        appearAnimation()
     }
+    
+    //MARK: TableView Functions
     
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,8 +109,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
     
-    
-    
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let room = RoomManager.shared.rooms[indexPath.row]
         delegate?.didSelect(room)
@@ -125,6 +116,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
+    
+    //MARK: SHSearchBar Functions
     
     fileprivate func setupViewConstraints(usingMargin margin: CGFloat) {
         let searchbarHeight: CGFloat = 50.0
@@ -141,7 +134,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             searchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -margin),
             searchBar.heightAnchor.constraint(equalToConstant: searchbarHeight),
             
-
         ]
         NSLayoutConstraint.activate(viewConstraints)
     }
@@ -156,6 +148,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let bar = SHSearchBar(config: config)
         bar.delegate = delegate
         bar.textField.placeholder = "Search"
+        bar.textField.font = UIFont(name: "din", size: 28)
+        bar.textField.clearsOnBeginEditing = true
         bar.updateBackgroundWith(6, corners: [.allCorners], color: UIColor.white)
         bar.layer.shadowColor = UIColor.black.cgColor
         bar.layer.shadowOffset = CGSize(width: 0, height: 8)
@@ -174,29 +168,44 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return config
     }
     
+    //MARK: Animation Functions
+    
     func leaveAnimation() {
         
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 50)
             self.card.alpha = 1
             self.searchBar.alpha = 0
-        }
+        }, completion: nil)
         
-        UIView.animate(withDuration: 0.4, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
             self.tableView.alpha = 0
             self.back.alpha = 0
-    }) { (finished) in
+        }) { (finished) in
             self.performSegue(withIdentifier: "unwindRooms", sender: nil)
         }
     }
     
-
-
-
-
+    func appearAnimation() {
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.4, options: .curveEaseInOut, animations: { 
+            self.card.frame = CGRect(x: 19, y: 40, width: 337, height: 50)
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.3, delay: 0.15, options: [], animations: {
+            self.searchBar.alpha = 1
+        }, completion: nil)
+        
+        
+        UIView.animate(withDuration: 0.3, delay: 0.25, options: [], animations: {
+            self.card.alpha = 0
+        }, completion: nil)
+    }
 }
 
+
+    //MARK: Extensions
 
 extension SearchViewController: SHSearchBarDelegate {
     

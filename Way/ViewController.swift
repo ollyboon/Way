@@ -13,6 +13,8 @@ import Mapbox
 
 class ViewController: UIViewController {
     
+    //MARK: Variables, outlets and segues
+    
     let userManager = UserManager.sharedManager
     let beaconManager = ESTBeaconManager()
     let request = Request()
@@ -34,13 +36,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchIcon: UIButton!
     
     @IBAction func refresh(_ sender: Any) {
-        
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
-        
-        UIView.animate(withDuration: 0.25, animations:{
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-        })
-        
+        rotate()
         if let annotations = mapView.annotations {
             mapView.removeAnnotations(annotations)
         }
@@ -49,44 +45,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func searchButton(_ sender: Any) {
-        
-        UIView.animate(withDuration: 0.1, animations: {
-            self.mapView.alpha = 0
-            self.refreshButton.alpha = 0
-            self.searchIcon.alpha = 0
-            self.search.alpha = 0
-            
-        }) { (finished) in
-            self.performSegue(withIdentifier: "roomList", sender: nil)
-        }
-        
-        
-        
-        
+        tableSegueAnimate()
     }
     
     @IBAction func leaveButton(_ sender: Any) {
-        
-
-    
-        UIView.animate(withDuration: 0.1, animations: {
-            self.mapView.alpha = 0
-            self.refreshButton.alpha = 0
-            self.searchIcon.alpha = 0
-            self.search.alpha = 0
-
-        }) { (finished) in
-            self.performSegue(withIdentifier: "roomList", sender: nil)
-        }
-        
-        
-        
-        
+        tableSegueAnimate()
     }
     
-    @IBAction func prepareForUnwind (segue:UIStoryboardSegue) {
-    
-    }
+    @IBAction func prepareForUnwind (segue:UIStoryboardSegue) {}
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,100 +63,113 @@ class ViewController: UIViewController {
             }
         }
         
-
         if segue.identifier == "building" {
             if let destination = segue.destination as? BuildingViewController {
-                
                 guard let building = sender as? Building else { return }
-  
                 destination.room = room
-
                 destination.building = building
-                
             }
         }
     }
     
     
+    //MARK: View did load
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         request.delegate = self
-        
         request.loadRooms()
-    
         
+        //initial map setup
+        mapView.layer.cornerRadius = 15
         mapView.delegate = self
         mapView.compassView.isHidden = true
         mapView.logoView.isHidden = true
-        beaconManager.delegate = self
-        beaconManager.requestAlwaysAuthorization()
+        camera = MGLMapCamera(lookingAtCenter: mapCenter, fromDistance: distance, pitch: pitch, heading: heading)
+        self.mapView.camera = camera
+
         
         //iBeacon regions
+        //TODO: make iBeacon UUID come from database
+        beaconManager.delegate = self
+        beaconManager.requestAlwaysAuthorization()
         let fusionRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 4838, minor: 14161, identifier: "Fusion")
-        
         self.beaconManager.startMonitoring(for: fusionRegion)
         
-        
-        // timer and function for auto annotation refresh
-        func refreshing(_ timer : Timer) {
-            
-            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
-            
-            UIView.animate(withDuration: 0.25, animations:{
-                self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-            })
-            
-                        
-            if let annotations = mapView.annotations {
-                mapView.removeAnnotations(annotations)
-            }
-            request.loadBuildings()
-            
-        }
-        
+        //auto refresh
         let refreshTimer = Timer.scheduledTimer(timeInterval: 60 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
-        
         refresh(refreshTimer)
         
 
         
-    
-        //MAPBOX
-        
-        //add corner radius to mapView
-        mapView.layer.cornerRadius = 15
-        
-        //set mapview camera
-        camera = MGLMapCamera(lookingAtCenter: mapCenter, fromDistance: distance, pitch: pitch, heading: heading)
-        self.mapView.camera = camera
-        
         
     }
     
+    //MARK: View did appear
+    
     override func viewDidAppear(_ animated: Bool) {
+        appearAnimation()
+    }
+    
+    //MARK: Custom Functions
+    
+    func appearAnimation() {
         
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.mapView.alpha = 1
             self.refreshButton.alpha = 1
             self.search.alpha = 1
             self.searchIcon.alpha = 1
-        })
-        
-
-        
+        }, completion: nil)
         
     }
     
+    func rotate() {
+        
+        self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 4))
+        UIView.animate(withDuration: 0.25, animations:{
+            self.refreshButton.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        })
+        
+    }
+    
+    func refreshing(_ timer : Timer) {
+        
+        rotate()
+        if let annotations = mapView.annotations {
+            mapView.removeAnnotations(annotations)
+        }
+        request.loadBuildings()
+    }
+    
+    func tableSegueAnimate() {
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.mapView.alpha = 0
+            self.refreshButton.alpha = 0
+            self.searchIcon.alpha = 0
+            self.search.alpha = 0
+            
+        }) { (finished) in
+            self.performSegue(withIdentifier: "roomList", sender: nil)
+        }
+        
+    }
+    
+
+    
 }
+
+//MARK: Extensions
 
 extension ViewController: ESTBeaconManagerDelegate {
     
     
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-//        print("Enter " + region.identifier)
-//        request.userEnter(buildingId: 1)
+        if region.identifier == "fusion" {
+            //request.userEnter(buildingId: 1)
+        }
     }
     
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
@@ -225,15 +204,19 @@ extension ViewController: CustomAnnotationViewDelegate {
     
     func annotationTouched(for building: Building) {
         
-        UIView.animate(withDuration: 0.2, animations: {
-            self.mapView.alpha = 0
-            self.search.alpha = 0
-            self.searchIcon.alpha = 0
-            self.refreshButton.alpha = 0
-        }) { (finished) in
-            self.performSegue(withIdentifier: "building", sender: building)
+        func buildingSegueAnimate() {
+            UIView.animate(withDuration: 0.05, animations: {
+                self.mapView.alpha = 0
+                self.search.alpha = 0
+                self.searchIcon.alpha = 0
+                self.refreshButton.alpha = 0
+            }) { (finished) in
+                self.performSegue(withIdentifier: "building", sender: building)
+            }
         }
         
+        buildingSegueAnimate()
+
     }
 }
 
@@ -243,14 +226,14 @@ extension ViewController: RoomViewControllerDelegate {
     func didSelect(_ room: Room) {
         
         self.room = room
-        
         removePointAnnotation()
-        
         let roomPin = MGLPointAnnotation()
         roomPin.coordinate = CLLocationCoordinate2D(latitude: room.latitude, longitude: room.longitude)
         roomPin.title = room.roomNumber
         roomPin.subtitle = room.roomName
         mapView.addAnnotation(roomPin)
+        
+
         
     }
     
@@ -265,9 +248,7 @@ extension ViewController: RoomViewControllerDelegate {
                 mapView.removeAnnotation(annotation)
             }
         }
-        
     }
-        
 }
 
 extension ViewController: MGLMapViewDelegate {
@@ -279,7 +260,7 @@ extension ViewController: MGLMapViewDelegate {
         if annotationImage == nil {
             var image = UIImage(named: "pin")!
             
-            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+            image = image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: image.size.height/2, right: 0))
             
             annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "pin")
         }
@@ -287,10 +268,12 @@ extension ViewController: MGLMapViewDelegate {
         return annotationImage
     }
     
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        // Always allow callouts to popup when annotations are tapped.
+        return true
+    }
     
-    
-    
-    // This delegate method is where you tell the map to load a view for a specific annotation.
+
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard let annotation = annotation as? CustomAnnotation else {
             return nil
@@ -314,7 +297,7 @@ extension ViewController: MGLMapViewDelegate {
             annotationView!.layer.shadowRadius = 4
             annotationView!.alpha = 0
             annotationView!.center = CGPoint(x: 50, y: 15)
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 annotationView!.alpha = 1
                 annotationView!.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
             })
