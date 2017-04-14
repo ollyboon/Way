@@ -19,9 +19,7 @@ class BuildingViewController: UIViewController {
     @IBOutlet weak var back: UIButton!
     
     @IBAction func backButton(_ sender: Any) {
-        
         backAnimate()
-        
     }
     
     var building : Building!
@@ -29,6 +27,7 @@ class BuildingViewController: UIViewController {
     let gradientLayer = CAGradientLayer()
     var colorSets = [[CGColor]]()
     var currentColorSet: Int!
+    var imageArray = [UIImage]()
 
 
 
@@ -46,6 +45,8 @@ class BuildingViewController: UIViewController {
         defaultGradient.alpha = 1
         gradientBar.alpha = 0
         back.alpha = 0
+    
+    
         
         
         if let room = room {
