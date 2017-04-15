@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.4.0)
-  - EstimoteSDK (4.14.0)
+  - EstimoteSDK (4.14.1)
   - Mapbox-iOS-SDK (3.5.2)
   - SHSearchBar (1.1.0)
   - SwiftyJSON (3.1.4)
@@ -14,11 +14,11 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  EstimoteSDK: 8674ac3687fddfb28d1660c0a8361a55e5da28ba
+  EstimoteSDK: 5ac94b0f4d923f6120b8e133b597c57b4ed13488
   Mapbox-iOS-SDK: d0d58079e56e4eed4f0d8726afdbd49a76de8e5a
   SHSearchBar: 1dbaf0999acfd9029fe1cb65bd2625e456ed0bf7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
 PODFILE CHECKSUM: 40e01bd49a5a0c5e36c9a29f20950a7d53ff2b45
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1
