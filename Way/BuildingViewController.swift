@@ -25,9 +25,7 @@ class BuildingViewController: UIViewController {
     var building : Building!
     var room: Room?
     let gradientLayer = CAGradientLayer()
-    var colorSets = [[CGColor]]()
-    var currentColorSet: Int!
-    var imageArray = [UIImage]()
+    let parallax = ViewController()
 
 
 
@@ -46,8 +44,7 @@ class BuildingViewController: UIViewController {
         gradientBar.alpha = 0
         back.alpha = 0
     
-    
-        
+        parallax.motion(toView: cardView, magnitude: 20)
         
         if let room = room {
             if room.buildingId == building.buildingId {

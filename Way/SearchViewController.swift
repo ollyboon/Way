@@ -27,6 +27,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var delegate: RoomViewControllerDelegate?
     var searchBar: SHSearchBar!
     var viewConstraints: [NSLayoutConstraint] = []
+    let parallax = ViewController()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var card: CustomUIView!
@@ -45,6 +46,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         let rasterSize: CGFloat = 20.0
+        
+        parallax.motion(toView: tableView, magnitude: 20)
         
         searchBar = defaultSearchBar(withRasterSize: rasterSize, delegate: self as SHSearchBarDelegate)
         searchBar.textField.adjustsFontSizeToFitWidth = true
@@ -216,8 +219,6 @@ extension SearchViewController: SHSearchBarDelegate {
         } else {
             rooms = RoomManager.shared.search(string: text)
         }
-        
-        
         
         tableView.reloadData()
         

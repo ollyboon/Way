@@ -83,7 +83,7 @@ class CustomAnnotationView: MGLAnnotationView {
     func animate() {
         guard let annotation = annotation as? CustomAnnotation else { return }
         
-        UIView.animate(withDuration: 0.4, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: [], animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
             self.percentageBar.frame = CGRect(x: 0, y: 0, width: annotation.building.calculatePercentage(), height: 30)
         }, completion: nil)
         

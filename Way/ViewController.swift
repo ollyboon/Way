@@ -81,6 +81,9 @@ class ViewController: UIViewController {
         request.delegate = self
         request.loadRooms()
         
+        motion(toView: mapView, magnitude: 20)
+        motion(toView: shadowView, magnitude: 20)
+        
         //initial map setup
         mapView.layer.cornerRadius = 15
         mapView.delegate = self
@@ -100,9 +103,7 @@ class ViewController: UIViewController {
         //auto refresh
         let refreshTimer = Timer.scheduledTimer(timeInterval: 60 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
         refresh(refreshTimer)
-        
 
-        
         
     }
     
@@ -157,7 +158,19 @@ class ViewController: UIViewController {
         
     }
     
-
+    func motion(toView view:UIView, magnitude:Float) {
+        let xMotion = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
+        xMotion.minimumRelativeValue = -magnitude
+        xMotion.maximumRelativeValue = magnitude
+        
+        let yMotion = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
+        yMotion.maximumRelativeValue = magnitude
+        yMotion.minimumRelativeValue = -magnitude
+        
+        let group = UIMotionEffectGroup()
+        group.motionEffects = [xMotion, yMotion]
+        view.addMotionEffect(group)
+    }
     
 }
 
