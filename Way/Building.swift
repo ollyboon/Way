@@ -11,6 +11,9 @@ class Building {
     var latitude: Double!
     var longitude: Double!
     var status : String!
+    var coffee : Bool!
+    var printer : Bool!
+    var food : Bool!
     
     
     init(json: JSON){
@@ -22,6 +25,9 @@ class Building {
         latitude = json["latitude"].double
         longitude = json["longitude"].double
         status = json["status"].stringValue
+        coffee = json["coffee"].boolValue
+        food = json["food"].boolValue
+        printer = json["printer"].boolValue
     }
     
     func calculatePercentage() -> Double {

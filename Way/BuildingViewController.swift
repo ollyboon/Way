@@ -7,16 +7,22 @@ class BuildingViewController: UIViewController {
     
     //MARK: Outlets, actions and variables
     
+    @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var buildingLabel: UILabel!
     @IBOutlet weak var emojiImage: UIImageView!
-    @IBOutlet weak var emojiLabel: UILabel!
-    @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var buildingStatus: UILabel!
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var cardView: CustomUIView!
+    @IBOutlet weak var backgroundView: GradientView!
     @IBOutlet weak var defaultGradient: GradientView!
-    @IBOutlet weak var gradientBar: GradientView!
+    @IBOutlet weak var directionBar: GradientView!
+    @IBOutlet weak var directionLabel: UILabel!
+    @IBOutlet weak var iconStack: UIStackView!
     @IBOutlet weak var back: UIButton!
+    @IBOutlet weak var food: UIImageView!
+    @IBOutlet weak var coffee: UIImageView!
+    @IBOutlet weak var printer: UIImageView!
+    @IBOutlet weak var cardHeight: NSLayoutConstraint!
+    @IBOutlet weak var cardView: CustomUIView!
+
     
     @IBAction func backButton(_ sender: Any) {
         backAnimate()
@@ -26,25 +32,27 @@ class BuildingViewController: UIViewController {
     var room: Room?
     let gradientLayer = CAGradientLayer()
     let parallax = ViewController()
-
-
-
+    
     //MARK: View did load
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
         emojiImage.alpha = 0
         emojiLabel.alpha = 0
         buildingLabel.alpha = 0
-        directionLabel.alpha = 0
         buildingStatus.alpha = 0
         defaultGradient.alpha = 1
-        gradientBar.alpha = 0
         back.alpha = 0
-    
-        parallax.motion(toView: cardView, magnitude: 20)
+        directionLabel.alpha = 0
+        directionBar.alpha = 0
+        iconStack.alpha = 0
+        cardHeight.constant = 621
+        
+        
+        parallax.motion(toView: cardView, magnitude: 10)
+        
+        facilityStatus()
         
         if let room = room {
             if room.buildingId == building.buildingId {
@@ -118,21 +126,24 @@ class BuildingViewController: UIViewController {
     }
     
     func setupWithoutRoom() {
-        
+        directionLabel.text = ""
     }
     
     func backAnimate() {
         
-        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: { 
+        cardHeight.constant = 621
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
             self.defaultGradient.alpha = 1
-            self.cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
             self.emojiImage.alpha = 0
             self.emojiLabel.alpha = 0
             self.buildingLabel.alpha = 0
             self.directionLabel.alpha = 0
             self.buildingStatus.alpha = 0
-            self.gradientBar.alpha = 0
             self.back.alpha = 0
+            self.iconStack.alpha = 0
+            self.directionBar.alpha = 0
         }) { (finished) in
             self.performSegue(withIdentifier: "unwind", sender: nil)
         }
@@ -140,8 +151,10 @@ class BuildingViewController: UIViewController {
     
     func animate() {
         
+        cardHeight.constant = 300
+        
         UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-            self.cardView.frame = CGRect(x: 0, y: -16, width: 375, height: 347)
+            self.view.layoutIfNeeded()
         }, completion: nil)
         
         UIView.animate(withDuration: 0.5) {
@@ -150,8 +163,9 @@ class BuildingViewController: UIViewController {
             self.buildingLabel.alpha = 1
             self.directionLabel.alpha = 1
             self.buildingStatus.alpha = 1
-            self.gradientBar.alpha = 1
             self.back.alpha = 1
+            self.iconStack.alpha = 1
+            self.directionBar.alpha = 1
         }
         
         UIView.animate(withDuration: 2) {
@@ -160,5 +174,26 @@ class BuildingViewController: UIViewController {
         }
         
     }
+    
+    func facilityStatus() {
+        
+        if building.coffee == true {
+            coffee.image = #imageLiteral(resourceName: "coffeeTick")
+        } else {
+            coffee.image = #imageLiteral(resourceName: "coffeeX")
+        }
+        
+        if building.food == true {
+            food.image = #imageLiteral(resourceName: "foodTick")
+        } else {
+            food.image = #imageLiteral(resourceName: "foodX")        }
+        
+        if building.printer == true {
+            printer.image = #imageLiteral(resourceName: "PrinterTick")
+        } else {
+            printer.image = #imageLiteral(resourceName: "PrinterX")
+        }
+    }
+    
 }
 

@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Fusion F2.png",
+      "filename" : "printer.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "printer@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "printer@3x.png",
       "scale" : "3x"
     }
   ],

@@ -81,8 +81,8 @@ class ViewController: UIViewController {
         request.delegate = self
         request.loadRooms()
         
-        motion(toView: mapView, magnitude: 20)
-        motion(toView: shadowView, magnitude: 20)
+        motion(toView: mapView, magnitude: 10)
+        motion(toView: shadowView, magnitude: 10)
         
         //initial map setup
         mapView.layer.cornerRadius = 15
