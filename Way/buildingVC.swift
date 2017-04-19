@@ -32,9 +32,11 @@ class buildingVC: UIViewController {
     
     var room: Room?
     var building : Building!
+    var yPosition : CGFloat = 0.0
     let gradientLayer = CAGradientLayer()
     let parallax = ViewController()
     var fusionArray = [UIImage]()
+    var floorPlanArray = [UIImage]()
     
     //MARK: View did load
     
@@ -52,6 +54,7 @@ class buildingVC: UIViewController {
                 iconStack.alpha = 0
                 labelStack.alpha = 0
                 cardHeight.constant = 621
+                scrollView.alpha = 0
         
         
                 parallax.motion(toView: cardView, magnitude: 10)
@@ -60,14 +63,19 @@ class buildingVC: UIViewController {
         
         fusionArray = [#imageLiteral(resourceName: "Fusion-Ground-Floor"),#imageLiteral(resourceName: "Fusion-F1"),#imageLiteral(resourceName: "Fusion-F2"),#imageLiteral(resourceName: "Fusion-F3")]
         
+        var yPosition = 0.0
+        let height = CGFloat(scrollView.frame.height)
+        
         for image in 0..<fusionArray.count {
             let imageView = UIImageView()
             imageView.image = fusionArray[image]
             imageView.contentMode = .scaleAspectFit
-            let yPosition = self.view.frame.height * CGFloat(image)
-            imageView.frame = CGRect(x: 0, y: yPosition, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
+            yPosition += Double(height + 1)
+            imageView.frame = CGRect(x: 0, y: CGFloat(yPosition), width: scrollView.frame.width, height: height)
             
-            scrollView.contentSize.height = scrollView.frame.width * CGFloat(image + 1)
+            
+            scrollView.contentSize.height = height * CGFloat(fusionArray.count)
+            
             scrollView.addSubview(imageView)
         }
         
@@ -162,6 +170,7 @@ class buildingVC: UIViewController {
                     self.iconStack.alpha = 0
                     self.directionBar.alpha = 0
                     self.labelStack.alpha = 0
+                    self.scrollView.alpha = 1
                 }) { (finished) in
                     self.performSegue(withIdentifier: "unwind", sender: nil)
                 }
@@ -189,6 +198,7 @@ class buildingVC: UIViewController {
                 
                 UIView.animate(withDuration: 2) {
                     self.defaultGradient.alpha = 0
+                    self.scrollView.alpha = 1
                     
                 }
                 
