@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Mapbox
+import Fabric
+import Crashlytics
 
 class ViewController: UIViewController {
     
@@ -64,7 +66,7 @@ class ViewController: UIViewController {
         }
         
         if segue.identifier == "building" {
-            if let destination = segue.destination as? BuildingViewController {
+            if let destination = segue.destination as? buildingVC {
                 guard let building = sender as? Building else { return }
                 destination.room = room
                 destination.building = building
@@ -77,6 +79,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        Crashlytics.sharedInstance().crash()
     
         request.delegate = self
         request.loadRooms()

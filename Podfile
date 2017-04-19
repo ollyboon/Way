@@ -10,5 +10,7 @@ target 'Way' do
   pod 'EstimoteSDK'
   pod 'Mapbox-iOS-SDK', '~> 3.4'
   pod 'SHSearchBar'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end

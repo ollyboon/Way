@@ -12,9 +12,9 @@
 		A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
 		A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FFFC1E8E8852004AC160 /* RoomManager.swift */; };
-		A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A849942F1E8AA33500CED634 /* BuildingViewController.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
 		A87B2AD41E93F5E9006792EC /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87B2AD31E93F5E9006792EC /* CustomTableViewCell.swift */; };
+		A87F0FA91EA7CD09002795EC /* buildingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87F0FA81EA7CD09002795EC /* buildingVC.swift */; };
 		A88D396B1E67820C0014E6BF /* DIN Alternate Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */; };
 		A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */; };
 		A8BD79131E9194DB004BCA8B /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BD79121E9194DB004BCA8B /* CustomUIView.swift */; };
@@ -35,9 +35,9 @@
 		A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		A841FFFC1E8E8852004AC160 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
-		A849942F1E8AA33500CED634 /* BuildingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingViewController.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		A87B2AD31E93F5E9006792EC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		A87F0FA81EA7CD09002795EC /* buildingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buildingVC.swift; sourceTree = "<group>"; };
 		A88D396A1E6782060014E6BF /* DIN Alternate Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.otf"; sourceTree = "<group>"; };
 		A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		A8BD79121E9194DB004BCA8B /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 			children = (
 				A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */,
 				E8D093B41DC381860030339E /* ViewController.swift */,
-				A849942F1E8AA33500CED634 /* BuildingViewController.swift */,
+				A87F0FA81EA7CD09002795EC /* buildingVC.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -186,6 +186,7 @@
 				E8D093AD1DC381850030339E /* Resources */,
 				559624A9EB9E8EC3B50022CF /* [CP] Embed Pods Frameworks */,
 				E4C7B1C7B88DD6B167AE2959 /* [CP] Copy Pods Resources */,
+				A87F0FA71EA7C149002795EC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -281,6 +282,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Way/Pods-Way-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A87F0FA71EA7C149002795EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" b6e49b30168e2579bd58a8b574e04f1056f3308c 9c126b4c04982fa9352f4bc7f5c927200862b1f6d6619ab59dcc1e7652113322";
+		};
 		E4C7B1C7B88DD6B167AE2959 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,11 +319,11 @@
 			files = (
 				A87B2AD41E93F5E9006792EC /* CustomTableViewCell.swift in Sources */,
 				A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */,
+				A87F0FA91EA7CD09002795EC /* buildingVC.swift in Sources */,
 				E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */,
 				A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */,
 				A8BD79131E9194DB004BCA8B /* CustomUIView.swift in Sources */,
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
-				A84994301E8AA33500CED634 /* BuildingViewController.swift in Sources */,
 				A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */,
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,

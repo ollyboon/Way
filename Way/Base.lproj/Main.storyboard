@@ -326,7 +326,7 @@
         <!--building-->
         <scene sceneID="uS8-QM-jKL">
             <objects>
-                <viewController storyboardIdentifier="building" title="building" id="K07-6r-qVl" customClass="BuildingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="building" title="building" id="K07-6r-qVl" customClass="buildingVC" customModule="Way" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2f3-Fu-7nW"/>
                         <viewControllerLayoutGuide type="bottom" id="uKp-5n-cVx"/>
@@ -388,7 +388,7 @@
                                         <rect key="frame" x="15" y="41" width="345" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BU" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJR-yV-8AY">
-                                                <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="50"/>
                                                 <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="36"/>
                                                 <color key="textColor" red="0.27351708566476851" green="0.27351708566476851" blue="0.27351708566476851" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -403,7 +403,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YC-4c-Qv6" userLabel="Building capacity status">
-                                        <rect key="frame" x="16" y="86" width="343" height="20"/>
+                                        <rect key="frame" x="16" y="86" width="343" height="19"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="16"/>
                                         <color key="textColor" red="0.87325939119999996" green="0.87325939119999996" blue="0.87325939119999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="highlightedColor" red="0.33678756476683935" green="0.33448420600751128" blue="0.33249657405262667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -459,13 +459,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to 'Search' to find a room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsZ-wL-iwZ">
-                                        <rect key="frame" x="20" y="211" width="335" height="18.5"/>
+                                        <rect key="frame" x="20" y="211" width="335" height="17.5"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tta-3s-hEF">
-                                        <rect key="frame" x="0.0" y="257" width="375" height="18.5"/>
+                                        <rect key="frame" x="0.0" y="257" width="375" height="17.5"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                         <color key="textColor" red="0.15773715099999999" green="0.15773715099999999" blue="0.15773715099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -568,6 +568,22 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="back" destination="N2J-i9-hLF" id="BJ0-O7-aWG"/>
+                        <outlet property="backgroundView" destination="k3V-MT-Q1s" id="q5v-aI-agW"/>
+                        <outlet property="buildingLabel" destination="UJR-yV-8AY" id="vE3-4P-8gR"/>
+                        <outlet property="buildingStatus" destination="Tta-3s-hEF" id="99i-fT-Rif"/>
+                        <outlet property="cardHeight" destination="2L7-GP-DUp" id="2Yc-f9-cIO"/>
+                        <outlet property="cardView" destination="HOn-8S-vFf" id="yjY-hW-bKf"/>
+                        <outlet property="coffee" destination="Ue9-St-LGA" id="8ji-6J-Hv5"/>
+                        <outlet property="defaultGradient" destination="lSe-dT-mFc" id="oxW-8O-nrH"/>
+                        <outlet property="directionBar" destination="5cQ-qL-TMl" id="3fX-RU-aJh"/>
+                        <outlet property="directionLabel" destination="dsZ-wL-iwZ" id="lHL-tD-BuG"/>
+                        <outlet property="emojiImage" destination="QH8-g3-HS7" id="xFG-a5-59I"/>
+                        <outlet property="emojiLabel" destination="9YC-4c-Qv6" id="9gP-tQ-IrH"/>
+                        <outlet property="food" destination="fWw-6V-rCO" id="HWk-cs-LYK"/>
+                        <outlet property="iconStack" destination="PwE-F8-T8k" id="Ppc-WZ-hE4"/>
+                        <outlet property="labelStack" destination="jCB-n6-a0i" id="zRW-qW-6xg"/>
+                        <outlet property="printer" destination="aDj-V8-sCh" id="hyr-xf-MUh"/>
                         <segue destination="D3R-O3-IDO" kind="unwind" identifier="unwind" animates="NO" unwindAction="prepareForUnwindWithSegue:" id="cuv-2f-zQq"/>
                     </connections>
                 </viewController>
