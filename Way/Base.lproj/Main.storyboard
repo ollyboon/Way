@@ -388,7 +388,7 @@
                                         <rect key="frame" x="15" y="41" width="345" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BU" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJR-yV-8AY">
-                                                <rect key="frame" x="0.0" y="0.0" width="51" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
                                                 <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="36"/>
                                                 <color key="textColor" red="0.27351708566476851" green="0.27351708566476851" blue="0.27351708566476851" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -403,7 +403,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YC-4c-Qv6" userLabel="Building capacity status">
-                                        <rect key="frame" x="16" y="86" width="343" height="19"/>
+                                        <rect key="frame" x="16" y="86" width="343" height="20"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="16"/>
                                         <color key="textColor" red="0.87325939119999996" green="0.87325939119999996" blue="0.87325939119999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="highlightedColor" red="0.33678756476683935" green="0.33448420600751128" blue="0.33249657405262667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -459,13 +459,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to 'Search' to find a room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsZ-wL-iwZ">
-                                        <rect key="frame" x="20" y="211" width="335" height="17.5"/>
+                                        <rect key="frame" x="20" y="211" width="335" height="18.5"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tta-3s-hEF">
-                                        <rect key="frame" x="0.0" y="257" width="375" height="17.5"/>
+                                        <rect key="frame" x="0.0" y="257" width="375" height="18.5"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                         <color key="textColor" red="0.15773715099999999" green="0.15773715099999999" blue="0.15773715099999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -546,6 +546,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqU-G3-2E9">
+                                <rect key="frame" x="0.0" y="285" width="375" height="335"/>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2J-i9-hLF">
                                 <rect key="frame" x="16" y="622" width="36" height="29"/>
                                 <state key="normal" image="BackIcon"/>
@@ -558,8 +561,12 @@
                         <constraints>
                             <constraint firstItem="N2J-i9-hLF" firstAttribute="leading" secondItem="5Nj-kn-tDl" secondAttribute="leadingMargin" id="0MN-Hd-nZo"/>
                             <constraint firstItem="k3V-MT-Q1s" firstAttribute="top" secondItem="5Nj-kn-tDl" secondAttribute="top" id="3hW-g2-BD5"/>
+                            <constraint firstItem="N2J-i9-hLF" firstAttribute="top" secondItem="jqU-G3-2E9" secondAttribute="bottom" constant="2" id="4zJ-xy-e1q"/>
                             <constraint firstAttribute="trailing" secondItem="k3V-MT-Q1s" secondAttribute="trailing" id="FO3-cs-zhl"/>
+                            <constraint firstItem="jqU-G3-2E9" firstAttribute="top" secondItem="HOn-8S-vFf" secondAttribute="bottom" constant="1" id="Hbt-nP-OiJ"/>
+                            <constraint firstItem="jqU-G3-2E9" firstAttribute="leading" secondItem="5Nj-kn-tDl" secondAttribute="leading" id="RFj-h8-4b4"/>
                             <constraint firstItem="uKp-5n-cVx" firstAttribute="top" secondItem="N2J-i9-hLF" secondAttribute="bottom" constant="16.5" id="YPp-0s-Ro7"/>
+                            <constraint firstAttribute="trailing" secondItem="jqU-G3-2E9" secondAttribute="trailing" id="cQ2-e9-eu2"/>
                             <constraint firstItem="k3V-MT-Q1s" firstAttribute="leading" secondItem="5Nj-kn-tDl" secondAttribute="leading" id="igG-Gr-A4z"/>
                             <constraint firstItem="HOn-8S-vFf" firstAttribute="top" secondItem="2f3-Fu-7nW" secondAttribute="bottom" constant="-36" id="io5-0J-OF3"/>
                             <constraint firstItem="k3V-MT-Q1s" firstAttribute="bottom" secondItem="uKp-5n-cVx" secondAttribute="top" id="lgH-83-pTU"/>
@@ -584,6 +591,7 @@
                         <outlet property="iconStack" destination="PwE-F8-T8k" id="Ppc-WZ-hE4"/>
                         <outlet property="labelStack" destination="jCB-n6-a0i" id="zRW-qW-6xg"/>
                         <outlet property="printer" destination="aDj-V8-sCh" id="hyr-xf-MUh"/>
+                        <outlet property="scrollView" destination="jqU-G3-2E9" id="ozE-1j-Q1Y"/>
                         <segue destination="D3R-O3-IDO" kind="unwind" identifier="unwind" animates="NO" unwindAction="prepareForUnwindWithSegue:" id="cuv-2f-zQq"/>
                     </connections>
                 </viewController>

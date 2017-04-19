@@ -23,6 +23,7 @@ class buildingVC: UIViewController {
     @IBOutlet weak var coffee: UIImageView!
     @IBOutlet weak var printer: UIImageView!
     @IBOutlet weak var labelStack: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     @IBAction func backButton(_ sender: Any) {
@@ -30,9 +31,10 @@ class buildingVC: UIViewController {
     }
     
     var room: Room?
+    var building : Building!
     let gradientLayer = CAGradientLayer()
     let parallax = ViewController()
-    var building : Building!
+    var fusionArray = [UIImage]()
     
     //MARK: View did load
     
@@ -55,6 +57,22 @@ class buildingVC: UIViewController {
                 parallax.motion(toView: cardView, magnitude: 10)
         
                 facilityStatus()
+        
+        fusionArray = [#imageLiteral(resourceName: "Fusion-Ground-Floor"),#imageLiteral(resourceName: "Fusion-F1"),#imageLiteral(resourceName: "Fusion-F2"),#imageLiteral(resourceName: "Fusion-F3")]
+        
+        for image in 0..<fusionArray.count {
+            let imageView = UIImageView()
+            imageView.image = fusionArray[image]
+            imageView.contentMode = .scaleAspectFit
+            let yPosition = self.view.frame.height * CGFloat(image)
+            imageView.frame = CGRect(x: 0, y: yPosition, width: self.scrollView.frame.width, height: self.scrollView.frame.height)
+            
+            scrollView.contentSize.height = scrollView.frame.width * CGFloat(image + 1)
+            scrollView.addSubview(imageView)
+        }
+        
+        
+
         
         if let room = room {
             if room.buildingId == building.buildingId {
