@@ -568,21 +568,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="back" destination="N2J-i9-hLF" id="oNX-LD-zjb"/>
-                        <outlet property="backgroundView" destination="k3V-MT-Q1s" id="wTq-CR-e2O"/>
-                        <outlet property="buildingLabel" destination="UJR-yV-8AY" id="Vsx-CS-n97"/>
-                        <outlet property="buildingStatus" destination="Tta-3s-hEF" id="Nx7-zq-Lkc"/>
-                        <outlet property="cardHeight" destination="2L7-GP-DUp" id="LxD-za-acI"/>
-                        <outlet property="cardView" destination="HOn-8S-vFf" id="v5D-me-N29"/>
-                        <outlet property="coffee" destination="Ue9-St-LGA" id="poH-nf-AEM"/>
-                        <outlet property="defaultGradient" destination="lSe-dT-mFc" id="eSG-Lu-cRW"/>
-                        <outlet property="directionBar" destination="5cQ-qL-TMl" id="Ts3-fV-s4H"/>
-                        <outlet property="directionLabel" destination="dsZ-wL-iwZ" id="vQL-3V-WyQ"/>
-                        <outlet property="emojiImage" destination="QH8-g3-HS7" id="lag-ea-oFr"/>
-                        <outlet property="emojiLabel" destination="9YC-4c-Qv6" id="ffJ-qM-TIH"/>
-                        <outlet property="food" destination="fWw-6V-rCO" id="6cg-2J-yFn"/>
-                        <outlet property="iconStack" destination="PwE-F8-T8k" id="L0m-dC-bNd"/>
-                        <outlet property="printer" destination="aDj-V8-sCh" id="g78-e0-79g"/>
                         <segue destination="D3R-O3-IDO" kind="unwind" identifier="unwind" animates="NO" unwindAction="prepareForUnwindWithSegue:" id="cuv-2f-zQq"/>
                     </connections>
                 </viewController>
