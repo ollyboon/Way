@@ -228,9 +228,8 @@ class buildingVC: UIViewController {
     
             func filterFloorPlans() {
                 
-                let filteredFloorPlans = floorPlanDict.filteredDictionary({ $0.0.contains(building.name) })
-                
-                
+                let filteredFloorPlans = floorPlanDict.filteredDictionary({ $0.0.lowercased().contains(building.name.lowercased())})
+                                
                 for image in filteredFloorPlans {
                     floorPlanArray.append(image.value)
                 }
