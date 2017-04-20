@@ -35,49 +35,47 @@ class buildingVC: UIViewController {
     var yPosition : CGFloat = 0.0
     let gradientLayer = CAGradientLayer()
     let parallax = ViewController()
-    var fusionArray = [UIImage]()
     var floorPlanArray = [UIImage]()
+    var floorPlanDict = ["fusion-3": UIImage(named: "id1-3")!, "fusion-2": UIImage(named: "id1-2" )!,"fusion-1": UIImage(named: "id1-1")!,"fusion-0": UIImage(named: "id1-0")!,"subu-3": UIImage(named: "potato")!]
     
     //MARK: View did load
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-                emojiImage.alpha = 0
-                emojiLabel.alpha = 0
-                buildingLabel.alpha = 0
-                buildingStatus.alpha = 0
-                defaultGradient.alpha = 1
-                back.alpha = 0
-                directionLabel.alpha = 0
-                directionBar.alpha = 0
-                iconStack.alpha = 0
-                labelStack.alpha = 0
-                cardHeight.constant = 621
+        emojiImage.alpha = 0
+        emojiLabel.alpha = 0
+        buildingLabel.alpha = 0
+        buildingStatus.alpha = 0
+        defaultGradient.alpha = 1
+        back.alpha = 0
+        directionLabel.alpha = 0
+        directionBar.alpha = 0
+        iconStack.alpha = 0
+        labelStack.alpha = 0
+        scrollView.alpha = 0
+        cardHeight.constant = 621
         
+        // Call Functions
+        parallax.motion(toView: cardView, magnitude: 10)
+        facilityStatus()
+        filterFloorPlans()
         
-                parallax.motion(toView: cardView, magnitude: 10)
-        
-                facilityStatus()
-        
-        fusionArray = [#imageLiteral(resourceName: "Fusion-F3"),#imageLiteral(resourceName: "Fusion-F2"),#imageLiteral(resourceName: "Fusion-F1"),#imageLiteral(resourceName: "Fusion-Ground-Floor")]
         
         var yPosition = 0.0
         let height = CGFloat(scrollView.frame.height)
         
-        for image in 0..<fusionArray.count {
+        for image in 0..<floorPlanArray.count {
             let imageView = UIImageView()
-            imageView.image = fusionArray[image]
+            imageView.image = floorPlanArray[image]
             imageView.contentMode = .scaleAspectFit
             imageView.frame = CGRect(x: 0, y: CGFloat(yPosition), width: scrollView.frame.width, height: height)
             yPosition += Double(height)
             
-            scrollView.contentSize.height = height * CGFloat(fusionArray.count)
+            scrollView.contentSize.height = height * CGFloat(floorPlanArray.count)
             scrollView.addSubview(imageView)
         }
         
-        
-        scrollView.scrollToBottom(animated: true)
         
         if let room = room {
             if room.buildingId == building.buildingId {
@@ -167,6 +165,7 @@ class buildingVC: UIViewController {
                     self.iconStack.alpha = 0
                     self.directionBar.alpha = 0
                     self.labelStack.alpha = 0
+                    self.scrollView.alpha = 0
                 }) { (finished) in
                     self.performSegue(withIdentifier: "unwind", sender: nil)
                 }
@@ -177,8 +176,14 @@ class buildingVC: UIViewController {
                 cardHeight.constant = 300
         
                 UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-                    self.view.layoutIfNeeded()
+                    
                 }, completion: nil)
+                
+                UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseIn, animations: { 
+                    self.view.layoutIfNeeded()
+                }) { (finished) in
+                    self.scrollView.scrollToBottom(animated: true)
+                }
         
                 UIView.animate(withDuration: 0.5) {
                     self.emojiImage.alpha = 1
@@ -190,6 +195,7 @@ class buildingVC: UIViewController {
                     self.iconStack.alpha = 1
                     self.directionBar.alpha = 1
                     self.labelStack.alpha = 1
+                    self.scrollView.alpha = 1
                 }
                 
                 UIView.animate(withDuration: 2) {
@@ -219,13 +225,55 @@ class buildingVC: UIViewController {
                 }
             }
     
+    
+            func filterFloorPlans() {
+                
+                let filteredFloorPlans = floorPlanDict.filteredDictionary({ $0.0.contains(building.name) })
+                
+                
+                for image in filteredFloorPlans {
+                    floorPlanArray.append(image.value)
+                }
+                
+                print(filteredFloorPlans)
+                print("floor plan array count =", floorPlanArray.count)
+                
+               
+            }
+    
+
+    
+    
     }
+
+
 
 extension UIScrollView {
     func scrollToBottom(animated: Bool) {
         if self.contentSize.height < self.bounds.size.height { return }
         let bottomOffset = CGPoint(x: 0, y: self.contentSize.height - self.bounds.size.height)
         self.setContentOffset(bottomOffset, animated: animated)
+    }
+}
+
+extension Dictionary
+{
+    func filteredDictionary(_ isIncluded: (Key, Value) -> Bool)  -> Dictionary<Key, Value>
+    {
+        return self.filter(isIncluded).toDictionary(byTransforming: { $0 })
+    }
+}
+
+extension Array
+{
+    func toDictionary<H:Hashable, T>(byTransforming transformer: (Element) -> (H, T)) -> Dictionary<H, T>
+    {
+        var result = Dictionary<H,T>()
+        self.forEach({ element in
+            let (key,value) = transformer(element)
+            result[key] = value
+        })
+        return result
     }
 }
 
