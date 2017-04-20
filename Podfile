@@ -12,5 +12,6 @@ target 'Way' do
   pod 'SHSearchBar'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'IHKeyboardAvoiding'
 
 end

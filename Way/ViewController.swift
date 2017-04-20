@@ -23,10 +23,10 @@ class ViewController: UIViewController {
     let distance: CLLocationDistance = 720
     var pitch: CGFloat = 0
     let heading = 310.0
-    var camera = MGLMapCamera()
     let mapCenter = CLLocationCoordinate2D(latitude: 50.742977, longitude: -1.895378)
     var room: Room?
     var annotation = MGLAnnotationView()
+    var pointAnnotation = MGLPointAnnotation()
     
 
     @IBOutlet weak var mapView: MGLMapView!
@@ -36,14 +36,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var search: UIButton!
     @IBOutlet weak var searchIcon: UIButton!
+    @IBOutlet weak var mapViewBottom: NSLayoutConstraint!
     
     @IBAction func refresh(_ sender: Any) {
-        rotate()
-        if let annotations = mapView.annotations {
-            mapView.removeAnnotations(annotations)
-        }
-        BuildingManager.shared.buildings.removeAll()
-        request.loadBuildings()
+        refresh()
     }
     
     @IBAction func searchButton(_ sender: Any) {
@@ -79,8 +75,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        Crashlytics.sharedInstance().crash()
     
         request.delegate = self
         request.loadRooms()
@@ -91,10 +85,10 @@ class ViewController: UIViewController {
         //initial map setup
         mapView.layer.cornerRadius = 15
         mapView.delegate = self
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.compassView.isHidden = true
         mapView.logoView.isHidden = false
-        camera = MGLMapCamera(lookingAtCenter: mapCenter, fromDistance: distance, pitch: pitch, heading: heading)
-        self.mapView.camera = camera
+        mapView.setCenter(mapCenter, zoomLevel: 12, direction: 0, animated: false)
 
         
         //iBeacon regions
@@ -105,8 +99,9 @@ class ViewController: UIViewController {
         self.beaconManager.startMonitoring(for: fusionRegion)
         
         //auto refresh
-        let refreshTimer = Timer.scheduledTimer(timeInterval: 60 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
-        refresh(refreshTimer)
+        let refreshTimer = Timer.scheduledTimer(timeInterval: 10 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
+        autoRefresh(refreshTimer)
+        
 
         
     }
@@ -139,12 +134,21 @@ class ViewController: UIViewController {
         
     }
     
-    func refreshing(_ timer : Timer) {
-        
+    func  autoRefresh(_ timer: Timer) {
         rotate()
         if let annotations = mapView.annotations {
             mapView.removeAnnotations(annotations)
         }
+        BuildingManager.shared.buildings.removeAll()
+        request.loadBuildings()
+    }
+    
+    func refresh() {
+        rotate()
+        if let annotations = mapView.annotations {
+            mapView.removeAnnotations(annotations)
+        }
+        BuildingManager.shared.buildings.removeAll()
         request.loadBuildings()
     }
     
@@ -249,9 +253,7 @@ extension ViewController: RoomViewControllerDelegate {
         roomPin.title = room.roomNumber
         roomPin.subtitle = room.roomName
         mapView.addAnnotation(roomPin)
-        
-
-        
+        mapView.setCenter(roomPin.coordinate, animated: true)
     }
     
     func removePointAnnotation() {
@@ -322,9 +324,16 @@ extension ViewController: MGLMapViewDelegate {
         
         return annotationView
     }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
+        
+        let camera = MGLMapCamera(lookingAtCenter: mapView.centerCoordinate, fromDistance: 750, pitch: 0, heading: 310)
+        
+        mapView.setCamera(camera, withDuration: 3, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+    }
 
 }
-    
+
 
 
 

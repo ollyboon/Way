@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Crashlytics
 
 class buildingVC: UIViewController {
     
@@ -43,6 +44,12 @@ class buildingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        Answers.logContentView(withName: "Answers setup process super easy!",
+                               contentType: "Building",
+                               contentId: building.name,
+                               customAttributes: nil)
         
         emojiImage.alpha = 0
         emojiLabel.alpha = 0

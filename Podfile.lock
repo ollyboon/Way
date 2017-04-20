@@ -4,6 +4,7 @@ PODS:
     - Fabric (~> 1.6.3)
   - EstimoteSDK (4.14.1)
   - Fabric (1.6.11)
+  - IHKeyboardAvoiding (3.7)
   - Mapbox-iOS-SDK (3.5.2)
   - SHSearchBar (1.1.0)
   - SwiftyJSON (3.1.4)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - Crashlytics
   - EstimoteSDK
   - Fabric
+  - IHKeyboardAvoiding
   - Mapbox-iOS-SDK (~> 3.5)
   - SHSearchBar
   - SwiftyJSON
@@ -22,10 +24,11 @@ SPEC CHECKSUMS:
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   EstimoteSDK: 5ac94b0f4d923f6120b8e133b597c57b4ed13488
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  IHKeyboardAvoiding: 4c852fae85667469307678c65f14f5cac8a7be92
   Mapbox-iOS-SDK: d0d58079e56e4eed4f0d8726afdbd49a76de8e5a
   SHSearchBar: 1dbaf0999acfd9029fe1cb65bd2625e456ed0bf7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: e4d956f6e7cef0620c1135921e432ea8e2885cf4
+PODFILE CHECKSUM: 7e71c8f70598310de30a9197c6888703b78679dd
 
 COCOAPODS: 1.2.1

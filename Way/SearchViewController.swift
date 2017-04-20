@@ -8,6 +8,7 @@
 
 import UIKit
 import SHSearchBar
+import IHKeyboardAvoiding
 
     //MARK: delegate protocol
 
@@ -32,6 +33,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var card: CustomUIView!
     @IBOutlet weak var back: UIButton!
+    @IBOutlet weak var cardLeading: NSLayoutConstraint!
+    @IBOutlet weak var cardTrailing: NSLayoutConstraint!
+    @IBOutlet weak var cardBottom: NSLayoutConstraint!
+    @IBOutlet weak var cardTop: NSLayoutConstraint!
+    @IBOutlet weak var tableviewBottom: NSLayoutConstraint!
     
     @IBAction func backButton(_ sender: Any) {
         
@@ -49,10 +55,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         parallax.motion(toView: tableView, magnitude: 20)
         
+        KeyboardAvoiding.avoidingView = self.tableView
+        
         searchBar = defaultSearchBar(withRasterSize: rasterSize, delegate: self as SHSearchBarDelegate)
         searchBar.textField.adjustsFontSizeToFitWidth = true
         view.addSubview(searchBar)
         searchBar.delegate = self
+        searchBar.alpha = 0
         setupViewConstraints(usingMargin: rasterSize)
         
         
@@ -131,8 +140,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         viewConstraints = [
-            topLayoutGuide.bottomAnchor.constraint(equalTo: searchBar.topAnchor, constant: -margin),
             
+            topLayoutGuide.bottomAnchor.constraint(equalTo: searchBar.topAnchor, constant: -margin),
             searchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: margin),
             searchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -margin),
             searchBar.heightAnchor.constraint(equalToConstant: searchbarHeight),
@@ -153,7 +162,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bar.textField.placeholder = "Search"
         bar.textField.font = UIFont(name: "din", size: 28)
         bar.textField.clearsOnBeginEditing = true
-        bar.updateBackgroundWith(6, corners: [.allCorners], color: UIColor.white)
+        bar.updateBackgroundWith(15, corners: [.allCorners], color: UIColor.white)
         bar.layer.shadowColor = UIColor.black.cgColor
         bar.layer.shadowOffset = CGSize(width: 0, height: 8)
         bar.layer.shadowRadius = 10
@@ -175,14 +184,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func leaveAnimation() {
         
-        UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-            self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 50)
+        cardBottom.constant = 9
+        cardLeading.constant = 0
+        cardTrailing.constant = 0
+        cardTop.constant = -16
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.4, options: .curveEaseInOut, animations: {
             self.card.alpha = 1
             self.searchBar.alpha = 0
         }, completion: nil)
         
-        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-            self.card.frame = CGRect(x: 0, y: -16, width: 375, height: 621)
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.4, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
             self.tableView.alpha = 0
             self.back.alpha = 0
         }) { (finished) in
@@ -192,19 +205,25 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func appearAnimation() {
         
+        cardBottom.constant = 525
+        cardLeading.constant = 20
+        cardTrailing.constant = 20
+        cardTop.constant = 40
+        
         UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.4, options: .curveEaseInOut, animations: { 
-            self.card.frame = CGRect(x: 19, y: 40, width: 337, height: 50)
+            self.view.layoutIfNeeded()
         }, completion: nil)
         
-        UIView.animate(withDuration: 0.3, delay: 0.15, options: [], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.25, options: [], animations: {
             self.searchBar.alpha = 1
         }, completion: nil)
         
         
-        UIView.animate(withDuration: 0.3, delay: 0.25, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.25, options: [], animations: {
             self.card.alpha = 0
         }, completion: nil)
     }
+    
 }
 
 

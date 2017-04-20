@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IHKeyboardAvoiding.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Way.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13B7917B904757B7DE81F07A424C2DF5</key>
+		<key>033B2F5EFC98402794E5FA4A2E42BD9F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B32E59F9FDA5FBA293E83BB716A4C96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +47,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C1FD0D391581698DEA4D9118FA771F05</key>
+		<key>B07399D7512FEE83DE8D7EFC9A7BF5EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FD0AD673C1D0B7F474A1B360B2280920</key>
+		<key>FA811B9EA6C0141E141E4764EAD33E55</key>
 		<dict>
 			<key>primary</key>
 			<true/>
