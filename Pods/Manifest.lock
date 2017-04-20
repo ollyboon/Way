@@ -13,7 +13,7 @@ DEPENDENCIES:
   - Crashlytics
   - EstimoteSDK
   - Fabric
-  - Mapbox-iOS-SDK (~> 3.4)
+  - Mapbox-iOS-SDK (~> 3.5)
   - SHSearchBar
   - SwiftyJSON
 
@@ -26,6 +26,6 @@ SPEC CHECKSUMS:
   SHSearchBar: 1dbaf0999acfd9029fe1cb65bd2625e456ed0bf7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 88e32b2f42d32d8fb57f7029224a291a1da3be74
+PODFILE CHECKSUM: e4d956f6e7cef0620c1135921e432ea8e2885cf4
 
 COCOAPODS: 1.2.1

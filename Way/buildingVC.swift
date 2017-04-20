@@ -36,7 +36,8 @@ class buildingVC: UIViewController {
     let gradientLayer = CAGradientLayer()
     let parallax = ViewController()
     var floorPlanArray = [UIImage]()
-    var floorPlanDict = ["fusion-3": UIImage(named: "id1-3")!, "fusion-2": UIImage(named: "id1-2" )!,"fusion-1": UIImage(named: "id1-1")!,"fusion-0": UIImage(named: "id1-0")!,"subu-3": UIImage(named: "potato")!]
+    var sortingArray = [(filename: String, image:UIImage)]()
+    var floorPlanDict = ["fusion3": UIImage(named: "id1-3")!, "fusion2": UIImage(named: "id1-2" )!,"fusion1": UIImage(named: "id1-1")!,"fusion0": UIImage(named: "id1-0")!,"subu0": UIImage(named: "potato")!]
     
     //MARK: View did load
     
@@ -60,7 +61,6 @@ class buildingVC: UIViewController {
         parallax.motion(toView: cardView, magnitude: 10)
         facilityStatus()
         filterFloorPlans()
-        
         
         var yPosition = 0.0
         let height = CGFloat(scrollView.frame.height)
@@ -229,20 +229,18 @@ class buildingVC: UIViewController {
             func filterFloorPlans() {
                 
                 let filteredFloorPlans = floorPlanDict.filteredDictionary({ $0.0.lowercased().contains(building.name.lowercased())})
-                                
+                
                 for image in filteredFloorPlans {
-                    floorPlanArray.append(image.value)
+                    sortingArray.append((image.key, image.value))
                 }
                 
-                print(filteredFloorPlans)
-                print("floor plan array count =", floorPlanArray.count)
+                sortingArray.sort {  $0.filename > $1.filename  }
                 
-               
+                for image in sortingArray {
+                    floorPlanArray.append(image.image)
+                }
             }
-    
 
-    
-    
     }
 
 

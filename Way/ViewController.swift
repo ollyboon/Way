@@ -92,7 +92,7 @@ class ViewController: UIViewController {
         mapView.layer.cornerRadius = 15
         mapView.delegate = self
         mapView.compassView.isHidden = true
-        mapView.logoView.isHidden = true
+        mapView.logoView.isHidden = false
         camera = MGLMapCamera(lookingAtCenter: mapCenter, fromDistance: distance, pitch: pitch, heading: heading)
         self.mapView.camera = camera
 
