@@ -110,7 +110,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.roomNumber.text = rooms[indexPath.row].roomNumber
         cell.roomName.text = rooms[indexPath.row].roomName
         cell.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
-            
+        
+        if rooms[indexPath.row].facilityType.lowercased().contains("toilet") {
+            cell.roomIcon.image = #imageLiteral(resourceName: "Toilet Icon")
+        }
 
         
         return cell
