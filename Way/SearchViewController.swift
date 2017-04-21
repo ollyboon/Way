@@ -28,7 +28,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var delegate: RoomViewControllerDelegate?
     var searchBar: SHSearchBar!
     var viewConstraints: [NSLayoutConstraint] = []
-    let parallax = ViewController()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var card: CustomUIView!
@@ -52,8 +51,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         let rasterSize: CGFloat = 20.0
-        
-        parallax.motion(toView: tableView, magnitude: 20)
         
         KeyboardAvoiding.avoidingView = self.tableView
         
@@ -152,7 +149,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.roomIcon.image = nil
         }
 
-        print("cell Loaded")
         return cell
         
     }
@@ -207,7 +203,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bar.textField.placeholder = "Search"
         bar.textField.font = UIFont(name: "din", size: 28)
         bar.textField.clearsOnBeginEditing = true
-        bar.updateBackgroundWith(15, corners: [.allCorners], color: UIColor.white)
+        bar.updateBackgroundWith(25, corners: [.allCorners], color: UIColor.white)
         bar.layer.shadowColor = UIColor.black.cgColor
         bar.layer.shadowOffset = CGSize(width: 0, height: 8)
         bar.layer.shadowRadius = 10
@@ -257,6 +253,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.4, options: .curveEaseInOut, animations: { 
             self.view.layoutIfNeeded()
+            self.card.cornerRadius = 25
         }, completion: nil)
         
         UIView.animate(withDuration: 0.3, delay: 0.25, options: [], animations: {
