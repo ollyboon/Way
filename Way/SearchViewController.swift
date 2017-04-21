@@ -65,6 +65,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupViewConstraints(usingMargin: rasterSize)
         
         
+        
         // Update the searchbar config
         let delayTime = DispatchTime.now()
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
@@ -76,6 +77,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.setupViewConstraints(usingMargin: config.rasterSize)
             
         }
+        
         
         self.tableView.reloadData()
         
@@ -104,9 +106,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
+        cell.roomNumber.sizeToFit()
         cell.roomNumber.text = rooms[indexPath.row].roomNumber
         cell.roomName.text = rooms[indexPath.row].roomName
         cell.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
+            
+
         
         return cell
         

@@ -65,7 +65,6 @@ class buildingVC: UIViewController {
         cardHeight.constant = 621
         
         // Call Functions
-        parallax.motion(toView: cardView, magnitude: 10)
         facilityStatus()
         filterFloorPlans()
         

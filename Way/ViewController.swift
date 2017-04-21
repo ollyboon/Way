@@ -78,9 +78,7 @@ class ViewController: UIViewController {
     
         request.delegate = self
         request.loadRooms()
-        
-        motion(toView: mapView, magnitude: 10)
-        motion(toView: shadowView, magnitude: 10)
+
         
         //initial map setup
         mapView.layer.cornerRadius = 15
@@ -99,7 +97,7 @@ class ViewController: UIViewController {
         self.beaconManager.startMonitoring(for: fusionRegion)
         
         //auto refresh
-        let refreshTimer = Timer.scheduledTimer(timeInterval: 10 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
+        let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
         autoRefresh(refreshTimer)
         
 
@@ -329,7 +327,7 @@ extension ViewController: MGLMapViewDelegate {
         
         let camera = MGLMapCamera(lookingAtCenter: mapView.centerCoordinate, fromDistance: 750, pitch: 0, heading: 310)
         
-        mapView.setCamera(camera, withDuration: 3, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        mapView.setCamera(camera, withDuration: 2, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
     }
 
 }

@@ -10,6 +10,8 @@ class Room {
     var directions : String!
     var buildingId: Int!
     var description: String!
+    var isToilet : Bool!
+    var isPrinter : Bool!
     
     init(json : JSON) {
         roomNumber = json["room_number"].stringValue
@@ -19,6 +21,8 @@ class Room {
         directions = json["directions"].stringValue
         buildingId = json["building_id"].intValue
         description = json["search"].stringValue
+        isToilet = json["is_toilet"].boolValue
+        isPrinter = json["is_printer"].boolValue
     }
     
 }
