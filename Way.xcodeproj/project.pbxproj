@@ -10,6 +10,7 @@
 		455D04542C86913CA024C6F7 /* Pods_Way.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D4532F181ECB315E2FE517 /* Pods_Way.framework */; };
 		A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = A811C9D91E8E84BC00B07F38 /* Room.swift */; };
 		A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */; };
+		A834739A1EAA82B000EE133C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A83473991EAA82B000EE133C /* Settings.bundle */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
 		A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FFFC1E8E8852004AC160 /* RoomManager.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
@@ -33,6 +34,7 @@
 		9294284FB6A608966805603F /* Pods-Way.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Way.release.xcconfig"; path = "Pods/Target Support Files/Pods-Way/Pods-Way.release.xcconfig"; sourceTree = "<group>"; };
 		A811C9D91E8E84BC00B07F38 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A83473991EAA82B000EE133C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		A841FFFC1E8E8852004AC160 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				E8D093BB1DC381860030339E /* LaunchScreen.storyboard */,
 				E8D093B61DC381860030339E /* Main.storyboard */,
 				E8D093B91DC381860030339E /* Assets.xcassets */,
+				A83473991EAA82B000EE133C /* Settings.bundle */,
 				E8D093BE1DC381860030339E /* Info.plist */,
 			);
 			path = Way;
@@ -244,6 +247,7 @@
 			files = (
 				E8D093BD1DC381860030339E /* LaunchScreen.storyboard in Resources */,
 				A88D396B1E67820C0014E6BF /* DIN Alternate Bold.otf in Resources */,
+				A834739A1EAA82B000EE133C /* Settings.bundle in Resources */,
 				E8D093BA1DC381860030339E /* Assets.xcassets in Resources */,
 				E8D093B81DC381860030339E /* Main.storyboard in Resources */,
 			);

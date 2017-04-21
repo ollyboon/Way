@@ -112,9 +112,44 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        cell.buildingName.text = rooms[indexPath.row].buildingId as? String!
         cell.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
         
+        switch rooms[indexPath.row].buildingId {
+        case 100:
+            cell.buildingName.text = "Facility"
+        case 1:
+            cell.buildingName.text = "Fusion"
+        case 2:
+            cell.buildingName.text = "Library"
+        case 3:
+            cell.buildingName.text = "SUBU"
+        case 4:
+            cell.buildingName.text = "Poole"
+        case 5:
+            cell.buildingName.text = "Kimmeridge"
+        case 6:
+            cell.buildingName.text = "Dorset"
+        case 7:
+            cell.buildingName.text = "Weymouth"
+        case 8:
+            cell.buildingName.text = "Christchurch"
+        default:
+            cell.buildingName.text = "Outside"
+        }
         
-        if rooms[indexPath.row].facilityType.lowercased() == "toilet" {
+        switch rooms[indexPath.row].facilityType {
+        case "toilet":
             cell.roomIcon.image = #imageLiteral(resourceName: "Toilet Icon")
+        case "printer":
+            cell.roomIcon.image = #imageLiteral(resourceName: "printerTable")
+        case "cafe":
+            cell.roomIcon.image = #imageLiteral(resourceName: "cafe")
+        case "bike":
+            cell.roomIcon.image = #imageLiteral(resourceName: "bike")
+        case "bank":
+            cell.roomIcon.image = #imageLiteral(resourceName: "atm")
+        case "doctor":
+            cell.roomIcon.image = #imageLiteral(resourceName: "doctors")
+        default:
+            cell.roomIcon.image = nil
         }
 
         print("cell Loaded")

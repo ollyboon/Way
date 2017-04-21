@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     var room: Room?
     var annotation = MGLAnnotationView()
     var pointAnnotation = MGLPointAnnotation()
+    let userDefaults = UserDefaults.standard
+
     
 
     @IBOutlet weak var mapView: MGLMapView!
@@ -75,6 +77,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UserDefaults.standard.register(defaults: [String : Any]())
     
         request.delegate = self
         request.loadRooms()
@@ -86,6 +90,7 @@ class ViewController: UIViewController {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.compassView.isHidden = true
         mapView.logoView.isHidden = false
+        mapView.attributionButton.isHidden = true
         mapView.setCenter(mapCenter, zoomLevel: 12, direction: 0, animated: false)
 
         
@@ -176,6 +181,13 @@ class ViewController: UIViewController {
         let group = UIMotionEffectGroup()
         group.motionEffects = [xMotion, yMotion]
         view.addMotionEffect(group)
+    }
+    
+    func settings() {
+        let mapboxTelemetry = userDefaults.bool(forKey: "MGLMapboxMetricsEnabled")
+        
+        if mapboxTelemetry == true {
+        }
     }
     
 }
