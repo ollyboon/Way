@@ -1,6 +1,5 @@
 import Foundation
 import SwiftyJSON
-
 class Room {
     
     var roomNumber : String!
@@ -11,6 +10,8 @@ class Room {
     var buildingId : Int!
     var description : String!
     var facilityType : String!
+    var long = CLLocationDegrees()
+    var lat = CLLocationDegrees()
 
     
     init(json : JSON) {
@@ -22,6 +23,14 @@ class Room {
         buildingId = json["building_id"].intValue
         description = json["search"].stringValue
         facilityType = json["facility_type"].stringValue
+    }
+    
+    var location : CLLocation {
+       return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
+    func distance(to location: CLLocation) -> CLLocationDistance {
+        return location.distance(from: self.location)
     }
     
 }

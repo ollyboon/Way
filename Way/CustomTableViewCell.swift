@@ -14,6 +14,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var roomNumber: UILabel!
     @IBOutlet weak var roomName: UILabel!
     @IBOutlet weak var roomIcon: UIImageView!
+    @IBOutlet weak var buildingName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
