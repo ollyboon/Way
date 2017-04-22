@@ -5,7 +5,6 @@ class RoomManager {
     static let shared = RoomManager()
     
     var rooms = [Room]()
-//    var myLocation =
     
     private init() { }
     

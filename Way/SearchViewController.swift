@@ -30,6 +30,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var searchBar: SHSearchBar!
     var viewConstraints: [NSLayoutConstraint] = []
     let locationManager = CLLocationManager()
+    var mapVC = ViewController()
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -61,6 +62,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             locationManager.startUpdatingLocation()
         }
         
+        let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_ :)), userInfo: nil, repeats: true)
+        refresh(refreshTimer)
+        
         let rasterSize: CGFloat = 20.0
         
         KeyboardAvoiding.avoidingView = self.tableView
@@ -91,11 +95,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func refresh(_ : Timer) {
+        self.tableView.reloadData()
+    }
+    
     
     // MARK: View did appear
     
     override func viewDidAppear(_ animated: Bool) {
         appearAnimation()
+        self.tableView.reloadData()
     }
     
     //MARK: TableView Functions
@@ -105,11 +114,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
-        
-//        rooms.sortInPlace { return $0.distance < $1.distance }
-        
-        
-        
         return rooms.count
         
     }
@@ -121,7 +125,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.roomNumber.sizeToFit()
         cell.roomNumber.text = rooms[indexPath.row].roomNumber
         cell.roomName.text = rooms[indexPath.row].roomName
-//        cell.buildingName.text = rooms[indexPath.row].buildingId as? String!
         cell.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
         
         switch rooms[indexPath.row].buildingId {
@@ -172,13 +175,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
         cell.alpha = 0
 
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             cell.alpha = 1
         })
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let room = RoomManager.shared.rooms[indexPath.row]
+        let room = rooms[indexPath.row]
         delegate?.didSelect(room)
         leaveAnimation()
         tableView.deselectRow(at: indexPath, animated: true)
@@ -311,7 +314,6 @@ extension SearchViewController: CLLocationManagerDelegate {
         print(myLocation)
         
         rooms.sort(by: { $0.distance(to: myLocation) < $1.distance(to: myLocation) })
-        tableView.reloadData()
     }
 }
 
