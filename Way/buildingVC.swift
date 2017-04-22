@@ -46,7 +46,7 @@ class buildingVC: UIViewController {
         super.viewDidLoad()
         
         
-        Answers.logContentView(withName: "Answers setup process super easy!",
+        Answers.logContentView(withName: "building entered / clicked on ",
                                contentType: "Building",
                                contentId: building.name,
                                customAttributes: nil)

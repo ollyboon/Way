@@ -311,9 +311,9 @@ extension SearchViewController: CLLocationManagerDelegate {
         
         let myLocationCoordinate: CLLocationCoordinate2D =  (locationManager.location?.coordinate)!
         let myLocation: CLLocation = CLLocation(latitude: myLocationCoordinate.latitude, longitude: myLocationCoordinate.longitude)
-        print(myLocation)
         
         rooms.sort(by: { $0.distance(to: myLocation) < $1.distance(to: myLocation) })
+        
     }
 }
 
