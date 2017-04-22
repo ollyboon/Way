@@ -21,7 +21,6 @@ class RoomManager {
         return search
     }
     
-//    rooms.sort(by: { $0.distance(to: myLocation) < $1.distance(to: myLocation) })
     
     
     

@@ -9,6 +9,7 @@
 import UIKit
 import SHSearchBar
 import IHKeyboardAvoiding
+import CoreLocation
 
     //MARK: delegate protocol
 
@@ -28,6 +29,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var delegate: RoomViewControllerDelegate?
     var searchBar: SHSearchBar!
     var viewConstraints: [NSLayoutConstraint] = []
+    let locationManager = CLLocationManager()
+
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var card: CustomUIView!
@@ -49,6 +52,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
         
         let rasterSize: CGFloat = 20.0
         
@@ -94,6 +105,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
+        
+//        rooms.sortInPlace { return $0.distance < $1.distance }
+        
+        
         
         return rooms.count
         
@@ -285,5 +300,18 @@ extension SearchViewController: SHSearchBarDelegate {
         
     }
     
+}
+
+extension SearchViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let myLocationCoordinate: CLLocationCoordinate2D =  (locationManager.location?.coordinate)!
+        let myLocation: CLLocation = CLLocation(latitude: myLocationCoordinate.latitude, longitude: myLocationCoordinate.longitude)
+        print(myLocation)
+        
+        rooms.sort(by: { $0.distance(to: myLocation) < $1.distance(to: myLocation) })
+        tableView.reloadData()
+    }
 }
 

@@ -11,6 +11,8 @@
 		A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = A811C9D91E8E84BC00B07F38 /* Room.swift */; };
 		A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */; };
 		A834739A1EAA82B000EE133C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A83473991EAA82B000EE133C /* Settings.bundle */; };
+		A834739C1EAB5D0900EE133C /* myLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A834739B1EAB5D0900EE133C /* myLocation.swift */; };
+		A834739E1EAB5F7700EE133C /* locationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A834739D1EAB5F7700EE133C /* locationManager.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
 		A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FFFC1E8E8852004AC160 /* RoomManager.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
@@ -35,6 +37,8 @@
 		A811C9D91E8E84BC00B07F38 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A83473991EAA82B000EE133C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		A834739B1EAB5D0900EE133C /* myLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myLocation.swift; sourceTree = "<group>"; };
+		A834739D1EAB5F7700EE133C /* locationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = locationManager.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		A841FFFC1E8E8852004AC160 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
@@ -89,14 +93,21 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		A834739F1EAB5FC400EE133C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A8BD79121E9194DB004BCA8B /* CustomUIView.swift */,
+				A8F633511E98EA4F005CE4D4 /* GradientView.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		A84100001E8FE99C004AC160 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				A87B2AD31E93F5E9006792EC /* CustomTableViewCell.swift */,
 				A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */,
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
-				A8BD79121E9194DB004BCA8B /* CustomUIView.swift */,
-				A8F633511E98EA4F005CE4D4 /* GradientView.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -104,6 +115,7 @@
 		A841FFFE1E8FE95E004AC160 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A834739B1EAB5D0900EE133C /* myLocation.swift */,
 				FBC395931DCB770200DB0FDD /* Building.swift */,
 				A811C9D91E8E84BC00B07F38 /* Room.swift */,
 				FBC395911DCB6D8500DB0FDD /* Request.swift */,
@@ -117,6 +129,7 @@
 				A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */,
 				A841FFFC1E8E8852004AC160 /* RoomManager.swift */,
 				E895B9E71DC3CD3E00E2F1BF /* UserManager.swift */,
+				A834739D1EAB5F7700EE133C /* locationManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -163,6 +176,7 @@
 			children = (
 				E8D093B21DC381860030339E /* AppDelegate.swift */,
 				A811C9D61E8E5FEB00B07F38 /* Views */,
+				A834739F1EAB5FC400EE133C /* UI */,
 				A84100001E8FE99C004AC160 /* Custom */,
 				A841FFFE1E8FE95E004AC160 /* Classes */,
 				A841FFFF1E8FE97B004AC160 /* Managers */,
@@ -212,7 +226,7 @@
 				TargetAttributes = {
 					E8D093AE1DC381850030339E = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = PB5S47GH58;
+						DevelopmentTeam = LGKXPBH26R;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -321,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A834739E1EAB5F7700EE133C /* locationManager.swift in Sources */,
 				A87B2AD41E93F5E9006792EC /* CustomTableViewCell.swift in Sources */,
 				A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */,
 				A87F0FA91EA7CD09002795EC /* buildingVC.swift in Sources */,
@@ -331,6 +346,7 @@
 				A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */,
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
+				A834739C1EAB5D0900EE133C /* myLocation.swift in Sources */,
 				A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */,
 				A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */,
 				E8D093B51DC381860030339E /* ViewController.swift in Sources */,
@@ -463,7 +479,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = PB5S47GH58;
+				DEVELOPMENT_TEAM = LGKXPBH26R;
 				INFOPLIST_FILE = Way/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				NEW_SETTING = "";
@@ -483,7 +499,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = PB5S47GH58;
+				DEVELOPMENT_TEAM = LGKXPBH26R;
 				INFOPLIST_FILE = Way/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				NEW_SETTING = "";
