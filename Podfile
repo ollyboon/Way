@@ -13,5 +13,6 @@ target 'Way' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'IHKeyboardAvoiding'
+  pod 'MarqueeLabel/Swift'
 
 end

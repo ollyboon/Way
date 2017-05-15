@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MarqueeLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Way.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +42,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B32E59F9FDA5FBA293E83BB716A4C96</key>
+		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83E05A9240F1BD0DAE47E5A4C12EC501</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>87B848F7587F500E5CEDAD2A9AB3F570</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,12 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B07399D7512FEE83DE8D7EFC9A7BF5EA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FA811B9EA6C0141E141E4764EAD33E55</key>
+		<key>A7040943CB1A77270F3671B10CCF402F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

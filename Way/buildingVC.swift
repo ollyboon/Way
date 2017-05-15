@@ -68,19 +68,7 @@ class buildingVC: UIViewController {
         facilityStatus()
         filterFloorPlans()
         
-        var yPosition = 0.0
-        let height = CGFloat(scrollView.frame.height)
         
-        for image in 0..<floorPlanArray.count {
-            let imageView = UIImageView()
-            imageView.image = floorPlanArray[image]
-            imageView.contentMode = .scaleAspectFit
-            imageView.frame = CGRect(x: 0, y: CGFloat(yPosition), width: scrollView.frame.width, height: height)
-            yPosition += Double(height)
-            
-            scrollView.contentSize.height = height * CGFloat(floorPlanArray.count)
-            scrollView.addSubview(imageView)
-        }
         
         
         if let room = room {
@@ -139,7 +127,25 @@ class buildingVC: UIViewController {
                 backgroundView.layer.addSublayer(gradientLayer)
         
             }
+    
+    override func viewDidLayoutSubviews() {
         
+        var yPosition = 0.0
+        let height = CGFloat(scrollView.frame.size.height)
+        
+        for image in 0..<floorPlanArray.count {
+            let imageView = UIImageView()
+            imageView.image = floorPlanArray[image]
+            imageView.contentMode = .scaleAspectFit
+            imageView.frame = CGRect(x: 0, y: CGFloat(yPosition), width: scrollView.frame.width, height: height)
+            yPosition += Double(height)
+            
+            scrollView.contentSize.height = height * CGFloat(floorPlanArray.count)
+            scrollView.addSubview(imageView)
+            
+        }
+    }
+    
             //MARK: View did appear
         
             override func viewDidAppear(_ animated: Bool) {

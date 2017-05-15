@@ -109,6 +109,7 @@ class ViewController: UIViewController {
         
     }
     
+
     //MARK: View did appear
     
     override func viewDidAppear(_ animated: Bool) {
@@ -167,20 +168,6 @@ class ViewController: UIViewController {
             self.performSegue(withIdentifier: "roomList", sender: nil)
         }
         
-    }
-    
-    func motion(toView view:UIView, magnitude:Float) {
-        let xMotion = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
-        xMotion.minimumRelativeValue = -magnitude
-        xMotion.maximumRelativeValue = magnitude
-        
-        let yMotion = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
-        yMotion.maximumRelativeValue = magnitude
-        yMotion.minimumRelativeValue = -magnitude
-        
-        let group = UIMotionEffectGroup()
-        group.motionEffects = [xMotion, yMotion]
-        view.addMotionEffect(group)
     }
     
     func settings() {
