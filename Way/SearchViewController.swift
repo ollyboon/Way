@@ -125,7 +125,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.roomNumber.sizeToFit()
         cell.roomNumber.text = rooms[indexPath.row].roomNumber
         cell.roomName.text = rooms[indexPath.row].roomName
-        cell.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
+        cell.backgroundColor = UIColor.clear
         
         switch rooms[indexPath.row].buildingId {
         case 100:
@@ -211,6 +211,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarShouldReturn(_ searchBar: SHSearchBar) -> Bool {
         searchBar.textField.resignFirstResponder()
+        tableView.reloadData()
+        return true
+    }
+    
+    func searchBarShouldClear(_ searchBar: SHSearchBar) -> Bool {
+        rooms = RoomManager.shared.rooms
+        sortTable()
+        tableView.reloadData()
         return true
     }
     
@@ -225,6 +233,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bar.layer.shadowColor = UIColor.black.cgColor
         bar.layer.shadowOffset = CGSize(width: 0, height: 8)
         bar.layer.shadowRadius = 10
+        bar.textField.autocapitalizationType = UITextAutocapitalizationType.none
         bar.layer.shadowOpacity = 0.5
         return bar
     }
@@ -232,10 +241,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func defaultSearchBarConfig(_ rasterSize: CGFloat) -> SHSearchBarConfig {
         var config: SHSearchBarConfig = SHSearchBarConfig()
         config.rasterSize = rasterSize
-        config.textColor = UIColor(red: 103.0/255.0, green: 103.0/255.0, blue: 103.0/255.0, alpha: 1.0)
+        config.textColor = UIColor.black
         config.textContentType = UITextContentType.fullStreetAddress.rawValue
         config.cancelButtonTitle = "Cancel"
-        config.cancelButtonTextColor = UIColor(red: 103.0/255.0, green: 103.0/255.0, blue: 103.0/255.0, alpha: 1.0)
+        config.cancelButtonTextColor = UIColor.white
         return config
     }
     
@@ -284,6 +293,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }, completion: nil)
     }
     
+    func sortTable() {
+       
+        let myLocationCoordinate: CLLocationCoordinate2D =  (locationManager.location?.coordinate)!
+        let myLocation: CLLocation = CLLocation(latitude: myLocationCoordinate.latitude, longitude: myLocationCoordinate.longitude)
+        rooms.sort(by: { $0.distance(to: myLocation) < $1.distance(to: myLocation) })
+        
+    }
+    
 }
 
 
@@ -299,9 +316,11 @@ extension SearchViewController: SHSearchBarDelegate {
             rooms = RoomManager.shared.search(string: text)
         }
         
+        
         tableView.reloadData()
         
     }
+    
     
 }
 
@@ -309,11 +328,8 @@ extension SearchViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let myLocationCoordinate: CLLocationCoordinate2D =  (locationManager.location?.coordinate)!
-        let myLocation: CLLocation = CLLocation(latitude: myLocationCoordinate.latitude, longitude: myLocationCoordinate.longitude)
-        
-        rooms.sort(by: { $0.distance(to: myLocation) < $1.distance(to: myLocation) })
-        
+        sortTable()
+
     }
 }
 
