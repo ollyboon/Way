@@ -243,7 +243,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-0p-F3S" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="-16" width="414" height="690"/>
-                                <color key="backgroundColor" red="0.7660905116580311" green="0.7660905116580311" blue="0.7660905116580311" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.7660905116580311" green="0.7660905116580311" blue="0.7660905116580311" alpha="0.27397260273972601" colorSpace="custom" customColorSpace="displayP3"/>
                                 <gestureRecognizers/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="mapbox://styles/ollyboon/cito8ura5000s2hrvpvxvdlxn"/>
@@ -256,7 +256,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsZooming" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsScrolling" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="allowsRotating" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsTilting" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="allowsTilting" value="NO"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -456,9 +456,39 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cQ-qL-TMl" customClass="GradientView" customModule="Way" customModuleProvider="target">
                                         <rect key="frame" x="15" y="204" width="384" height="41"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to 'Search' to find a room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsZ-wL-iwZ" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                                <rect key="frame" x="5" y="11" width="374" height="18.333333333333343"/>
+                                                <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="dsZ-wL-iwZ" firstAttribute="centerY" secondItem="5cQ-qL-TMl" secondAttribute="centerY" id="Oq9-3X-XjZ"/>
+                                            <constraint firstItem="dsZ-wL-iwZ" firstAttribute="leading" secondItem="5cQ-qL-TMl" secondAttribute="leading" constant="5" id="Snx-4v-ga1"/>
                                             <constraint firstAttribute="height" constant="41" id="Tsg-cC-did"/>
+                                            <constraint firstItem="dsZ-wL-iwZ" firstAttribute="centerX" secondItem="5cQ-qL-TMl" secondAttribute="centerX" id="f6j-kX-haj"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
@@ -496,32 +526,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to 'Search' to find a room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsZ-wL-iwZ" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                        <rect key="frame" x="20" y="216" width="374" height="18.333333333333343"/>
-                                        <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
-                                                <real key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="animationDelay">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tta-3s-hEF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tta-3s-hEF" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                         <rect key="frame" x="0.0" y="264" width="414" height="18.333333333333314"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -560,7 +565,6 @@
                                     <constraint firstItem="9YC-4c-Qv6" firstAttribute="leading" secondItem="HOn-8S-vFf" secondAttribute="leading" constant="16" id="2aZ-kG-9jl"/>
                                     <constraint firstAttribute="trailing" secondItem="PwE-F8-T8k" secondAttribute="trailing" constant="50" id="7Zm-mE-llr"/>
                                     <constraint firstItem="jCB-n6-a0i" firstAttribute="top" secondItem="PwE-F8-T8k" secondAttribute="bottom" constant="-4" id="ByL-1q-JH6"/>
-                                    <constraint firstItem="dsZ-wL-iwZ" firstAttribute="leading" secondItem="HOn-8S-vFf" secondAttribute="leading" constant="20" id="GSJ-9L-ppj"/>
                                     <constraint firstItem="PwE-F8-T8k" firstAttribute="leading" secondItem="HOn-8S-vFf" secondAttribute="leading" constant="50" id="Ley-U4-8vA"/>
                                     <constraint firstAttribute="trailing" secondItem="jCB-n6-a0i" secondAttribute="trailing" constant="50" id="PWr-pI-Hr8"/>
                                     <constraint firstItem="Tta-3s-hEF" firstAttribute="leading" secondItem="HOn-8S-vFf" secondAttribute="leading" id="WrO-V8-NOn"/>
@@ -570,10 +574,8 @@
                                     <constraint firstItem="5cQ-qL-TMl" firstAttribute="leading" secondItem="HOn-8S-vFf" secondAttribute="leading" constant="15" id="cHi-m4-JqP"/>
                                     <constraint firstItem="Tta-3s-hEF" firstAttribute="top" secondItem="5cQ-qL-TMl" secondAttribute="bottom" constant="19" id="cuP-Pl-z52"/>
                                     <constraint firstItem="9YC-4c-Qv6" firstAttribute="top" secondItem="l6x-PG-tqD" secondAttribute="bottom" constant="-5" id="dTm-9s-uxs"/>
-                                    <constraint firstItem="dsZ-wL-iwZ" firstAttribute="top" secondItem="PwE-F8-T8k" secondAttribute="bottom" constant="42" id="dxc-cG-35b"/>
                                     <constraint firstItem="l6x-PG-tqD" firstAttribute="leading" secondItem="HOn-8S-vFf" secondAttribute="leading" constant="15" id="f6C-7W-SzK"/>
                                     <constraint firstAttribute="trailing" secondItem="5cQ-qL-TMl" secondAttribute="trailing" constant="15" id="j9K-Cj-UL9"/>
-                                    <constraint firstAttribute="trailing" secondItem="dsZ-wL-iwZ" secondAttribute="trailing" constant="20" id="q6a-Up-LXJ"/>
                                     <constraint firstItem="l6x-PG-tqD" firstAttribute="top" secondItem="HOn-8S-vFf" secondAttribute="top" constant="41" id="sSv-gP-ghs"/>
                                     <constraint firstItem="5cQ-qL-TMl" firstAttribute="top" secondItem="PwE-F8-T8k" secondAttribute="bottom" constant="30" id="v9A-EO-ZJN"/>
                                     <constraint firstItem="PwE-F8-T8k" firstAttribute="top" secondItem="l6x-PG-tqD" secondAttribute="bottom" constant="33" id="yvt-7i-lcr"/>

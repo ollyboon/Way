@@ -12,6 +12,7 @@ import SwiftyJSON
 import Mapbox
 import Fabric
 import Crashlytics
+import CoreLocation
 
 class ViewController: UIViewController {
     
@@ -28,6 +29,8 @@ class ViewController: UIViewController {
     var annotation = MGLAnnotationView()
     var pointAnnotation = MGLPointAnnotation()
     let userDefaults = UserDefaults.standard
+    let locationManager = CLLocationManager()
+    var locationArray = [locations]()
 
     
 
@@ -82,6 +85,9 @@ class ViewController: UIViewController {
     
         request.delegate = self
         request.loadRooms()
+        
+        //Setup Region Monitoring
+
 
         
         //initial map setup
@@ -94,12 +100,25 @@ class ViewController: UIViewController {
         mapView.setCenter(mapCenter, zoomLevel: 12, direction: 0, animated: false)
 
         
-        //iBeacon regions
+        //iBeacon regions + Core Location
         //TODO: make iBeacon UUID come from database
         beaconManager.delegate = self
         beaconManager.requestAlwaysAuthorization()
         let fusionRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 4838, minor: 14161, identifier: "Fusion")
         self.beaconManager.startMonitoring(for: fusionRegion)
+        
+        locationManager.delegate = self
+        self.locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        let campusRegion = locations(coord: CLLocationCoordinate2D(latitude: 50.742802, longitude: -1.895592), identifier: "talbotCampus")
+        locationArray.append(campusRegion)
+        
+        for location in locationArray {
+            locationManager.startMonitoring(for: location.region)
+        }
+        
+        
         
         //auto refresh
         let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
@@ -206,6 +225,7 @@ extension ViewController: RequestDelegate {
         var pointAnnotations = [MGLPointAnnotation]()
         
         for building in BuildingManager.shared.buildings {
+            guard building.buildingId < 99 else { continue }
             let point = CustomAnnotation(building: building)
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord
@@ -250,6 +270,7 @@ extension ViewController: RoomViewControllerDelegate {
         roomPin.title = room.roomNumber
         roomPin.subtitle = room.roomName
         mapView.addAnnotation(roomPin)
+        mapView.setZoomLevel(18, animated: true)
         mapView.setCenter(roomPin.coordinate, animated: true)
     }
     
@@ -287,6 +308,17 @@ extension ViewController: MGLMapViewDelegate {
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         // Always allow callouts to popup when annotations are tapped.
         return true
+    }
+    
+    private func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> UIView? {
+
+        return CustomCalloutView(representedObject: annotation)
+
+    }
+    
+    func mapView(_ mapView: MGLMapView, tapOnCalloutFor annotation: MGLAnnotation) {
+
+        mapView.deselectAnnotation(annotation, animated: true)
     }
     
 
@@ -329,6 +361,31 @@ extension ViewController: MGLMapViewDelegate {
         mapView.setCamera(camera, withDuration: 2, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
     }
 
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        
+        print(region.identifier)
+        
+        if region.identifier == "talbotCampus" {
+          request.userEnter(buildingId: 101)
+        }
+        
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        
+        print(region.identifier)
+        
+        if region.identifier == "talbotCampus" {
+            request.userLeft(buildingId: 101)
+        }
+        
+        
+    }
 }
 
 

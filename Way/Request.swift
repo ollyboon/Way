@@ -28,6 +28,7 @@ class Request {
         request(method: .get, parameters: nil, urlExt: "rooms", requestType: .rooms)
     }
     
+    
     func userEnter(buildingId: Int) {
 
         let parameters = [
@@ -37,6 +38,7 @@ class Request {
         
         request(method: .post, parameters: parameters, urlExt: "users", requestType: .postUser)
     }
+
     
     func userLeft(buildingId: Int) {
         let parameters = [
@@ -55,7 +57,7 @@ class Request {
         Alamofire.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .response { response in
                 guard let data = response.data else {
-                    //got no json...shit went wrong
+                    //got no json
                     return
                 }
                 
@@ -100,6 +102,9 @@ class Request {
     private func postedUser(json: JSON) {
         UserManager.sharedManager.id = json["data"]["id"].int!
     }
+    
+
+    
 }
 
 

@@ -54,7 +54,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.locationManager.requestAlwaysAuthorization()
+        self.tableView.reloadData()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self

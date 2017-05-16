@@ -11,6 +11,8 @@
 		A811C9DA1E8E84BC00B07F38 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = A811C9D91E8E84BC00B07F38 /* Room.swift */; };
 		A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */; };
 		A834739A1EAA82B000EE133C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A83473991EAA82B000EE133C /* Settings.bundle */; };
+		A836AA791ECB16CD0023CA85 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836AA781ECB16CD0023CA85 /* Locations.swift */; };
+		A836AA7C1ECB49C50023CA85 /* customCallout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836AA7B1ECB49C50023CA85 /* customCallout.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
 		A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FFFC1E8E8852004AC160 /* RoomManager.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
@@ -36,6 +38,9 @@
 		A812AA2D1E9B9A8700B728B9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A83473991EAA82B000EE133C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A83473A01EABF53A00EE133C /* VAG Rounded Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VAG Rounded Light.ttf"; sourceTree = "<group>"; };
+		A836AA781ECB16CD0023CA85 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		A836AA7A1ECB2F2B0023CA85 /* campus.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = campus.gpx; sourceTree = "<group>"; };
+		A836AA7B1ECB49C50023CA85 /* customCallout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCallout.swift; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
 		A841FFFC1E8E8852004AC160 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
@@ -104,6 +109,7 @@
 			children = (
 				A87B2AD31E93F5E9006792EC /* CustomTableViewCell.swift */,
 				A88D396C1E6841D70014E6BF /* CustomAnnotationView.swift */,
+				A836AA7B1ECB49C50023CA85 /* customCallout.swift */,
 				A84994311E8AA99200CED634 /* CustomAnnotation.swift */,
 			);
 			name = Custom;
@@ -113,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				FBC395931DCB770200DB0FDD /* Building.swift */,
+				A836AA781ECB16CD0023CA85 /* Locations.swift */,
 				A811C9D91E8E84BC00B07F38 /* Room.swift */,
 				FBC395911DCB6D8500DB0FDD /* Request.swift */,
 			);
@@ -177,6 +184,7 @@
 				A841FFFE1E8FE95E004AC160 /* Classes */,
 				A841FFFF1E8FE97B004AC160 /* Managers */,
 				E8D093C41DC389030030339E /* ObjCBridge.h */,
+				A836AA7A1ECB2F2B0023CA85 /* campus.gpx */,
 				E8D093BB1DC381860030339E /* LaunchScreen.storyboard */,
 				E8D093B61DC381860030339E /* Main.storyboard */,
 				E8D093B91DC381860030339E /* Assets.xcassets */,
@@ -340,12 +348,14 @@
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
 				A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */,
 				A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */,
+				A836AA7C1ECB49C50023CA85 /* customCallout.swift in Sources */,
 				FBC395941DCB770200DB0FDD /* Building.swift in Sources */,
 				A812AA2E1E9B9A8700B728B9 /* SearchViewController.swift in Sources */,
 				A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */,
 				E8D093B51DC381860030339E /* ViewController.swift in Sources */,
 				A88D396D1E6841D70014E6BF /* CustomAnnotationView.swift in Sources */,
 				E8D093B31DC381860030339E /* AppDelegate.swift in Sources */,
+				A836AA791ECB16CD0023CA85 /* Locations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +487,7 @@
 				INFOPLIST_FILE = Way/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Waytup;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Way;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
@@ -497,7 +507,7 @@
 				INFOPLIST_FILE = Way/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Waytup;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ollyboon.Way;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
