@@ -54,6 +54,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        sortTable()
         self.tableView.reloadData()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -61,9 +62,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        
-        let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_ :)), userInfo: nil, repeats: true)
-        refresh(refreshTimer)
         
         let rasterSize: CGFloat = 20.0
         
@@ -90,13 +88,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        
-        self.tableView.reloadData()
-        
-    }
-    
-    func refresh(_ : Timer) {
-        self.tableView.reloadData()
     }
     
     
@@ -104,18 +95,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         appearAnimation()
-        self.tableView.reloadData()
     }
     
     //MARK: TableView Functions
     
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        self.tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.0)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rooms.count
-        
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -211,12 +197,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarShouldReturn(_ searchBar: SHSearchBar) -> Bool {
         searchBar.textField.resignFirstResponder()
+        sortTable()
         tableView.reloadData()
         return true
     }
     
     func searchBarShouldClear(_ searchBar: SHSearchBar) -> Bool {
         rooms = RoomManager.shared.rooms
+        sortTable()
+        tableView.reloadData()
+        return true
+    }
+    
+    func searchBarShouldCancel(_ searchBar: SHSearchBar) -> Bool {
         sortTable()
         tableView.reloadData()
         return true
@@ -301,6 +294,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func textField(textField: SHSearchBar, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if (string == " ") {
+            return false
+        }
+        return true
+    }
+    
 }
 
 
@@ -316,7 +316,7 @@ extension SearchViewController: SHSearchBarDelegate {
             rooms = RoomManager.shared.search(string: text)
         }
         
-        
+        sortTable()
         tableView.reloadData()
         
     }
