@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     let heading = 310.0
     let mapCenter = CLLocationCoordinate2D(latitude: 50.742977, longitude: -1.895378)
     var room: Room?
-    var annotation = MGLAnnotationView()
+    var annotationView = MGLAnnotationView()
     var pointAnnotation = MGLPointAnnotation()
     let userDefaults = UserDefaults.standard
     let locationManager = CLLocationManager()
@@ -45,6 +45,7 @@ class ViewController: UIViewController {
     
     @IBAction func refresh(_ sender: Any) {
         refresh()
+        liveAnimate()
     }
     
     @IBAction func searchButton(_ sender: Any) {
@@ -87,9 +88,7 @@ class ViewController: UIViewController {
         request.loadRooms()
         
         //Setup Region Monitoring
-
-
-        
+    
         //initial map setup
         mapView.layer.cornerRadius = 15
         mapView.delegate = self
@@ -98,7 +97,6 @@ class ViewController: UIViewController {
         mapView.logoView.isHidden = false
         mapView.attributionButton.isHidden = true
         mapView.setCenter(mapCenter, zoomLevel: 12, direction: 0, animated: false)
-
         
         //iBeacon regions + Core Location
         //TODO: make iBeacon UUID come from database
@@ -137,6 +135,30 @@ class ViewController: UIViewController {
     
     //MARK: Custom Functions
     
+    func liveAnimate() {
+        (0...10).forEach { (_) in
+            generateAnimatedViews()
+        }
+    }
+    
+    func generateAnimatedViews() {
+        
+        let image = drand48() > 0.5 ? #imageLiteral(resourceName: "thinking face"): #imageLiteral(resourceName: "smiley face")
+        let liveImage = UIImageView(image: image)
+        let dimension = 20 + drand48() * 10
+        liveImage.frame = CGRect(x: 0, y: 0, width: dimension, height: dimension)
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        animation.path = customPath().cgPath
+        animation.duration = 1.5 + drand48() * 3
+        animation.fillMode = kCAFillModeForwards
+        animation.isRemovedOnCompletion = false
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        liveImage.layer.add(animation, forKey: nil)
+        view.addSubview(liveImage)
+        
+        
+    }
+    
     func appearAnimation() {
         
         UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
@@ -164,15 +186,25 @@ class ViewController: UIViewController {
         }
         BuildingManager.shared.buildings.removeAll()
         request.loadBuildings()
+        
     }
     
     func refresh() {
         rotate()
         if let annotations = mapView.annotations {
-            mapView.removeAnnotations(annotations)
+              self.mapView.removeAnnotations(annotations)
         }
         BuildingManager.shared.buildings.removeAll()
         request.loadBuildings()
+        room = nil
+        
+        func mapViewDidRefresh(_ mapView: MGLMapView) {
+            
+            let camera = MGLMapCamera(lookingAtCenter: mapCenter, fromDistance: 750, pitch: 0, heading: 310)
+            
+            mapView.setCamera(camera, withDuration: 1, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        }
+        mapViewDidRefresh(mapView)
     }
     
     func tableSegueAnimate() {
@@ -271,7 +303,15 @@ extension ViewController: RoomViewControllerDelegate {
         roomPin.subtitle = room.roomName
         mapView.addAnnotation(roomPin)
         mapView.setZoomLevel(18, animated: true)
-        mapView.setCenter(roomPin.coordinate, animated: true)
+        let coordinate = roomPin.coordinate
+        
+        func mapViewDidAppear(_ mapView: MGLMapView) {
+            
+            let camera = MGLMapCamera(lookingAtCenter: coordinate, fromDistance: 250, pitch: 0, heading: 310)
+            
+            mapView.setCamera(camera, withDuration: 1, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        }
+        mapViewDidAppear(mapView)
     }
     
     func removePointAnnotation() {
@@ -309,18 +349,6 @@ extension ViewController: MGLMapViewDelegate {
         // Always allow callouts to popup when annotations are tapped.
         return true
     }
-    
-    private func mapView(_ mapView: MGLMapView, calloutViewFor annotation: MGLAnnotation) -> UIView? {
-
-        return CustomCalloutView(representedObject: annotation)
-
-    }
-    
-    func mapView(_ mapView: MGLMapView, tapOnCalloutFor annotation: MGLAnnotation) {
-
-        mapView.deselectAnnotation(annotation, animated: true)
-    }
-    
 
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard let annotation = annotation as? CustomAnnotation else {
@@ -387,6 +415,32 @@ extension ViewController: CLLocationManagerDelegate {
         
     }
 }
+
+func customPath() -> UIBezierPath {
+    
+    let path = UIBezierPath()
+    let endPoint = CGPoint(x: 400, y: 20)
+    let randomY = 200 + drand48() * 300
+    let cp1 = CGPoint(x: 100, y: 50 - randomY)
+    let cp2 = CGPoint(x: 150, y: 50 + randomY)
+    
+    path.move(to: CGPoint(x: 0, y: 50))
+    path.lineWidth = 3
+    path.addCurve(to: endPoint, controlPoint1: cp1, controlPoint2: cp2)
+    
+    return path
+}
+
+class liveAnimation: UIView {
+    
+    override func draw(_ rect: CGRect) {
+        
+        let path = customPath()
+        
+        path.stroke()
+    }
+}
+
 
 
 

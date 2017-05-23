@@ -464,7 +464,6 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
                                                         <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
