@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     let locationManager = CLLocationManager()
     var locationArray = [locations]()
+    let buildings = BuildingManager.shared.buildings
 
     
 
@@ -116,11 +117,18 @@ class ViewController: UIViewController {
             locationManager.startMonitoring(for: location.region)
         }
         
-        
-        
         //auto refresh
         let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
         autoRefresh(refreshTimer)
+        
+        for building in buildings {
+            if building.buildingId == 101 {
+                let ActiveUser = building.activeUsers
+                print(ActiveUser)
+            } else {
+                print("Cant find active users for campus")
+            }
+        }
         
 
         
@@ -421,10 +429,10 @@ func customPath() -> UIBezierPath {
     let path = UIBezierPath()
     let endPoint = CGPoint(x: 400, y: 20)
     let randomY = 200 + drand48() * 300
-    let cp1 = CGPoint(x: 100, y: 50 - randomY)
-    let cp2 = CGPoint(x: 150, y: 50 + randomY)
+    let cp1 = CGPoint(x: 100, y: 100 - randomY)
+    let cp2 = CGPoint(x: 150, y: 100 + randomY)
     
-    path.move(to: CGPoint(x: 0, y: 50))
+    path.move(to: CGPoint(x: 0, y: 70))
     path.lineWidth = 3
     path.addCurve(to: endPoint, controlPoint1: cp1, controlPoint2: cp2)
     

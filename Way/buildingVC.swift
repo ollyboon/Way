@@ -26,6 +26,12 @@ class buildingVC: UIViewController {
     @IBOutlet weak var labelStack: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBAction func search(_ sender: Any) {
+        if room == nil {
+           backAnimate()
+        }
+    }
+    
     
     @IBAction func backButton(_ sender: Any) {
         backAnimate()
