@@ -2,11 +2,12 @@ PODS:
   - Alamofire (4.4.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - EstimoteSDK (4.14.1)
+  - EstimoteSDK (4.15.0)
   - Fabric (1.6.11)
   - IHKeyboardAvoiding (3.7)
-  - Mapbox-iOS-SDK (3.5.2)
-  - MarqueeLabel/Swift (3.0.4)
+  - Mapbox-iOS-SDK (3.5.4)
+  - MarqueeLabel/Swift (3.0.5)
+  - PCLBlurEffectAlert (2.1.1)
   - SHSearchBar (1.1.0)
   - SwiftyJSON (3.1.4)
 
@@ -18,20 +19,22 @@ DEPENDENCIES:
   - IHKeyboardAvoiding
   - Mapbox-iOS-SDK (~> 3.5)
   - MarqueeLabel/Swift
+  - PCLBlurEffectAlert
   - SHSearchBar
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  EstimoteSDK: 5ac94b0f4d923f6120b8e133b597c57b4ed13488
+  EstimoteSDK: 9ca15b4840d6b40d9e8ede71aa1af78836d55221
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   IHKeyboardAvoiding: 4c852fae85667469307678c65f14f5cac8a7be92
-  Mapbox-iOS-SDK: d0d58079e56e4eed4f0d8726afdbd49a76de8e5a
-  MarqueeLabel: 9dbd9aeaa01dd73dbc4b986b2cc945007bb480d5
+  Mapbox-iOS-SDK: 81197829dcf4c4ed9a593b7a95462881b5f1309a
+  MarqueeLabel: 8a25b2cf02cf52165022f01369e63536c58fcc00
+  PCLBlurEffectAlert: 9671c027e17e9b054ed372fbecded167ea46daf9
   SHSearchBar: 1dbaf0999acfd9029fe1cb65bd2625e456ed0bf7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 19f3ba0bc94563915a4fd47704ddffb5d530425e
+PODFILE CHECKSUM: af5c69ae094e658f694fd2d9e86142f0dff3e38a
 
 COCOAPODS: 1.2.1

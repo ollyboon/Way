@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PCLBlurEffectAlert.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Way.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,22 +52,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>83E05A9240F1BD0DAE47E5A4C12EC501</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>87B848F7587F500E5CEDAD2A9AB3F570</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A7040943CB1A77270F3671B10CCF402F</key>
+		<key>8DE032DD49E58DB118B7AC76640EB4B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC7CA3EB62820B42400C2422859D3D93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D560CD365CD24C9304C7E1ED1B37629B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D6F08F364BD3CEC3926E5CDD5E891E8D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

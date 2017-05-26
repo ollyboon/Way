@@ -193,10 +193,6 @@ class buildingVC: UIViewController {
         
                 cardHeight.constant = 300
         
-                UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-                    
-                }, completion: nil)
-                
                 UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseIn, animations: { 
                     self.view.layoutIfNeeded()
                 }) { (finished) in

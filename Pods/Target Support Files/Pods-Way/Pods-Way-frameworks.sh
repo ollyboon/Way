@@ -93,6 +93,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/IHKeyboardAvoiding/IHKeyboardAvoiding.framework"
   install_framework "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MarqueeLabel/MarqueeLabel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PCLBlurEffectAlert/PCLBlurEffectAlert.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SHSearchBar/SHSearchBar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
@@ -101,6 +102,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/IHKeyboardAvoiding/IHKeyboardAvoiding.framework"
   install_framework "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MarqueeLabel/MarqueeLabel.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PCLBlurEffectAlert/PCLBlurEffectAlert.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SHSearchBar/SHSearchBar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi

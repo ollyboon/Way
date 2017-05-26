@@ -13,6 +13,8 @@ import Mapbox
 import Fabric
 import Crashlytics
 import CoreLocation
+import PCLBlurEffectAlert
+import CoreBluetooth
 
 class ViewController: UIViewController {
     
@@ -32,7 +34,9 @@ class ViewController: UIViewController {
     let locationManager = CLLocationManager()
     var locationArray = [locations]()
     let buildings = BuildingManager.shared.buildings
-
+    var BTManager: CBPeripheralManager?
+    let alert = PCLBlurEffectAlert.Controller(title: "Your Bluetooth is off!", message: "Please turn it on to see available work space", effect: UIBlurEffect(style: .extraLight), style: .alert)
+    let alertBtn = PCLBlurEffectAlert.Action(title: "Ok", style: .cancel, handler: nil)
     
 
     @IBOutlet weak var mapView: MGLMapView!
@@ -76,6 +80,7 @@ class ViewController: UIViewController {
             }
         }
     }
+
     
     
     //MARK: View did load
@@ -87,6 +92,15 @@ class ViewController: UIViewController {
     
         request.delegate = self
         request.loadRooms()
+        BTManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+        
+        alert.addAction(alertBtn)
+        alert.addImageView(with: #imageLiteral(resourceName: "bluetooth"))
+        alert.configure(cornerRadius: 20)
+        alert.configure(titleColor: .black)
+        alert.configure(titleFont: UIFont(name: "din", size: 22)!)
+        alert.configure(messageFont: UIFont(name: "din", size: 14)!)
+        alert.configure(messageColor: .black)
         
         //Setup Region Monitoring
     
@@ -124,7 +138,7 @@ class ViewController: UIViewController {
         for building in buildings {
             if building.buildingId == 101 {
                 let ActiveUser = building.activeUsers
-                print(ActiveUser)
+                print(ActiveUser!)
             } else {
                 print("Cant find active users for campus")
             }
@@ -163,7 +177,6 @@ class ViewController: UIViewController {
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         liveImage.layer.add(animation, forKey: nil)
         view.addSubview(liveImage)
-        
         
     }
     
@@ -424,6 +437,25 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
+extension ViewController: CBPeripheralManagerDelegate {
+    
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager){
+        print(#function)
+        if peripheral.state == CBManagerState.poweredOn {
+            print("Bluetooth on ")
+        } else if peripheral.state == CBManagerState.poweredOff {
+            print("Bluetooth off")
+            alert.show()
+            BTManager!.stopAdvertising()
+        } else if peripheral.state == CBManagerState.unsupported {
+            print("Unsupported")
+        } else if peripheral.state == CBManagerState.unauthorized {
+            print("This option is not allowed by your application")
+        }
+    }
+    
+}
+
 func customPath() -> UIBezierPath {
     
     let path = UIBezierPath()
@@ -439,7 +471,7 @@ func customPath() -> UIBezierPath {
     return path
 }
 
-class liveAnimation: UIView {
+class liveAnnimation: UIView {
     
     override func draw(_ rect: CGRect) {
         

@@ -14,5 +14,6 @@ target 'Way' do
   pod 'Crashlytics'
   pod 'IHKeyboardAvoiding'
   pod 'MarqueeLabel/Swift'
+  pod "PCLBlurEffectAlert"
 
 end
