@@ -137,6 +137,9 @@ class ViewController: UIViewController {
         let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
         autoRefresh(refreshTimer)
         
+        let activeUserTimer = Timer.scheduledTimer(timeInterval: 5 , target: self, selector: #selector(self.refreshAnimate(_:)), userInfo: nil, repeats: true)
+        refreshAnimate(activeUserTimer)
+        
 
         
 
@@ -220,6 +223,10 @@ class ViewController: UIViewController {
         mapViewDidRefresh(mapView)
     }
     
+    func refreshAnimate(_ timer: Timer) {
+        request.campusRefresh()
+    }
+    
     func tableSegueAnimate() {
         
         UIView.animate(withDuration: 0.1, animations: {
@@ -269,6 +276,21 @@ extension ViewController: RequestDelegate {
         var pointAnnotations = [MGLPointAnnotation]()
         
         for building in BuildingManager.shared.buildings {
+            guard building.buildingId < 99 else { continue }
+            let point = CustomAnnotation(building: building)
+            let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
+            point.coordinate = buildingCoord
+            pointAnnotations.append(point)
+        }
+        
+        mapView.addAnnotations(pointAnnotations)
+    }
+    
+    func loadedCampus() {
+        
+        self.liveAnimate()
+
+        for building in BuildingManager.shared.buildings {
             if building.buildingId == 101 {
                 var activeUsers = building.activeUsers {
                     didSet {
@@ -279,16 +301,8 @@ extension ViewController: RequestDelegate {
                     }
                 }
             }
-            guard building.buildingId < 99 else { continue }
-            let point = CustomAnnotation(building: building)
-            let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
-            point.coordinate = buildingCoord
-            pointAnnotations.append(point)
-
-            
         }
         
-        mapView.addAnnotations(pointAnnotations)
     }
 
 }

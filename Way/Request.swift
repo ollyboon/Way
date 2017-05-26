@@ -4,10 +4,11 @@ import SwiftyJSON
 
 protocol RequestDelegate {
     func loadedBuildings()
+    func loadedCampus()
 }
 
 enum RequestType {
-    case buildings, postUser, userLeft, rooms
+    case buildings, postUser, userLeft, rooms, campus
 }
 
 
@@ -26,6 +27,10 @@ class Request {
     
     func loadRooms() {
         request(method: .get, parameters: nil, urlExt: "rooms", requestType: .rooms)
+    }
+    
+    func campusRefresh() {
+        request(method: .get, parameters: nil, urlExt: "buildings", requestType: .campus)
     }
     
     
@@ -67,6 +72,10 @@ class Request {
                     self.handleBuildings(json: json)
                 }
                 
+                if requestType == .campus {
+                    self.handleCampus(json: json)
+                }
+                
                 if requestType == .postUser {
                     self.postedUser(json: json)
                 }
@@ -84,10 +93,20 @@ class Request {
         for buildingData in json["data"].arrayValue {
             let building = Building(json: buildingData)
             BuildingManager.shared.buildings.append(building)
-
         }
         
         delegate?.loadedBuildings()
+        
+    }
+    
+    private func handleCampus(json: JSON) {
+        //loop through buildings and set them up
+        for buildingData in json["data"].arrayValue {
+            let building = Building(json: buildingData)
+            BuildingManager.shared.buildings.append(building)
+        }
+        
+        delegate?.loadedCampus()
         
     }
     
