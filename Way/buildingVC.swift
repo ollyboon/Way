@@ -79,9 +79,9 @@ class buildingVC: UIViewController {
         
         if let room = room {
             if room.buildingId == building.buildingId {
-                                setupWithRoom(room)
+                setupWithRoom(room)
             } else {
-                                setupWithoutRoom()
+                setupWithoutRoom()
             }
         }
         

@@ -20,25 +20,28 @@ class ViewController: UIViewController {
     
     //MARK: Variables, outlets and segues
     
+    //Variables
+    var pitch: CGFloat = 0
+    var annotationView = MGLAnnotationView()
+    var pointAnnotation = MGLPointAnnotation()
+    var room: Room?
+    var BTManager: CBPeripheralManager?
+    var locationArray = [locations]()
+    
+    //Constants
     let userManager = UserManager.sharedManager
     let beaconManager = ESTBeaconManager()
     let request = Request()
     let distance: CLLocationDistance = 720
-    var pitch: CGFloat = 0
     let heading = 310.0
     let mapCenter = CLLocationCoordinate2D(latitude: 50.742977, longitude: -1.895378)
-    var room: Room?
-    var annotationView = MGLAnnotationView()
-    var pointAnnotation = MGLPointAnnotation()
     let userDefaults = UserDefaults.standard
     let locationManager = CLLocationManager()
-    var locationArray = [locations]()
     let buildings = BuildingManager.shared.buildings
-    var BTManager: CBPeripheralManager?
     let alert = PCLBlurEffectAlert.Controller(title: "Your Bluetooth is off!", message: "Please turn it on to see available work space", effect: UIBlurEffect(style: .extraLight), style: .alert)
     let alertBtn = PCLBlurEffectAlert.Action(title: "Ok", style: .cancel, handler: nil)
     
-
+    //Outlets
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet var Gradient: UIView!
     @IBOutlet weak var backgroundView: UIView!
@@ -48,9 +51,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchIcon: UIButton!
     @IBOutlet weak var mapViewBottom: NSLayoutConstraint!
     
+    
+    //Actions
     @IBAction func refresh(_ sender: Any) {
         refresh()
-        liveAnimate()
     }
     
     @IBAction func searchButton(_ sender: Any) {
@@ -61,8 +65,8 @@ class ViewController: UIViewController {
         tableSegueAnimate()
     }
     
+    //Segues
     @IBAction func prepareForUnwind (segue:UIStoryboardSegue) {}
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -89,11 +93,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         UserDefaults.standard.register(defaults: [String : Any]())
-    
         request.delegate = self
         request.loadRooms()
         BTManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+    
         
+        //Configure Bluetooth Alert
         alert.addAction(alertBtn)
         alert.addImageView(with: #imageLiteral(resourceName: "bluetooth"))
         alert.configure(cornerRadius: 20)
@@ -101,8 +106,6 @@ class ViewController: UIViewController {
         alert.configure(titleFont: UIFont(name: "din", size: 22)!)
         alert.configure(messageFont: UIFont(name: "din", size: 14)!)
         alert.configure(messageColor: .black)
-        
-        //Setup Region Monitoring
     
         //initial map setup
         mapView.layer.cornerRadius = 15
@@ -114,7 +117,6 @@ class ViewController: UIViewController {
         mapView.setCenter(mapCenter, zoomLevel: 12, direction: 0, animated: false)
         
         //iBeacon regions + Core Location
-        //TODO: make iBeacon UUID come from database
         beaconManager.delegate = self
         beaconManager.requestAlwaysAuthorization()
         let fusionRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 4838, minor: 14161, identifier: "Fusion")
@@ -135,14 +137,7 @@ class ViewController: UIViewController {
         let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
         autoRefresh(refreshTimer)
         
-        for building in buildings {
-            if building.buildingId == 101 {
-                let ActiveUser = building.activeUsers
-                print(ActiveUser!)
-            } else {
-                print("Cant find active users for campus")
-            }
-        }
+
         
 
         
@@ -157,14 +152,13 @@ class ViewController: UIViewController {
     
     //MARK: Custom Functions
     
+    //Live Animations
     func liveAnimate() {
         (0...10).forEach { (_) in
             generateAnimatedViews()
         }
     }
-    
     func generateAnimatedViews() {
-        
         let image = drand48() > 0.5 ? #imageLiteral(resourceName: "thinking face"): #imageLiteral(resourceName: "smiley face")
         let liveImage = UIImageView(image: image)
         let dimension = 20 + drand48() * 10
@@ -177,7 +171,6 @@ class ViewController: UIViewController {
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         liveImage.layer.add(animation, forKey: nil)
         view.addSubview(liveImage)
-        
     }
     
     func appearAnimation() {
@@ -207,7 +200,6 @@ class ViewController: UIViewController {
         }
         BuildingManager.shared.buildings.removeAll()
         request.loadBuildings()
-        
     }
     
     func refresh() {
@@ -244,7 +236,6 @@ class ViewController: UIViewController {
     
     func settings() {
         let mapboxTelemetry = userDefaults.bool(forKey: "MGLMapboxMetricsEnabled")
-        
         if mapboxTelemetry == true {
         }
     }
@@ -278,11 +269,22 @@ extension ViewController: RequestDelegate {
         var pointAnnotations = [MGLPointAnnotation]()
         
         for building in BuildingManager.shared.buildings {
+            if building.buildingId == 101 {
+                var activeUsers = building.activeUsers {
+                    didSet {
+                        if activeUsers! > oldValue! {
+                            self.liveAnimate()
+                        }
+                        print("Someone new is on campus")
+                    }
+                }
+            }
             guard building.buildingId < 99 else { continue }
             let point = CustomAnnotation(building: building)
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord
             pointAnnotations.append(point)
+
             
         }
         
@@ -442,15 +444,11 @@ extension ViewController: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager){
         print(#function)
         if peripheral.state == CBManagerState.poweredOn {
-            print("Bluetooth on ")
         } else if peripheral.state == CBManagerState.poweredOff {
-            print("Bluetooth off")
             alert.show()
             BTManager!.stopAdvertising()
         } else if peripheral.state == CBManagerState.unsupported {
-            print("Unsupported")
         } else if peripheral.state == CBManagerState.unauthorized {
-            print("This option is not allowed by your application")
         }
     }
     
