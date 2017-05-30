@@ -162,7 +162,7 @@ class ViewController: UIViewController {
         }
     }
     func generateAnimatedViews() {
-        let image = drand48() > 0.5 ? #imageLiteral(resourceName: "thinking face"): #imageLiteral(resourceName: "smiley face")
+        let image = drand48() > 0.5 ? #imageLiteral(resourceName: "smiley face"): #imageLiteral(resourceName: "nerd")
         let liveImage = UIImageView(image: image)
         let dimension = 20 + drand48() * 10
         liveImage.frame = CGRect(x: 0, y: 0, width: dimension, height: dimension)
