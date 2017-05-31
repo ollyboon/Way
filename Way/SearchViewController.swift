@@ -313,7 +313,7 @@ extension SearchViewController: SHSearchBarDelegate {
         if text == "" {
             rooms = RoomManager.shared.rooms
         } else {
-            rooms = RoomManager.shared.search(string: text)
+            rooms = RoomManager.shared.search(string: text.lowercased())
         }
         
         sortTable()

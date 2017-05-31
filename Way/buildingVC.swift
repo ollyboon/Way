@@ -44,7 +44,7 @@ class buildingVC: UIViewController {
     let parallax = ViewController()
     var floorPlanArray = [UIImage]()
     var sortingArray = [(filename: String, image:UIImage)]()
-    var floorPlanDict = ["fusion3": UIImage(named: "id1-3")!, "fusion2": UIImage(named: "id1-2" )!,"fusion1": UIImage(named: "id1-1")!,"fusion0": UIImage(named: "id1-0")!,"subu6": UIImage(named: "id3-5")!,"subu5": UIImage(named: "id3-4")!,"subu4": UIImage(named: "id3-3")!,"subu3": UIImage(named: "id3-2")!,"subu2": UIImage(named: "id3-1")!,"subu1": UIImage(named: "id3-0")!]
+    var floorPlanDict = ["fusion3": UIImage(named: "id1-3")!, "fusion2": UIImage(named: "id1-2" )!,"fusion1": UIImage(named: "id1-1")!,"fusion0": UIImage(named: "id1-0")!,"subu6": UIImage(named: "id3-5")!,"subu5": UIImage(named: "id3-4")!,"subu4": UIImage(named: "id3-3")!,"subu3": UIImage(named: "id3-2")!,"subu2": UIImage(named: "id3-1")!,"subu1": UIImage(named: "id3-0")!,"library0": UIImage(named: "id2-0")!,"library1": UIImage(named: "id2-1")!,"library2": UIImage(named: "id2-2")!,"library3": UIImage(named: "id2-3")!,"library4": UIImage(named: "id2-4")!,"library5": UIImage(named: "id2-5")!,"kimmeridge0": UIImage(named: "id5-0")!,"kimmeridge1": UIImage(named: "id5-1")!,"weymouth4": UIImage(named: "id7-4")!,"weymouth3": UIImage(named: "id7-3")!,"weymouth2": UIImage(named: "id7-2")!,"weymouth1": UIImage(named: "id7-1")!,"weymouth0": UIImage(named: "id7-0")!]
     
     //MARK: View did load
     

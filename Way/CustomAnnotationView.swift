@@ -95,4 +95,5 @@ class CustomAnnotationView: MGLAnnotationView {
         delegate?.annotationTouched(for: annotation.building)
     }
     
+    
 }

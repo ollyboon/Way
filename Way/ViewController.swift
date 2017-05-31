@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     var room: Room?
     var BTManager: CBPeripheralManager?
     var locationArray = [locations]()
+    var activeUsers:Double = 0
     
     //Constants
     let userManager = UserManager.sharedManager
@@ -287,18 +288,14 @@ extension ViewController: RequestDelegate {
     }
     
     func loadedCampus() {
-        
-        self.liveAnimate()
+        print("poll")
+        //self.liveAnimate()
 
         for building in BuildingManager.shared.buildings {
             if building.buildingId == 101 {
-                var activeUsers = building.activeUsers {
-                    didSet {
-                        if activeUsers! > oldValue! {
-                            self.liveAnimate()
-                        }
-                        print("Someone new is on campus")
-                    }
+                if building.activeUsers > activeUsers {
+                    activeUsers = building.activeUsers
+                    liveAnimate()
                 }
             }
         }
