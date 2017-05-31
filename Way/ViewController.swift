@@ -94,9 +94,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         UserDefaults.standard.register(defaults: [String : Any]())
+        BuildingManager.shared.buildings.removeAll()
         request.delegate = self
         request.loadRooms()
         BTManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+        
+        let when = DispatchTime.now() + 2.5
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.refresh()
+        }
     
         
         //Configure Bluetooth Alert
@@ -135,8 +141,8 @@ class ViewController: UIViewController {
         }
         
         //auto refresh
-        let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
-        autoRefresh(refreshTimer)
+//        let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
+//        autoRefresh(refreshTimer)
         
         let activeUserTimer = Timer.scheduledTimer(timeInterval: 5 , target: self, selector: #selector(self.refreshAnimate(_:)), userInfo: nil, repeats: true)
         refreshAnimate(activeUserTimer)
@@ -278,6 +284,7 @@ extension ViewController: RequestDelegate {
         
         for building in BuildingManager.shared.buildings {
             guard building.buildingId < 99 else { continue }
+            guard BuildingManager.shared.buildings.count < 11 else { continue }
             let point = CustomAnnotation(building: building)
             let buildingCoord = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
             point.coordinate = buildingCoord
