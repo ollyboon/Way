@@ -288,8 +288,6 @@ extension ViewController: RequestDelegate {
     }
     
     func loadedCampus() {
-        print("poll")
-        //self.liveAnimate()
 
         for building in BuildingManager.shared.buildings {
             if building.buildingId == 101 {
