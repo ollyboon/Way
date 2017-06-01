@@ -268,7 +268,6 @@ extension ViewController: ESTBeaconManagerDelegate {
     }
     
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-//        print("Leaving " + region.identifier)
 //        request.userLeft(buildingId: 1)
     }
     

@@ -424,9 +424,9 @@
                                         <color key="highlightedColor" red="0.33678756476683935" green="0.33448420600751128" blue="0.33249657405262667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="jCB-n6-a0i">
-                                        <rect key="frame" x="50" y="170" width="275" height="15"/>
+                                        <rect key="frame" x="50" y="175" width="275" height="15"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9am-5pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vst-fU-I2f">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vst-fU-I2f">
                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="55" id="vFf-RA-Qzd"/>
@@ -435,8 +435,8 @@
                                                 <color key="textColor" red="0.69289711890000005" green="0.68954978980000003" blue="0.69624444799999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9am-5pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U13-z3-Y0s">
-                                                <rect key="frame" x="113.5" y="0.0" width="48.5" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U13-z3-Y0s">
+                                                <rect key="frame" x="55" y="0.0" width="165" height="15"/>
                                                 <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="11"/>
                                                 <color key="textColor" red="0.69289711889276651" green="0.6895497898159898" blue="0.6962444479695431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -456,7 +456,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cQ-qL-TMl" customClass="GradientView" customModule="Way" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="204" width="345" height="41"/>
+                                        <rect key="frame" x="15" y="209" width="345" height="41"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to 'Search' to find a room" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsZ-wL-iwZ" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                 <rect key="frame" x="5" y="11" width="335" height="18.5"/>
@@ -534,13 +534,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tta-3s-hEF" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                        <rect key="frame" x="0.0" y="264" width="375" height="18.5"/>
+                                        <rect key="frame" x="0.0" y="269" width="375" height="18.5"/>
                                         <fontDescription key="fontDescription" name="DIN-BoldAlternate" family="DIN" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="PwE-F8-T8k" userLabel="Facilities">
-                                        <rect key="frame" x="50" y="124" width="275" height="50"/>
+                                        <rect key="frame" x="50" y="129" width="275" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Knife and fork" translatesAutoresizingMaskIntoConstraints="NO" id="fWw-6V-rCO">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -585,7 +585,7 @@
                                     <constraint firstAttribute="trailing" secondItem="5cQ-qL-TMl" secondAttribute="trailing" constant="15" id="j9K-Cj-UL9"/>
                                     <constraint firstItem="l6x-PG-tqD" firstAttribute="top" secondItem="HOn-8S-vFf" secondAttribute="top" constant="41" id="sSv-gP-ghs"/>
                                     <constraint firstItem="5cQ-qL-TMl" firstAttribute="top" secondItem="PwE-F8-T8k" secondAttribute="bottom" constant="30" id="v9A-EO-ZJN"/>
-                                    <constraint firstItem="PwE-F8-T8k" firstAttribute="top" secondItem="l6x-PG-tqD" secondAttribute="bottom" constant="33" id="yvt-7i-lcr"/>
+                                    <constraint firstItem="PwE-F8-T8k" firstAttribute="top" secondItem="l6x-PG-tqD" secondAttribute="bottom" constant="38" id="yvt-7i-lcr"/>
                                     <constraint firstAttribute="trailing" secondItem="Tta-3s-hEF" secondAttribute="trailing" id="zhl-aV-Bc1"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
