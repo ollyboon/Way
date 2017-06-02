@@ -126,8 +126,13 @@ class ViewController: UIViewController {
         //iBeacon regions + Core Location
         beaconManager.delegate = self
         beaconManager.requestAlwaysAuthorization()
-        let fusionRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 4838, minor: 14161, identifier: "Fusion")
-        self.beaconManager.startMonitoring(for: fusionRegion)
+        let kimmeridgeRegion = CLBeaconRegion(
+                                          proximityUUID: UUID(uuidString: "40ECBA72-1111-4C10-A173-0BAA5D4F103D")!,
+                                          major: 5,
+                                          minor: 5,
+                                          identifier: "kimmeridge")
+        
+        self.beaconManager.startMonitoring(for: kimmeridgeRegion)
         
         locationManager.delegate = self
         self.locationManager.requestAlwaysAuthorization()
@@ -262,13 +267,22 @@ extension ViewController: ESTBeaconManagerDelegate {
     
     
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-        if region.identifier == "fusion" {
-            //request.userEnter(buildingId: 1)
+        if region.identifier == "kimmeridge" {
+            request.userEnter(buildingId: 5)
+            print("enter kim")
+            for building in BuildingManager.shared.buildings {
+                if building.buildingId == 5 {
+                    self.performSegue(withIdentifier: "building", sender: building)
+                }
+            }
         }
     }
     
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-//        request.userLeft(buildingId: 1)
+        if region.identifier == "kimmeridge" {
+            request.userLeft(buildingId: 5)
+            print("exit kim")
+        }
     }
     
 }
@@ -433,10 +447,10 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
-        print(region.identifier)
         
         if region.identifier == "talbotCampus" {
           request.userEnter(buildingId: 101)
+            print("enter region")
         }
         
         
@@ -444,10 +458,10 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         
-        print(region.identifier)
         
         if region.identifier == "talbotCampus" {
             request.userLeft(buildingId: 101)
+            print("exit region")
         }
         
         
@@ -457,7 +471,6 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController: CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager){
-        print(#function)
         if peripheral.state == CBManagerState.poweredOn {
         } else if peripheral.state == CBManagerState.poweredOff {
             alert.show()

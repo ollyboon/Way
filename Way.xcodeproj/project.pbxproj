@@ -13,6 +13,7 @@
 		A834739A1EAA82B000EE133C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A83473991EAA82B000EE133C /* Settings.bundle */; };
 		A836AA791ECB16CD0023CA85 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836AA781ECB16CD0023CA85 /* Locations.swift */; };
 		A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */; };
+		A83D3B891EE17EDB001ACDAA /* Beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83D3B881EE17EDB001ACDAA /* Beacon.swift */; };
 		A841FFFD1E8E8853004AC160 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841FFFC1E8E8852004AC160 /* RoomManager.swift */; };
 		A84994321E8AA99200CED634 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84994311E8AA99200CED634 /* CustomAnnotation.swift */; };
 		A87B2AD41E93F5E9006792EC /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87B2AD31E93F5E9006792EC /* CustomTableViewCell.swift */; };
@@ -40,6 +41,7 @@
 		A836AA781ECB16CD0023CA85 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		A836AA7A1ECB2F2B0023CA85 /* campus.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = campus.gpx; sourceTree = "<group>"; };
 		A836F2F31E5DCDDD00FB6204 /* BuildingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingManager.swift; sourceTree = "<group>"; };
+		A83D3B881EE17EDB001ACDAA /* Beacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beacon.swift; sourceTree = "<group>"; };
 		A841FFFC1E8E8852004AC160 /* RoomManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 		A84994311E8AA99200CED634 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		A87B2AD31E93F5E9006792EC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				FBC395931DCB770200DB0FDD /* Building.swift */,
 				A836AA781ECB16CD0023CA85 /* Locations.swift */,
 				A811C9D91E8E84BC00B07F38 /* Room.swift */,
+				A83D3B881EE17EDB001ACDAA /* Beacon.swift */,
 				FBC395911DCB6D8500DB0FDD /* Request.swift */,
 			);
 			name = Classes;
@@ -341,6 +344,7 @@
 				A87F0FA91EA7CD09002795EC /* buildingVC.swift in Sources */,
 				E895B9E81DC3CD3E00E2F1BF /* UserManager.swift in Sources */,
 				A836F2F41E5DCDDD00FB6204 /* BuildingManager.swift in Sources */,
+				A83D3B891EE17EDB001ACDAA /* Beacon.swift in Sources */,
 				A8BD79131E9194DB004BCA8B /* CustomUIView.swift in Sources */,
 				FBC395921DCB6D8500DB0FDD /* Request.swift in Sources */,
 				A8F633521E98EA4F005CE4D4 /* GradientView.swift in Sources */,
