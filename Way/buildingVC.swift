@@ -93,7 +93,7 @@ class buildingVC: UIViewController {
                     emojiImage.image = UIImage( named:"smiley face")
                     emojiLabel.text = "Plenty of room..."
         
-                    self.gradientLayer.colors = [UIColor(red: 148.0/255.0, green: 217.0/255.0, blue: 72.0/255.0, alpha: 1.0).cgColor, UIColor(red: 0.0/255.0, green: 255.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor]
+                    self.gradientLayer.colors = [UIColor(red: 15.0/255.0, green: 222.0/255.0, blue: 69.0/255.0, alpha: 1.0).cgColor, UIColor(red: 112.0/255.0, green: 255.0/255.0, blue: 170.0/255.0, alpha: 1.0).cgColor]
         
         
                 case 40.0..<69.0 :
@@ -101,7 +101,7 @@ class buildingVC: UIViewController {
                     emojiImage.image = UIImage( named:"thinking face")
                     emojiLabel.text = "There's probably some space to work"
         
-                    self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 226.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor, UIColor(red: 255.0/255.0, green: 156.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor]
+                    self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 215.0/255.0, blue: 67.0/255.0, alpha: 1.0).cgColor, UIColor(red: 255.0/255.0, green: 141.0/255.0, blue: 40.0/255.0, alpha: 1.0).cgColor]
         
         
                 case 70.0..<100.0 :
@@ -109,11 +109,11 @@ class buildingVC: UIViewController {
                     emojiImage.image = UIImage( named:"crying face")
                     emojiLabel.text = "There's nowhere to sit!!!"
         
-                    self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor , UIColor(red: 255.0/255.0, green: 189.0/255.0, blue: 61.0/255.0, alpha: 1.0).cgColor]
+                    self.gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 71.0/255.0, blue: 81.0/255.0, alpha: 1.0).cgColor , UIColor(red: 255.0/255.0, green: 32.0/255.0, blue: 158.0/255.0, alpha: 1.0).cgColor]
         
                 default:
         
-                    emojiImage.image = UIImage( named:"potato")
+                    emojiImage.image = nil
                     emojiLabel.text = "Welcome!"
         
                     self.gradientLayer.colors = [UIColor(red: 255/255.5, green: 0/255.5, blue: 128/255.5, alpha: 1.0).cgColor, UIColor(red: 255/255.5, green: 156/255.5, blue: 0/255.5, alpha: 1.0).cgColor]
