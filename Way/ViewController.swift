@@ -272,7 +272,19 @@ extension ViewController: ESTBeaconManagerDelegate {
             print("enter kim")
             for building in BuildingManager.shared.buildings {
                 if building.buildingId == 5 {
-                    self.performSegue(withIdentifier: "building", sender: building)
+                    
+                    func buildingSegueAnimate() {
+                        UIView.animate(withDuration: 0.05, animations: {
+                            self.mapView.alpha = 0
+                            self.search.alpha = 0
+                            self.searchIcon.alpha = 0
+                            self.refreshButton.alpha = 0
+                        }) { (finished) in
+                            self.performSegue(withIdentifier: "building", sender: building)
+                        }
+                    }
+                    
+                    buildingSegueAnimate()
                 }
             }
         }
@@ -354,13 +366,12 @@ extension ViewController: RoomViewControllerDelegate {
         roomPin.title = room.roomNumber
         roomPin.subtitle = room.roomName
         mapView.addAnnotation(roomPin)
-        mapView.setZoomLevel(18, animated: true)
+        mapView.setZoomLevel(19, animated: true)
         let coordinate = roomPin.coordinate
         
         func mapViewDidAppear(_ mapView: MGLMapView) {
             
             let camera = MGLMapCamera(lookingAtCenter: coordinate, fromDistance: 250, pitch: 0, heading: 310)
-            
             mapView.setCamera(camera, withDuration: 1, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
         }
         mapViewDidAppear(mapView)
@@ -382,6 +393,8 @@ extension ViewController: RoomViewControllerDelegate {
 
 extension ViewController: MGLMapViewDelegate {
     
+    
+    //Annotation image set
     func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         
         var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: "pin")
@@ -403,9 +416,8 @@ extension ViewController: MGLMapViewDelegate {
     }
 
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        guard let annotation = annotation as? CustomAnnotation else {
-            return nil
-        }
+        
+        guard let annotation = annotation as? CustomAnnotation else { return nil }
         
         // Use the point annotation’s longitude value (as a string) as the reuse identifier for its view.
         let reuseIdentifier = "\(annotation.coordinate.longitude)"

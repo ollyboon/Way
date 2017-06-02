@@ -9,6 +9,7 @@ protocol CustomAnnotationViewDelegate {
 class CustomAnnotationView: MGLAnnotationView {
     
     var percentageBar: UIView!
+    let gradientLayer = CAGradientLayer()
     var din : UIFont = UIFont(name: "DIN", size: 15)!
     
     var delegate: CustomAnnotationViewDelegate?
@@ -33,7 +34,7 @@ class CustomAnnotationView: MGLAnnotationView {
         switch annotation.building.calculatePercentage() {
             
         case 1.0..<19.0 :
-            percentageBar.backgroundColor = UIColor(red: 0.0/255.0, green: 232.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+            percentageBar.backgroundColor = UIColor(red: 10.0/255.0, green: 221.0/255.0, blue: 66.0/255.0, alpha: 1.0)
            
         case 20.0..<29.0 :
             percentageBar.backgroundColor = UIColor(red: 0.0/255.0, green: 232.0/255.0, blue: 26.0/255.0, alpha: 1.0)
