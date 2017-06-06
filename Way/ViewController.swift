@@ -40,7 +40,9 @@ class ViewController: UIViewController {
     let locationManager = CLLocationManager()
     let buildings = BuildingManager.shared.buildings
     let alert = PCLBlurEffectAlert.Controller(title: "Your Bluetooth is off!", message: "Please turn it on to see available work space", effect: UIBlurEffect(style: .extraLight), style: .alert)
+    let leaveAlert = PCLBlurEffectAlert.Controller(title: "You've exited the building", message: "see you later", effect: UIBlurEffect(style: .extraLight), style: .alert)
     let alertBtn = PCLBlurEffectAlert.Action(title: "Ok", style: .cancel, handler: nil)
+    let leaveAlertBtn = PCLBlurEffectAlert.Action(title: "Bye!", style: .cancel, handler: nil)
     
     //Outlets
     @IBOutlet weak var mapView: MGLMapView!
@@ -99,7 +101,7 @@ class ViewController: UIViewController {
         request.loadRooms()
         BTManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         
-        let when = DispatchTime.now() + 2.5
+        let when = DispatchTime.now() + 1.5
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.refresh()
         }
@@ -113,6 +115,15 @@ class ViewController: UIViewController {
         alert.configure(titleFont: UIFont(name: "din", size: 22)!)
         alert.configure(messageFont: UIFont(name: "din", size: 14)!)
         alert.configure(messageColor: .black)
+        
+        //Configure Leave Alert
+        leaveAlert.addAction(leaveAlertBtn)
+//        alert.addImageView(with: #imageLiteral(resourceName: "bluetooth"))
+        leaveAlert.configure(cornerRadius: 20)
+        leaveAlert.configure(titleColor: .black)
+        leaveAlert.configure(titleFont: UIFont(name: "din", size: 22)!)
+        leaveAlert.configure(messageFont: UIFont(name: "din", size: 14)!)
+        leaveAlert.configure(messageColor: .black)
     
         //initial map setup
         mapView.layer.cornerRadius = 15
@@ -146,8 +157,8 @@ class ViewController: UIViewController {
         }
         
         //auto refresh
-//        let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.refresh(_:)), userInfo: nil, repeats: true)
-//        autoRefresh(refreshTimer)
+        let refreshTimer = Timer.scheduledTimer(timeInterval: 120 , target: self, selector: #selector(self.autoRefresh(_:)), userInfo: nil, repeats: true)
+        autoRefresh(refreshTimer)
         
         let activeUserTimer = Timer.scheduledTimer(timeInterval: 5 , target: self, selector: #selector(self.refreshAnimate(_:)), userInfo: nil, repeats: true)
         refreshAnimate(activeUserTimer)
@@ -163,6 +174,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         appearAnimation()
+        
     }
     
     //MARK: Custom Functions
@@ -215,6 +227,9 @@ class ViewController: UIViewController {
         }
         BuildingManager.shared.buildings.removeAll()
         request.loadBuildings()
+        if room != nil {
+           didSelect(room!)
+        }
     }
     
     func refresh() {
@@ -233,6 +248,18 @@ class ViewController: UIViewController {
             mapView.setCamera(camera, withDuration: 1, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
         }
         mapViewDidRefresh(mapView)
+    }
+    
+    func appearRefresh() {
+        rotate()
+        if let annotations = mapView.annotations {
+            mapView.removeAnnotations(annotations)
+        }
+        BuildingManager.shared.buildings.removeAll()
+        request.loadBuildings()
+        if room != nil {
+            didSelect(room!)
+        }
     }
     
     func refreshAnimate(_ timer: Timer) {
@@ -268,13 +295,13 @@ extension ViewController: ESTBeaconManagerDelegate {
     
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
         if region.identifier == "kimmeridge" {
-            request.userEnter(buildingId: 5)
-            print("enter kim")
+//            request.userEnter(buildingId: 5)
+            print("Enter kimmeridge House")
             for building in BuildingManager.shared.buildings {
                 if building.buildingId == 5 {
                     
                     func buildingSegueAnimate() {
-                        UIView.animate(withDuration: 0.05, animations: {
+                        UIView.animate(withDuration: 0.35, animations: {
                             self.mapView.alpha = 0
                             self.search.alpha = 0
                             self.searchIcon.alpha = 0
@@ -292,12 +319,15 @@ extension ViewController: ESTBeaconManagerDelegate {
     
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
         if region.identifier == "kimmeridge" {
-            request.userLeft(buildingId: 5)
-            print("exit kim")
+            //request.userLeft(buildingId: 5)
+            print("Exit kimmeridge House")
+            self.leaveAlert.show()
+            
         }
     }
-    
 }
+
+
 
 
 
